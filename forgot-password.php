@@ -61,11 +61,55 @@ if(!$result){
             //Send email with link to resetpassword.php with user id and activation code
 
 $message = "Please click on this link to reset your password:\n\n";
-$message .= "http://mynotes.thecompletewebhosting.com/resetpassword.php?user_id=$user_id&key=$key";
-if(mail($email, 'Reset your password', $message, 'From:'.'developmentisland@gmail.com')){
+$message .= "http://localhost/graduation-project/resetpassword.php?user_id=$user_id&key=$key";
+/*if(mail($email, 'Reset your password', $message, 'From:'.'developmentisland@gmail.com')){
         //If email sent successfully
                 //print success message
        echo "<div class='alert alert-success'>An email has been sent to $email. Please click on the link to reset your password.</div>";
+}*/
+
+//////////////
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php'; // Load PHPMailer
+
+$mail = new PHPMailer(true);
+
+try {
+    // SMTP Configuration
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com'; // SMTP Server
+    $mail->SMTPAuth = true;
+    $mail->Username = 'qusimoh99@gmail.com'; // Your Gmail
+    $mail->Password = 'feub vywj mmvf wxja'; // Your App Password (Generated from Google)
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // TLS Encryption
+    $mail->Port = 465;
+
+    // Email Content
+    $mail->setFrom('qusimoh99@gmail.com', 'Notes App'); // Sender
+    $mail->addAddress($email); // Recipient
+
+    $mail->isHTML(true);
+    $mail->Subject = 'Confirm your Registration';
+
+    // Activation Link
+    $projectRoot = "http://localhost/NotesAppFinalFinal/";
+    $activationLink = $projectRoot . "9.%20Notes%20App%20(Bootstrap%20PHP%20mySQL)/activate.php?email=" . urlencode($email) . "&key=$activationKey";
+    
+    $mail->Body = "<h3>Please click the link below to activate your account:</h3>
+                   <p><a href='$activationLink'>$activationLink</a></p>";
+
+    // Send Email
+    if ($mail->send()) {
+        echo "<div class='alert alert-success'>Thank you for registering! A confirmation email has been sent to <b>$email</b>. Please check your inbox and click the activation link.</div>";
+    }
+
+} catch (Exception $e) {
+    echo "<div class='alert alert-danger'>Message could not be sent. Mailer Error: {$mail->ErrorInfo}</div>";
 }
+
+
 
     ?>
