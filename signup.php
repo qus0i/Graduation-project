@@ -6,7 +6,7 @@ include('connection.php');
 //<!--Check user inputs-->
 //    <!--Define error messages-->
 $missingUsername = '<p><strong>Please enter a username!</strong></p>';
- $missingEmail = '<p><strong>Please enter your email address!</strong></p>';
+$missingEmail = '<p><strong>Please enter your email address!</strong></p>';
 $invalidEmail = '<p><strong>Please enter a valid email address!</strong></p>';
 $missingPassword = '<p><strong>Please enter a Password!</strong></p>';
 $invalidPassword = '<p><strong>Your password should be at least 6 characters long and inlcude one capital letter and one number!</strong></p>';
