@@ -32,7 +32,8 @@ if (isset($_SESSION['login_message'])) {
 </head>
 <body>
   <header>
-    <h2>Welcome, <?php echo $_SESSION['username']; ?> !</h2>
+  <h2>Welcome, <?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : 'User'; ?>!</h2>
+
     <nav>
       <a href="logout.php">Logout</a>
     </nav>

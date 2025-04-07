@@ -2,12 +2,10 @@
 session_start();
 include("connection.php");
 
-// Error messages
 $missingEmail = '<p><strong>Please enter your email address!</strong></p>';
 $missingPassword = '<p><strong>Please enter your password!</strong></p>';
 $errors = '';
 
-// Validate form
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (empty($_POST["loginemail"])) {
         $errors .= $missingEmail;
@@ -32,7 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $result = mysqli_query($link, $sql);
 
         if (mysqli_num_rows($result) == 1) {
+            $row = mysqli_fetch_assoc($result);
             $_SESSION['user'] = $email;
+            $_SESSION['username'] = $row['username']; // ✅ store username
             $_SESSION['login_message'] = "Successfully logged in!";
             header("Location: home.php");
             exit();
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 } else {
-    header("Location: login.html");
+    header("Location: home.php");
     exit();
 }
 ?>
