@@ -8,6 +8,8 @@ include('connection.php');
     //Define error messages
 $missingEmail = '<p><strong>Please enter your email address!</strong></p>';
 $invalidEmail = '<p><strong>Please enter a valid email address!</strong></p>';
+
+$errors = '';
     //Get email
     //Store errors in errors variable
 if(empty($_POST["forgotemail"])){
@@ -113,3 +115,19 @@ try {
 
 
     ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Forgot Password</title>
+</head>
+<body>
+  <h2>Reset Your Password</h2>
+  <form action="storeresetpassword.php" method="POST">
+    <label>Enter your email:</label>
+    <input type="email" name="email" required>
+    <button type="submit">Send Reset Link</button>
+  </form>
+</body>
+</html>
