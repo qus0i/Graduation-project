@@ -10,12 +10,12 @@ $pass = $parts['pass'];              // your DB password
 $dbname = ltrim($parts['path'], '/'); // your DB name
 
 // Connect to the MySQL DB
-$conn = new mysqli($host, $user, $pass, $dbname, $port);
+$link = new mysqli($host, $user, $pass, $dbname, $port);
 
 // Check the connection
-if ($conn->connect_error) {
-    die("❌ Connection failed: " . $conn->connect_error);
+if ($link->connect_error) {
+    die("❌ Connection failed: " . $link->connect_error);
 }
 
-echo "✅ Connected to Railway MySQL!";
+//echo "✅ Connected to Railway MySQL!";
 ?>
