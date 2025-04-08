@@ -1,5 +1,5 @@
 <?php
-include("connection.php");
+include("../connection.php");
 
 $rkey = $_GET['rkey'] ?? '';
 $query = "SELECT * FROM forgotpassword WHERE rkey='$rkey' AND status='pending' LIMIT 1";

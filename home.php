@@ -10,10 +10,14 @@ include("connection.php");
 $email = $_SESSION['user'];  // this holds the logged-in email
 $username = '';
 
+
+
+//echo $email;
 $sql = "SELECT username FROM users WHERE email = '$email' LIMIT 1";
 $result = mysqli_query($link, $sql);
 if ($row = mysqli_fetch_assoc($result)) {
     $username = $row['username'];
+    
 }
 
 $loginMessage = '';
@@ -32,7 +36,7 @@ if (isset($_SESSION['login_message'])) {
 </head>
 <body>
   <header>
-  <h2>Welcome, <?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : 'User'; ?>!</h2>
+  <h2>Welcome, <?php echo $username; ?> !</h2>
 
     <nav>
       <a href="logout.php">Logout</a>

@@ -1,5 +1,5 @@
 <?php
-include("connection.php");
+include("../connection.php");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $rkey = mysqli_real_escape_string($link, $_POST['rkey']);
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Mark the token as used
         mysqli_query($link, "UPDATE forgotpassword SET status='used' WHERE rkey='$rkey'");
 
-        echo "Password has been updated. <a href='login.html'>Login now</a>";
+        echo "Password has been updated. <a href='../login.html'>Login now</a>";
     } else {
         echo "Invalid or expired reset key.";
     }

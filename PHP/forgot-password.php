@@ -1,11 +1,11 @@
 <?php
 session_start();
-include("connection.php");
+include("../connection.php");
 
 // PHPMailer
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 $missingEmail = '<p><strong>Please enter your email address!</strong></p>';
 $invalidEmail = '<p><strong>Please enter a valid email address!</strong></p>';
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             mysqli_query($link, $insert);
 
             // Send email with reset link
-            $resetLink = "http://localhost/Graduation-project/resetpassword.php?rkey=$rkey";
+            $resetLink = "http://localhost/Graduation-project/PHP/resetpassword.php?rkey=$rkey";
 
             $mail = new PHPMailer(true);
             try {

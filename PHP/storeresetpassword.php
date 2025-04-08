@@ -2,8 +2,8 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php';
-include("connection.php");
+require '../vendor/autoload.php';
+include("../connection.php");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = mysqli_real_escape_string($link, $_POST['email']);
@@ -27,12 +27,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'your_email@gmail.com'; // Replace
-            $mail->Password = 'your_app_password';    // Replace
-            $mail->SMTPSecure = 'tls';
-            $mail->Port = 587;
+            $mail->Username = 'qusimoh99@gmail.com'; // Replace
+            $mail->Password = 'feub vywj mmvf wxja';    // Replace
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $mail->Port = 465;
 
-            $mail->setFrom('your_email@gmail.com', 'Book System');
+            $mail->setFrom('qusimoh99@gmail.com', 'Book System');
             $mail->addAddress($email);
             $mail->isHTML(true);
             $mail->Subject = 'Password Reset';
