@@ -68,5 +68,34 @@ body {
     height: auto;
     border-radius: 4px;
   }
+  .book-card form {
+    display: inline-block;
+    margin-top: 5px;
+  }
+  .book-card button {
+    font-size: 20px;
+    padding: 4px 8px;
+    cursor: pointer;
+  }
+  .book-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .book-card {
+    width: 200px;
+    background: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    border-radius: 8px;
+  }
+  
+  .book-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
   
   
