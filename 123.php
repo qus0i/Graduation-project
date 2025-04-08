@@ -1,41 +1,20 @@
 <?php
 include("connection.php");
 
-// Table: myfavorites
-$sqlFavorites = "
-CREATE TABLE IF NOT EXISTS myfavorites (
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    user_id BIGINT UNSIGNED NOT NULL,
-    title VARCHAR(255),
-    author VARCHAR(255),
-    thumbnail TEXT,
-    UNIQUE KEY unique_fav (user_id, title),
-    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-";
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['user_id'])) {
+    $user_id = mysqli_real_escape_string($link, $_POST['user_id']);
 
-if (mysqli_query($link, $sqlFavorites)) {
-    echo "✅ 'myfavorites' table created successfully.<br>";
+    $deleteQuery = "DELETE FROM users WHERE user_id = '$user_id'";
+    if (mysqli_query($link, $deleteQuery)) {
+        echo "✅ User deleted successfully.";
+    } else {
+        echo "❌ Error deleting user: " . mysqli_error($link);
+    }
 } else {
-    echo "❌ Error creating 'myfavorites': " . mysqli_error($link) . "<br>";
-}
-
-// Table: wishlist
-$sqlWishlist = "
-CREATE TABLE IF NOT EXISTS wishlist (
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    user_id BIGINT UNSIGNED NOT NULL,
-    title VARCHAR(255),
-    author VARCHAR(255),
-    thumbnail TEXT,
-    UNIQUE KEY unique_wish (user_id, title),
-    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-";
-
-if (mysqli_query($link, $sqlWishlist)) {
-    echo "✅ 'wishlist' table created successfully.";
-} else {
-    echo "❌ Error creating 'wishlist': " . mysqli_error($link);
+    echo "Invalid request.";
 }
 ?>
+<form action="123.php" method="POST">
+  <input type="number" name="user_id" placeholder="Enter User ID" required>
+  <button type="submit">Delete User</button>
+</form>
