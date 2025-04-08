@@ -25,6 +25,21 @@ if (isset($_SESSION['login_message'])) {
     $loginMessage = $_SESSION['login_message'];
     unset($_SESSION['login_message']);
 }
+
+/////
+$books = [];
+
+$apiUrl = "https://www.googleapis.com/books/v1/volumes?q=fiction&maxResults=6";
+$response = file_get_contents($apiUrl);
+if ($response !== false) {
+    $data = json_decode($response, true);
+    if (isset($data['items'])) {
+        $books = $data['items'];
+    }
+}
+else {
+    echo '<div class="alert alert-danger">Failed to fetch book data.</div>';
+} 
 ?>
 
 <!DOCTYPE html>
@@ -38,9 +53,13 @@ if (isset($_SESSION['login_message'])) {
   <header>
   <h2>Welcome, <?php echo $username; ?> !</h2>
 
-    <nav>
-      <a href="logout.php">Logout</a>
-    </nav>
+  <nav style="margin-top: 10px;">
+  <a href="home.php">Home</a> |
+  <a href="favorites.php">My Favorite</a> |
+  <a href="wishlist.php">Wishlist</a> |
+  <a href="logout.php">Logout</a>
+</nav>
+
   </header>
 
   <?php if ($loginMessage): ?>
@@ -48,12 +67,24 @@ if (isset($_SESSION['login_message'])) {
   <?php endif; ?>
 
   <main>
-    <h3>Recommended Books:</h3>
-    <ul>
-      <li><a href="book-details.php?id=1">Book Title 1</a></li>
-      <li><a href="book-details.php?id=2">Book Title 2</a></li>
-      <li><a href="book-details.php?id=3">Book Title 3</a></li>
-    </ul>
+  <h3>Recommended Books:</h3>
+<div class="book-list">
+  <?php foreach ($books as $book): 
+    $volume = $book['volumeInfo'];
+    $title = $volume['title'] ?? 'Unknown Title';
+    $authors = $volume['authors'][0] ?? 'Unknown Author';
+    $thumbnail = $volume['imageLinks']['thumbnail'] ?? '';
+  ?>
+    <div class="book-card">
+      <?php if ($thumbnail): ?>
+        <img src="<?php echo $thumbnail; ?>" alt="Book Cover">
+      <?php endif; ?>
+      <h4><?php echo htmlspecialchars($title); ?></h4>
+      <p>By: <?php echo htmlspecialchars($authors); ?></p>
+    </div>
+      <?php endforeach; ?>
+</div>
+
   </main>
 </body>
 </html>

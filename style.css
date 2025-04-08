@@ -32,4 +32,41 @@ body {
     width: 100%;
     padding: 8px;
   }
+  nav {
+    background-color: #f2f2f2;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  nav a {
+    text-decoration: none;
+    margin: 0 15px;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  nav a:hover {
+    color: #007bff;
+  }
+  .book-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .book-card {
+    width: 200px;
+    background: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    border-radius: 8px;
+  }
+  
+  .book-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+  
   
