@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Navbar</title>
+  <!-- Bootstrap 4 CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="../All_CSS/main.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light nav-bg">
+    <div class="logo-container d-flex align-items-center gap-3 position-relative z-index-1">
+        <div class="logo-icon rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background: linear-gradient(135deg, #c17b36 0%, #f9c172 100%); box-shadow: 0 4px 15px rgba(193, 123, 54, 0.3);">
+            <div class="book-icon" style="width: 25px; height: 20px; background-color: #0b0804; position: relative; transform: perspective(100px) rotateY(-15deg);"></div>
+        </div>
+        <div class="logo-text fs-3 fw-bold ">NextChapter</div>
+    </div>
+    <button class="navbar-toggler nav-cr" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active mr-4 ">
+          <a class="nav-link all-nav" href="#">Home</a>
+        </li>
+        <li class="nav-item mr-4 ">
+          <a class="nav-link all-nav" href="#">Recommendation</a>
+        </li>
+        <li class="nav-item mr-custom">
+          <a class="nav-link all-nav" href="#">About</a>
+        </li>
+        <!-- Profile Icon Button with larger margin-right -->
+        <li class="nav-item mr-4">
+          <button class="btn btn-link nav-link all-nav" type="button">
+            <i class="fas fa-user"></i>
+          </button>
+        </li>
+        <!-- Sign Out Icon Button -->
+        <li class="nav-item">
+          <button class="btn btn-link nav-link" type="button">
+            <i class="fas fa-sign-out-alt all-nav"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Bootstrap 4 and jQuery JS (necessary for navbar toggle to work) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -491,3 +491,36 @@ color: #f9c172;
             
              }
         }
+        /*ALL NAV*/
+        .nav-bg{
+            background-color: rgba(0, 0, 0, 0.0) !important;
+   
+        }
+        .mr-custom {
+            margin-right: 10rem; /* You can adjust this value as needed */
+          }
+              /* Add underline to active nav item */
+         
+         .nav-item.active .nav-link {
+          border-bottom: 3px solid; /* You can change the color and thickness */
+          padding-bottom: 5px; /* Adjust this to move the underline lower */
+          font-weight: bold; 
+        }
+.all-nav {
+    color: #f9c172 !important; /* Apply your custom color */
+    font-weight: bold; /* Optional: Make the text bold */
+}
+
+/* Change color on hover */
+.all-nav:hover {
+    color: #c17b36 !important; /* Change color when hovered */
+    /* Underline on hover */
+}
+.nav-cr{
+    color: #f9c172 !important;
+}
+
+
+
+
+
