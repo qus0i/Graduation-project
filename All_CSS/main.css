@@ -172,14 +172,22 @@ header {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     color: #0C0804;
 }
+/*section colors*/
+.section1{
+background-color: #0b0804;
+}
 
+.section2{
+    background-color: #0c0804;
+
+    }
 /**/
 .content1 {
     background-color: #0C0804; /* Background color for second section */
     padding: 4rem 2rem;
     color: #f9c172;
 }
-.container {
+.container2 {
     max-width: 1200px;
     margin: 0 auto;
 }

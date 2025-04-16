@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookNest</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    
+  <!-- Navbar -->
+  <div id="navbar-placeholder"></div>
+
+<script>
+  fetch('nav.html')
+    .then(response => response.text())
+    .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
+</script>
+
+  <!-- Hero Section -->
+  <div class="container-fluid bg-light py-5">
+    <div class="row">
+      <div class="col-12 col-md-6 text-center text-md-start">
+        <h1>Discover Your Next Great Read:</h1>
+        <button class="btn btn-primary">Start Exploring</button>
+      </div>
+      <div class="col-12 col-md-6 text-center">
+        <img src="https://via.placeholder.com/300" alt="hero-image" class="img-fluid">
+      </div>
+    </div>
+  </div>
+
+  <!-- Popular Picks Section -->
+  <div class="container2 my-5">
+    <h2>Popular Picks for You</h2>
+    <div class="row">
+      <div class="col-md-3">
+        <img src="https://via.placeholder.com/150" class="img-fluid" alt="book">
+        <h5>Book Title</h5>
+        <p>Author</p>
+      </div>
+      <div class="col-md-3">
+        <img src="https://via.placeholder.com/150" class="img-fluid" alt="book">
+        <h5>Book Title</h5>
+        <p>Author</p>
+      </div>
+      <div class="col-md-3">
+        <img src="https://via.placeholder.com/150" class="img-fluid" alt="book">
+        <h5>Book Title</h5>
+        <p>Author</p>
+      </div>
+      <div class="col-md-3">
+        <img src="https://via.placeholder.com/150" class="img-fluid" alt="book">
+        <h5>Book Title</h5>
+        <p>Author</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Explore by Genre Section -->
+  <div class="container my-5">
+    <h2>Explore by Genre</h2>
+    <div class="row">
+      <div class="col-md-2">
+        <div class="card">
+          <img src="https://via.placeholder.com/100" class="card-img-top" alt="fiction">
+          <div class="card-body">
+            <h5 class="card-title">Fiction</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card">
+          <img src="https://via.placeholder.com/100" class="card-img-top" alt="mystery">
+          <div class="card-body">
+            <h5 class="card-title">Mystery</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card">
+          <img src="https://via.placeholder.com/100" class="card-img-top" alt="sci-fi">
+          <div class="card-body">
+            <h5 class="card-title">Sci-Fi</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card">
+          <img src="https://via.placeholder.com/100" class="card-img-top" alt="romance">
+          <div class="card-body">
+            <h5 class="card-title">Romance</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card">
+          <img src="https://via.placeholder.com/100" class="card-img-top" alt="non-fiction">
+          <div class="card-body">
+            <h5 class="card-title">Non-Fiction</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card">
+          <img src="https://via.placeholder.com/100" class="card-img-top" alt="fantasy">
+          <div class="card-body">
+            <h5 class="card-title">Fantasy</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Best Books This Month Section -->
+
+  <div class="container my-5">
+    <h2>Best Books This Month</h2>
+    <div class="row">
+      <div class="col-md-3">
+        <img src="https://via.placeholder.com/150" class="img-fluid" alt="book">
+        <h5>Book Title</h5>
+        <p>Author</p>
+      </div>
+      <div class="col-md-3">
+        <img src="https://via.placeholder.com/150" class="img-fluid" alt="book">
+        <h5>Book Title</h5>
+        <p>Author</p>
+      </div>
+      <div class="col-md-3">
+        <img src="https://via.placeholder.com/150" class="img-fluid" alt="book">
+        <h5>Book Title</h5>
+        <p>Author</p>
+      </div>
+      <div class="col-md-3">
+        <img src="https://via.placeholder.com/150" class="img-fluid" alt="book">
+        <h5>Book Title</h5>
+        <p>Author</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- From Our Readers Section -->
+  <div class="container my-5">
+    <h2>From Our Readers</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <img src="https://via.placeholder.com/150" class="img-fluid" alt="user">
+        <h5>User Name</h5>
+        <h6>Book Title</h6>
+        <p>⭐⭐⭐⭐⭐</p>
+        <p>Review text goes here...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Our Story Section -->
+  <div class="container my-5">
+    <h2>Our Story</h2>
+    <p>BookNest was created to connect book lovers with their next favorite read. We aim to inspire and nurture the love for literature in every reader.</p>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

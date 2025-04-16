@@ -1,98 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NextChapter - Discover Your Next Great Read</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-     <link rel="stylesheet" href="../All_CSS/main2.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Cards Slider v1</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../All_CSS/main.css">
+
+  <style>
+    :root {
+      --prev-img: url(../All_IMAGES/prev.svg);
+      --next-img: url(../All_IMAGES/next.svg);
+    }
+
+    .card {
+      background: linear-gradient(to bottom, #e0c8c1, #bb8d5c);
+      color: #fff;
+      border: none;
+      margin: 10px;
+      height: 350px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      
+    }
+
+    .card-img-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .card-body {
+      position: relative;
+      z-index: 2;
+      padding: 20px;
+      background: linear-gradient(to top, rgba(193, 123, 54, 0.4), rgba(0, 0, 0, 0));
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      height: 100%;
+      transition: background 0.5s ease; 
+    }
+
+    .card-body:hover {
+      background: linear-gradient(to top, rgba(193, 123, 54, 0.8), rgba(193, 123, 54, 0.3));
+    }
+
+    .carousel-inner {
+      display: block;
+      justify-content: center;
+    }
+
+    .card-text {
+      margin-bottom: 0;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+      z-index: 5;
+      width: 8%;
+    }
+
+    .carousel-control-next:hover {
+      background: linear-gradient(to left, rgba(193, 123, 54, 0.4), rgba(0, 0, 0, 0));
+    }
+
+    .carousel-control-prev:hover {
+      background: linear-gradient(to right, rgba(193, 123, 54, 0.4), rgba(0, 0, 0, 0));
+    }
+
+    .prv svg:hover,
+    .nxt svg:hover {
+      width: 48px;
+      height: 48px;      
+      fill: #f9c172;  /* Set the desired color for the icons */
+    }
+
+    .prv svg,
+    .nxt svg {
+      width: 48px;
+      height: 48px;
+      fill: #fff;  /* Set the desired color for the icons */
+    }
+
+    .prv {
+      background: none; /* Remove any background from the button */
+    }
+
+    .nxt {
+      background: none; /* Remove any background from the button */
+    }
+    
+    .homePage-buttons {
+    position: absolute;
+    top: 70%;
+    left: 10%;
+    display: flex;
+    gap: 7.5rem;
+    margin-top: 1rem;
+    z-index: 2;
+}
+.homePage-button{
+    padding: 0.75rem 1.5rem;/*1rem 2.5rem*/
+    border-radius: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    margin-left: 0.8rem;
+}
+
+.slider-butt {
+    background-color: transparent;
+    color: #c17b36;
+    border: 2px solid #c17b36;
+}
+.slider-butt:hover {
+  
+  background-color: #f9c172;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  color: #0C0804;
+  border: 2px solid #f9c172;
+    
+}
+    /* Update for 4 cards per row */
+    
+ </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero-section position-relative w-100" style="height: 600px;">
-        <div class="background w-100 h-100" style="background-image: url('../All_IMAGES/Banner.png'); filter: blur(8px) brightness(0.6); z-index: 0;"></div>
-        <header class="header position-relative py-3 w-100">
-            <div class="logo-container d-flex align-items-center gap-3 position-relative z-index-1">
-                <div class="logo-icon rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background: linear-gradient(135deg, #c17b36 0%, #f9c172 100%); box-shadow: 0 4px 15px rgba(193, 123, 54, 0.3);">
-                    <div class="book-icon" style="width: 25px; height: 20px; background-color: #0b0804; position: relative; transform: perspective(100px) rotateY(-15deg);"></div>
-                </div>
-                <div class="logo-text fs-3 fw-bold ">NextChapter</div>
-            </div>
-        </header>
-        <main class="text-center position-absolute top-50 start-50 translate-middle w-100">
-            <h1 class="hero-text display-3 fw-bold  mb-3">Discover your next great read</h1>
-        </main>
-        <div class="firstPage-buttons d-flex justify-content-center position-button  gap-4">
-            <button class="firstPage-button sign-up position-button">Sign Up</button>
-            <button class="firstPage-button sign-in position-button">Sign In</button>
+  <section class="section2 ">
+  <div class="my-4 section2">
+    <div class="row"><!--style="padding: 1rem;height: 350%;margin-top:5%;"-->
+      <div class="col-md-2 d-flex flex-column justify-content-center align-items-center position-relative" style="min-height: 400px;">
+        <h3 class="text-center lh-base fw-bolder" style="margin-left: 0.8rem;">Best Books This Month</h3>
+        <button class="btn btn-primary position-absolute bottom-0 mb-5 homePage-button slider-butt" >Read More</button>
+    </div>
+<!-- button calss
+ homePage-button sign-in position-button -->
+      <div class="col-md-10 " style="min-height: 400px;">
+        <div id="bookCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner" id="carouselContent" style="min-height: 400px;">
+            <!-- Cards will be dynamically generated here -->
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#bookCarousel" data-bs-slide="prev">
+            <span class="prv" aria-hidden="true">
+              <!-- SVG for the "Previous" icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M15.41 7.41L10.83 12l4.58 4.59L14 18l-6-6 6-6 1.41 1.41z"/>
+              </svg>
+            </span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#bookCarousel" data-bs-slide="next">
+            <span class="nxt" aria-hidden="true">
+              <!-- SVG for the "Next" icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.59 7.41L13.17 12l-4.58 4.59L10 18l6-6-6-6-1.41 1.41z"/>
+              </svg>
+            </span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
+  <script>
+    // Fetch data from Google Books API
+    const apiURL = 'https://www.googleapis.com/books/v1/volumes?q=subject:fiction&maxResults=40';
+    
+fetch(apiURL)
+      .then(response => response.json())
+      .then(data => {
+        const books = data.items;
+        let carouselContent = '';
+        books.forEach((book, index) => {
+          const title = book.volumeInfo.title;
+          const authors = book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'Unknown';
+          const rating = book.volumeInfo.averageRating || 'No Rating';
+          const image = book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : 'https://via.placeholder.com/150';
 
-    <!-- Content Section -->
-    <section class="content1  py-5">
-        <div class="container">
-            <h1 class="page-title display-4 fw-bold text-center mb-5">Why NextChapter?</h1>
-            <div class="row g-4">
-                <!-- Feature Card -->
-                <div class="col-sm-12 col-md-6 col-lg-3">
-                    <div class="feature p-4 rounded  shadow-sm h-100 text-center">
-                        <div class="feature-icon mx-auto mb-3 d-flex align-items-center justify-content-center rounded-circle" 
-                             style="width: 80px; height: 80px; background: linear-gradient(135deg, #c17b36 0%, #f9c172 100%); font-size: 2rem; color: #0C0804;">
-                            <i class="bi bi-brain"></i>
-                        </div>
-                        <h2 class="feature-title fs-5 fw-bold">Smart Recommendations</h2>
-                        <p class="feature-desc mb-0">Our AI learns your reading preferences to suggest books you'll truly love.</p>
-                    </div>
+          // Create a new carousel item for every 4 cards
+          if (index % 4 === 0) {
+            carouselContent += `<div class="carousel-item ${index === 0 ? 'active' : ''}"><div class="row justify-content-center">`;
+          }
+
+          carouselContent += `  
+            <div class="col-md-3">
+              <div class="card" style="height:400px ;">
+                <img src="${image}" class="card-img-top" alt="Book Image">
+                <div class="card-body">
+                  <h5 class="card-title">${title}</h5>
+                  <p class="card-text">${authors}</p>
+                  <p class="card-text">Rating: ${rating}</p>
                 </div>
-            
-                <!-- Feature Card -->
-                <div class="col-sm-12 col-md-6 col-lg-3">
-                    <div class="feature p-4 rounded  shadow-sm h-100 text-center">
-                        <div class="feature-icon mx-auto mb-3 d-flex align-items-center justify-content-center rounded-circle" 
-                             style="width: 80px; height: 80px; background: linear-gradient(135deg, #c17b36 0%, #f9c172 100%); font-size: 2rem; color: #0C0804;">
-                            <i class="bi bi-book"></i>
-                        </div>
-                        <h2 class="feature-title fs-5 fw-bold">Organize Your Reads</h2>
-                        <p class="feature-desc mb-0">Track what you've read, what you're reading, and what you want to read next.</p>
-                    </div>
-                </div>
-            
-                <!-- Feature Card -->
-                <div class="col-sm-12 col-md-6 col-lg-3">
-                    <div class="feature p-4 rounded  shadow-sm h-100 text-center">
-                        <div class="feature-icon mx-auto mb-3 d-flex align-items-center justify-content-center rounded-circle" 
-                             style="width: 80px; height: 80px; background: linear-gradient(135deg, #c17b36 0%, #f9c172 100%); font-size: 2rem; color: #0C0804;">
-                            <i class="bi bi-compass"></i>
-                        </div>
-                        <h2 class="feature-title fs-5 fw-bold">Explore With Ease</h2>
-                        <p class="feature-desc mb-0">Discover new genres and authors through our curated collections.</p>
-                    </div>
-                </div>
-            
-                <!-- Feature Card -->
-                <div class="col-sm-12 col-md-6 col-lg-3">
-                    <div class="feature p-4 rounded  shadow-sm h-100 text-center">
-                        <div class="feature-icon mx-auto mb-3 d-flex align-items-center justify-content-center rounded-circle" 
-                             style="width: 80px; height: 80px; background: linear-gradient(135deg, #c17b36 0%, #f9c172 100%); font-size: 2rem; color: #0C0804;">
-                            <i class="bi bi-trophy"></i>
-                        </div>
-                        <h2 class="feature-title fs-5 fw-bold">Earn Rewards</h2>
-                        <p class="feature-desc mb-0">Get badges and discounts as you reach reading milestones.</p>
-                    </div>
-                </div>
+              </div>
             </div>
-            
+          `;
 
-            <div class="cta-section text-center mt-5">
-                <button class=" explore-btn px-5 py-3 rounded-pill">Explore More</button>
-                <p class="testimonial mt-3 fs-4">NextChapter helped me discover my favorite series</p>
-            </div>
-        </div>
-    </section>
+          // Close the row after every 4 cards
+          if ((index + 1) % 4 === 0 || index === books.length - 1) {
+            carouselContent += '</div></div>';
+          }
+        });
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+        // Insert generated content into the carousel inner
+        document.getElementById('carouselContent').innerHTML = carouselContent;
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
