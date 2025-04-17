@@ -113,8 +113,21 @@
     </div>
   </div>
 
-<!-- Best Books This Month Section -->
 
+<!-- Best Books This Month Section -->
+<div id="carouselContainer"></div>
+  
+<script>
+  // Fetch and load content from test2.html into the container
+  fetch('./MonthlyRecomnd.html')
+    .then(response => response.text())
+    .then(data => {
+      // Insert the fetched HTML into the container
+      document.getElementById('carouselContainer').innerHTML = data;
+    })
+    .catch(error => console.error('Error loading content:', error));
+</script>
+<!--
   <div class="container my-5">
     <h2>Best Books This Month</h2>
     <div class="row">
@@ -140,6 +153,7 @@
       </div>
     </div>
   </div>
+-->
 
   <!-- From Our Readers Section -->
   <div class="container my-5">
