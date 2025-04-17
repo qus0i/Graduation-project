@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Fetch data from Google Books API
     const apiURL = 'https://www.googleapis.com/books/v1/volumes?q=subject:fiction&maxResults=40';
-   
+  
     fetch(apiURL)
       .then(response => response.json())
       .then(data => {
@@ -18,16 +18,18 @@ document.addEventListener('DOMContentLoaded', function () {
             carouselContent += `<div class="carousel-item ${index === 0 ? 'active' : ''}"><div class="row justify-content-center">`;
           }
   
-          carouselContent += `  
+          carouselContent += `
             <div class="col-md-3">
-              <div class="card" style="height:400px ;">
-                <img src="${image}" class="card-img-top" alt="Book Image">
-                <div class="card-body">
-                  <h5 class="card-title">${title}</h5>
-                  <p class="card-text">${authors}</p>
-                  <p class="card-text">Rating: ${rating}</p>
+              <a href="book-detail.html?bookId=${book.id}" class="card-link">
+                <div class="card" style="height:400px;">
+                  <img src="${image}" class="card-img-top" alt="Book Image">
+                  <div class="card-body">
+                    <h5 class="card-title">${title}</h5>
+                    <p class="card-text">${authors}</p>
+                    <p class="card-text">Rating: ${rating}</p>
+                  </div>
                 </div>
-              </div>
+              </a>
             </div>
           `;
   
