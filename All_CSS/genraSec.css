@@ -1,58 +1,70 @@
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    background-color: #1a1a1a;
-    color: white;
-    font-family: Arial, sans-serif;
-  }
-  
-  .text-orange {
-    color: #ff7f50;
-  }
-  
-  .genre-card {
-    background: linear-gradient(135deg, rgba(255, 127, 80, 0.7), rgba(255, 127, 80, 0.4));
-    border: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-  }
-  
-  .genre-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .genre-card .card-body {
-    text-align: center;
-    padding: 40px;
-  }
-  
-  .card-title {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  button {
-    font-size: 18px;
-    padding: 10px 20px;
-    background-color: transparent;
-    border-color: #ff7f50;
-    color: #ff7f50;
-  }
-  
-  button:hover {
-    background-color: #ff7f50;
-    color: white;
-    border-color: #ff7f50;
-  }
-  
-  @media (max-width: 768px) {
-    .genre-card .card-body {
-      padding: 30px;
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .genre-card .card-body {
-      padding: 20px;
-    }
-  }
-  
+  min-height: 100vh;
+  background-color: black;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.container {
+  padding: 2rem;
+}
+
+.title {
+  color: #fb923c; /* Tailwind's orange-400 */
+  font-size: 1.875rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.genre-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.genre-card {
+  width: 16rem;
+  height: 16rem;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s;
+  border-radius: 0.5rem;
+}
+
+.genre-card:hover {
+  transform: scale(1.05);
+}
+
+.genre-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, #111827, #c2410c); /* from gray-900 to orange-700 */
+  opacity: 0.8;
+  border-radius: 0.5rem;
+}
+
+.genre-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.genre-text {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
