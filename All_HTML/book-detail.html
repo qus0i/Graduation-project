@@ -8,6 +8,14 @@
   <link rel="stylesheet" href="../All_CSS/main.css">
 </head>
 <body>
+  <!--Nav bar-->
+  <div id="navbar-placeholder"></div>
+
+<script>
+  fetch('nav.html')
+    .then(response => response.text())
+    .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
+</script>
   <div class="container">
     <div id="bookDetails"></div>
   </div>

@@ -711,4 +711,47 @@ header {
   .star:hover::after {
     opacity: 1; /* Shows the box when hovering over the star */
   }
+  .bookImg{
+    width: 30%;
+    height: auto;
+  }
+
+  .bstars{
+ position: absolute;
+    font-size: 3rem;
+    z-index: 3;
+  }
   
+@media (min-width: 768px) {
+  .star-rating {
+      font-size: 3.5rem;
+      gap: 0.5rem;
+  }
+}
+
+.review-star {
+  cursor: pointer;
+  color: #e4e5e9;
+  transition: color 0.2s ease;
+}
+
+.review-star.text-warning {
+  color: #ffc107 !important;
+}
+
+.review-star:hover {
+  transform: scale(1.1);
+}
+
+.comment-card {
+  border-radius: 15px;
+  background-color: #0C0804;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+.comment-card-body{
+
+}

@@ -51,24 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </a>
           </div>
         `;
-/*// Add data-rating to the parent .stars container
-carouselContent += `
-  <div class="col-md-3">
-    <a href="book-detail.html?bookId=${book.id}" class="card-link">
-      <div class="card" style="height:400px;">
-        <img src="${image}" class="card-img-top" alt="Book Image">
-        <div class="card-body">
-          <h5 class="card-title card-link">${title}</h5>
-          <p class="card-text card-link">${authors}</p>
-        <div class="card-footer">
-          <div class="stars" data-rating="${rating}">
-            ${starRating}
-          </div>
-        </div>
-      </div>
-    </a>
-  </div>
-`; */
+
         // Close the row after every 4 cards
         if ((index + 1) % 4 === 0 || index === books.length - 1) {
           carouselContent += '</div></div>';
