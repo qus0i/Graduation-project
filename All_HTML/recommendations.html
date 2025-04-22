@@ -1,122 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Book Card Grid</title>
-  <style>
-    body {
-      background: #000;
-      color: #000;
-      font-family: sans-serif;
-      padding: 32px 0;
-      margin: 0;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 16px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 24px;
-    }
-    .book-card {
-      background: linear-gradient(to bottom, #000 0%, #C17B36 100%);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
-      width: 100%;
-      height: 400px;
-      border-radius: 18px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 32px 22px 22px 22px;
-      box-sizing: border-box;
-    }
-    .book-title {
-      font-size: 1.15rem;
-      font-weight: bold;
-      color: #000;
-      background: rgba(255,255,255,0.44);
-      padding: 2px 8px;
-      border-radius: 6px;
-      margin-bottom: 8px;
-      width: fit-content;
-      max-width: 90%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .book-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .book-author {
-      font-size: 1rem;
-      color: #000;
-      background: rgba(255,255,255,0.44);
-      padding: 2px 8px;
-      border-radius: 6px;
-      max-width: 65%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .stars {
-      display: flex;
-      gap: 2px;
-    }
-    .star {
-      width: 20px;
-      height: 20px;
-      display: inline-block;
-    }
-    /* Responsive adjustments */
-    @media (max-width: 700px) {
-      .book-card { height: 340px; }
-    }
-    @media (max-width: 490px) {
-      .book-card { height: 260px; padding: 16px 8px 12px 8px; }
-      .book-title { font-size: 1rem;}
-      .book-author { font-size: 0.92rem; }
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Selector</title>
+    <style>
+        body {
+            background-color: black;
+            color: black;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .filter-button {
+            padding: 10px 20px;
+            margin: 0 5px;
+            background-color: black;
+            color: #C17B36;
+            border: 1px solid #C17B36;
+            cursor: pointer;
+        }
+        .filter-button.active {
+            background-color: #C17B36;
+            color: black;
+        }
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .book-card {
+            background: linear-gradient(to bottom, #000 0%, #C17B36 100%);
+            border-radius: 15px;
+            padding: 20px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .book-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: black;
+            margin-bottom: 10px;
+            background: rgba(255,255,255,0.5);
+            padding: 5px;
+            border-radius: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .book-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .book-author {
+            color: black;
+            background: rgba(255,255,255,0.5);
+            padding: 5px;
+            border-radius: 5px;
+            max-width: 60%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .book-rating {
+            display: flex;
+        }
+        .star {
+            color: #FFD700;
+            margin-left: 2px;
+        }
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #C17B36;
+        }
+        .footer-features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .footer-feature {
+            text-align: center;
+            max-width: 250px;
+        }
+        .footer-feature-title {
+            color: #C17B36;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .footer-feature-description {
+            color: #C17B36;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            color: #C17B36;
+        }
+        .pagination-button {
+            margin: 0 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="grid">
-      <!-- Repeat this block for each book -->
-      <div class="book-card">
-        <div class="book-title">Book Title</div>
-        <div class="book-bottom">
-          <div class="book-author">Author</div>
-          <div class="stars">
-            <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="1"><polygon points="12,2 15,9 22,9 17,14 18,21 12,17 6,21 7,14 2,9 9,9"/></svg>
-            <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="1"><polygon points="12,2 15,9 22,9 17,14 18,21 12,17 6,21 7,14 2,9 9,9"/></svg>
-            <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="1"><polygon points="12,2 15,9 22,9 17,14 18,21 12,17 6,21 7,14 2,9 9,9"/></svg>
-            <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="1"><polygon points="12,2 15,9 22,9 17,14 18,21 12,17 6,21 7,14 2,9 9,9"/></svg>
-            <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="1"><polygon points="12,2 15,9 22,9 17,14 18,21 12,17 6,21 7,14 2,9 9,9"/></svg>
-          </div>
+    <div class="container">
+        <div class="filter-buttons">
+            <button class="filter-button active">All</button>
+            <button class="filter-button">Language</button>
+            <button class="filter-button">Genre</button>
+            <button class="filter-button">Author</button>
+            <button class="filter-button">Rating</button>
         </div>
-      </div>
-      <!-- Duplicate cards below to see the effect -->
-      <div class="book-card">
-        <div class="book-title">Another Book</div>
-        <div class="book-bottom">
-          <div class="book-author">Jane Doe</div>
-          <div class="stars">
-            <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="1"><polygon points="12,2 15,9 22,9 17,14 18,21 12,17 6,21 7,14 2,9 9,9"/></svg>
-            <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="1"><polygon points="12,2 15,9 22,9 17,14 18,21 12,17 6,21 7,14 2,9 9,9"/></svg>
-            <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="1"><polygon points="12,2 15,9 22,9 17,14 18,21 12,17 6,21 7,14 2,9 9,9"/></svg>
-            <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="1"><polygon points="12,2 15,9 22,9 17,14 18,21 12,17 6,21 7,14 2,9 9,9"/></svg>
-            <svg class="star" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="1"><polygon points="12,2 15,9 22,9 17,14 18,21 12,17 6,21 7,14 2,9 9,9"/></svg>
-          </div>
+
+        <div class="book-grid">
+            <div class="book-card">
+                <div class="book-title">Book Title 1</div>
+                <div class="book-details">
+                    <div class="book-author">Author Name</div>
+                    <div class="book-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-title">Another Book Title</div>
+                <div class="book-details">
+                    <div class="book-author">Different Author</div>
+                    <div class="book-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">☆</span>
+                    </div>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-title">Long Book Title That Might Overflow</div>
+                <div class="book-details">
+                    <div class="book-author">Yet Another Author</div>
+                    <div class="book-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">☆</span>
+                        <span class="star">☆</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <!-- Add more cards as needed -->
+
+        <div class="pagination">
+            <span class="pagination-button">&lt; Previous</span>
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span class="pagination-button">Next &gt;</span>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-features">
+                <div class="footer-feature">
+                    <div class="footer-feature-title">Tailored Recommendations</div>
+                    <div class="footer-feature-description">Get book suggestions based on your reading habits</div>
+                </div>
+                <div class="footer-feature">
+                    <div class="footer-feature-title">Wide Variety of Genres</div>
+                    <div class="footer-feature-description">Explore an extensive collection of books across all genres</div>
+                </div>
+                <div class="footer-feature">
+                    <div class="footer-feature-title">Community Reviews</div>
+                    <div class="footer-feature-description">Read reviews and ratings from other book enthusiasts</div>
+                </div>
+            </div>
+        </footer>
     </div>
-  </div>
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
 </body>
 </html>
