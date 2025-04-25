@@ -15,17 +15,25 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light nav-bg">
     <div class="logo-container d-flex align-items-center gap-3 position-relative z-index-1">
-        <div class="logo-icon rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background: linear-gradient(135deg, #c17b36 0%, #f9c172 100%); box-shadow: 0 4px 15px rgba(193, 123, 54, 0.3);">
+        <div class="logo-icon rounded-circle d-flex align-items-center justify-content-center" style="width: 37.5px; height: 37.5px; background: linear-gradient(135deg, #c17b36 0%, #f9c172 100%); box-shadow: 0 4px 15px rgba(193, 123, 54, 0.3);">
             <div class="book-icon" style="width: 25px; height: 20px; background-color: #0b0804; position: relative; transform: perspective(100px) rotateY(-15deg);"></div>
         </div>
         <div class="logo-text fs-3 fw-bold ">NextChapter</div>
     </div>
     <button class="navbar-toggler nav-cr" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler nav-cr" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="menu-icon" aria-hidden="true">
+          <!-- Inline SVG for full styling control -->
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </button>
+      
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active mr-4 ">
+        <li class="nav-item mr-4 ">
           <a class="nav-link all-nav" href="#">Home</a>
         </li>
         <li class="nav-item mr-4 ">

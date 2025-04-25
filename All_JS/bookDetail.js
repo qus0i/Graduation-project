@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', function () {
           const rating = book.averageRating || 0;
           
           // Generate star rating
-          const starRating = Array.from({length: 5}, (_, i) => {
-              return i < Math.floor(rating) ? '★' : '☆';
+          const starRating = Array.from({length: 1}, (_, i) => {
+              return i ='★';
           }).join('');
 
           const bookDetailsContent = `
@@ -62,15 +62,15 @@ document.addEventListener('DOMContentLoaded', function () {
                   </div>
 
                   <!-- Comment Section -->
-                  <div class="row mt-4 mt-md-5">
-                      <div class="col-12">
-                          <div class="comment-card border-0 shadow-sm">
+                  <div class="row mt-4 mt-md-5 ">
+                      <div class="col-12 comment-bg rounded-5 mb-5">
+                          <div class="comment-card comment-bg border-0 shadow-sm">
                               <div class="comment-card-body">
-                                  <h4 class="mb-4">Leave a Review</h4>                         
+                                  <h4 class="mt-4 mb-4">Leave a Review</h4>                         
                                   <!-- Comment Form -->
-                                  <form id="reviewForm">
-                                      <div class="mb-3">
-                                          <textarea class="form-control" 
+                                  <form id="reviewForm " >
+                                      <div class="mb-3" >
+                                          <textarea class="form-control comment-bg-1" 
                                                   rows="4" 
                                                   placeholder="Write your review..."
                                                   required></textarea>
@@ -78,16 +78,17 @@ document.addEventListener('DOMContentLoaded', function () {
                                       <!-- Rating Stars -->
                                       <div class="mb-3">
                                           <p class="mb-2">Your Rating:</p>
-                                          <div class="d-flex gap-1" id="reviewStars">
+                                          <div class="d-flex gap-1 " id="reviewStars"">
                                               ${Array.from({length: 5}, (_, i) => `
                                                   <span class="review-star fs-4" data-rating="${i + 1}">★</span>
                                               `).join('')}
-                                          </div>
+                                  <!-- Updated Button with Margins -->
+                                <button type="submit" class="btn d-flex align-items-center gap-2 float-end ">
+                                
+    <img src="../All_IMAGES/send.svg" alt="Send" style="height: 2.6rem; width: 2.6rem;fill:#fefae0;">
+</button>
+                                              </div>
                                       </div>
-                                      <!-- Updated Button with Margins -->
-                                      <button type="submit" class="btn btn-primary float-end mt-3 me-3">
-                                          Post Review
-                                      </button>
                                   </form>
                               </div>
                           </div>

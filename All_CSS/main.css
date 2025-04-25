@@ -2,10 +2,12 @@
     --color-primary-dark: #0b0804;
     --color-primary-light: #f9c172;
     --color-secondary-dark: #0C0804;
+    --color-3rd-dark: #1c0f05;
+
     --color-accent: #c17b36;
     --color-card-light: #e0c8c1;
     --color-card-dark: #bb8d5c;
-    --color-white: #ffffff;
+    --color-white: #fefae0;
     --prev-img: url(../All_IMAGES/prev.svg);
     --next-img: url(../All_IMAGES/next.svg);
 }
@@ -90,8 +92,8 @@ header {
 }
 
 .logo-icon {
-    width: 50px;
-    height: 50px;
+    width: 37.5px;
+    height: 37.5px;
     background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary-light) 100%);
     border-radius: 50%;
     display: flex;
@@ -104,8 +106,8 @@ header {
 .logo-icon::before {
     content: "";
     position: absolute;
-    width: 60px;
-    height: 60px;
+    width: 45px;
+    height: 45px;
     border: 2px dashed var(--color-accent);
     border-radius: 50%;
     animation: rotate 20s linear infinite;
@@ -500,6 +502,7 @@ header {
 @media (max-width: 480px) {
     .hero-text {
         font-size: 2rem;
+        left: 7%;
     }
     .position-button {
         gap: 4rem !important;
@@ -545,6 +548,7 @@ header {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    
 }
 
 .card-img-top {
@@ -679,11 +683,11 @@ header {
   }
   
   .star {
-    color: var(--color-white); /* Default color for empty stars */
+    color: var(--color-primary-dark); /* Default color for empty stars */
   }
   
   .star.filled {
-    color: var(--color-accent); /* Color for filled stars */
+    color: var(--color-primary-light); /* Color for filled stars */
   }
 
   .star:hover {
@@ -711,6 +715,9 @@ header {
   .star:hover::after {
     opacity: 1; /* Shows the box when hovering over the star */
   }
+  .author{
+    color:var(--color-white)!important;
+  }
   .bookImg{
     width: 30%;
     height: auto;
@@ -731,27 +738,55 @@ header {
 
 .review-star {
   cursor: pointer;
-  color: #e4e5e9;
+  color: var(--color-white);
   transition: color 0.2s ease;
+  font-size: 2.2rem!important;
+  
 }
 
 .review-star.text-warning {
-  color: #ffc107 !important;
+  color: var(--color-primary-light) !important;
 }
 
 .review-star:hover {
   transform: scale(1.1);
+  color:var(--color-accent);
 }
 
 .comment-card {
   border-radius: 15px;
-  background-color: #0C0804;
+  background-color: var(--color-white);
 }
 
 textarea {
   min-height: 100px;
   resize: vertical;
 }
-.comment-card-body{
+.form-control{
+    background-color: var(--color-white);
+}
 
+.navbar-toggler {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .menu-icon svg {
+    color: var(--color-primary-light); /* customizable via CSS variable */
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-toggler:hover .menu-icon svg {
+    color: var(--color-primary); /* optional hover effect */
+  }
+  /*comments*/
+  .comment-bg
+{
+    background-color: var(--color-3rd-dark);
+}  
+.comment-bg-1{
+    background-color: var(--color-white);
 }

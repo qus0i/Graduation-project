@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <img src="${image}" class="card-img-top" alt="Book Image">
                 <div class="card-body">
                   <h5 class="card-title card-link">${title}</h5>
-                  <p class="card-text card-link">${authors}</p>
+                  <p class="card-text card-link author"">${authors}</p>
                   <div class="stars" data-rating="${rating}">${starRating}
           </div>
                   
