@@ -754,9 +754,10 @@ header {
 }
 
 .comment-card {
-  border-radius: 15px;
-  background-color: var(--color-white);
-}
+    border-radius: 15px;
+    background-color: #2D241F !important; /* force it */
+    padding: 2rem;
+  }
 
 textarea {
   min-height: 100px;
@@ -790,3 +791,58 @@ textarea {
 .comment-bg-1{
     background-color: var(--color-white);
 }
+/* Description box style */
+.description-box {
+    background-color: #2D241F;
+    color: var(--color-primary-light); /* keeping text color readable */
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Comment Textarea */
+  textarea.form-control.comment-bg-1 {
+    background-color: #FEFAE0;
+    border: none;
+    color: #2D241F;
+    transition: background-color 0.3s;
+  }
+  
+  textarea.form-control.comment-bg-1:focus {
+    background-color: #E7D6C4;
+    outline: none;
+    box-shadow: 0 0 5px rgba(231, 214, 196, 0.7);
+  }
+  #reviewStars {
+    font-size: 2rem;
+  }
+  
+  #reviewStars .review-star {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  #reviewStars .review-star:hover {
+    transform: scale(1.2);
+    color: var(--color-accent);
+  }
+  textarea.form-control.comment-bg-1 {
+    background-color: #FEFAE0;
+    border: none;
+    color: #2D241F;
+    transition: background-color 0.3s;
+  }
+  textarea.form-control.comment-bg-1:focus {
+    background-color: #E7D6C4;
+    outline: none;
+    box-shadow: 0 0 5px rgba(231, 214, 196, 0.7);
+  }
+  #userReviews .review-star {
+    font-size: 1.2rem;
+    color: var(--color-white);
+  }
+  
+  #userReviews .review-star.text-warning {
+    color: var(--color-primary-light) !important;
+  }
+  
