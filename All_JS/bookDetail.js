@@ -35,10 +35,10 @@ document.addEventListener('DOMContentLoaded', function () {
                   <h2 class="h4 h3-md mb-2 mb-md-3">by ${authors}</h2>
                   <h3 class="h6 mb-3 mb-md-4"><strong>Genre:</strong> ${genre}</h3>
                   <div class="d-flex align-items-center mb-4">
-                    <div class="star-rating me-2" aria-label="Rating: ${rating} out of 5 stars">
-                      ${starRating}
+                    <div class="star-rating pb-2 me-2">
+                    ★
                     </div>
-                    <span class="fs-5">${rating.toFixed(1)}/5.0</span>
+                    <span class="fs-2">${rating.toFixed(1)}/5.0</span>
                   </div>
                 </div>
               </div>
