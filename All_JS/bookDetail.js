@@ -34,11 +34,10 @@ document.addEventListener('DOMContentLoaded', function () {
                   <h1 class="display-5 display-md-3 mb-2 mb-md-3">${title}</h1>
                   <h2 class="h4 h3-md mb-2 mb-md-3">by ${authors}</h2>
                   <h3 class="h6 mb-3 mb-md-4"><strong>Genre:</strong> ${genre}</h3>
-                  <div class="d-flex align-items-center mb-4">
-                    <div class="star-rating pb-2 me-2">
-                    ★
-                    </div>
-                    <span class="fs-2">${rating.toFixed(1)}/5.0</span>
+                  <div class="3">
+                    <div class="star-rating pb-2 me-1">
+                   ★<span class="fs-1">${rating.toFixed(1)}/5.0</span> 
+                  </div>
                   </div>
                 </div>
               </div>
@@ -121,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
           formData.append('rating', selectedRating);
           formData.append('comment', reviewText);
   
-          fetch('../All_HTML/comments.php', {
+          fetch('../PHP/comments.php', {
             method: 'POST',
             body: formData
           }).then(response => response.text())
@@ -139,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   
     function fetchComments() {
-      fetch('comments.php')
+      fetch('../PHP/comments.php')
         .then(response => response.json())
         .then(comments => {
           const userReviews = document.getElementById('userReviews');
