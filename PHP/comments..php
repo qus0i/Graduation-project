@@ -1,47 +1,51 @@
 <?php
-// comments.php
+// Path to your comments file
+$commentsFile = __DIR__ . '/comments.json';
 
-$commentsFile = 'comments.json';
-
-// Handle POST request: save new comment
+// Handle POST request to save new comment
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = htmlspecialchars($_POST['username']);
-    $rating = intval($_POST['rating']);
-    $comment = htmlspecialchars($_POST['comment']);
+    // Get inputs safely
+    $username = $_POST['username'] ?? 'Guest';
+    $rating = isset($_POST['rating']) ? intval($_POST['rating']) : 0;
+    $comment = trim($_POST['comment'] ?? '');
+    if ($rating > 0 && !empty($comment)) {
+        // Load existing comments
+        $comments = [];
+        if (file_exists($commentsFile)) {
+            $json = file_get_contents($commentsFile);
+            $comments = json_decode($json, true) ?? [];
+        }
 
-    // Generate a random profile picture (from 1 to 70)
-    $pfpUrl = 'https://i.pravatar.cc/60?img=' . rand(1, 70);
+        // Generate new comment
+        $newComment = [
+            'username' => htmlspecialchars($username),
+            'pfpUrl' => "https://i.pravatar.cc/60?img=" . rand(1, 70),
+            'rating' => $rating,
+            'comment' => htmlspecialchars($comment),
+            'timestamp' => time()
+        ];
 
-    // Load existing comments
-    $comments = file_exists($commentsFile) ? json_decode(file_get_contents($commentsFile), true) : [];
+        // Append new comment
+        $comments[] = $newComment;
 
-    // Add new comment to the beginning of the array
-    array_unshift($comments, [
-        'username' => $username,
-        'pfpUrl' => $pfpUrl,
-        'rating' => $rating,
-        'comment' => $comment,
-        'timestamp' => time()
-    ]);
+        // Save back to JSON file
+        file_put_contents($commentsFile, json_encode($comments, JSON_PRETTY_PRINT));
 
-    // Save updated comments back to file
-    file_put_contents($commentsFile, json_encode($comments, JSON_PRETTY_PRINT));
-    echo 'Comment added successfully!';
+        echo 'Success';
+    } else {
+        echo 'Invalid input.';
+    }
     exit;
 }
 
-// Handle GET request: return comments
+// Handle GET request to return comments
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    header('Content-Type: application/json');
     if (file_exists($commentsFile)) {
-        $comments = json_decode(file_get_contents($commentsFile), true);
-        echo json_encode($comments);
+        echo file_get_contents($commentsFile);
     } else {
         echo json_encode([]);
     }
     exit;
 }
-
-// If not POST or GET, return error
-http_response_code(405);
-echo 'Method Not Allowed';
 ?>

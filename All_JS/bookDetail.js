@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   
     function fetchComments() {
-      fetch('../PHP/comments.php')
+      fetch('/Graduation-project/PHP/comments.php')
         .then(response => response.json())
         .then(comments => {
           const userReviews = document.getElementById('userReviews');
