@@ -845,3 +845,36 @@ textarea {
   #userReviews .review-star.text-warning {
     color: var(--color-primary-light) !important;
   }
+/*     */
+.custom-page-link {
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    background-color: transparent;
+    color: var(--color-primary-light);
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .custom-page-link:hover {
+    background-color: rgba(249, 193, 114, 0.1);
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+  
+ .custom-page-link.active {
+    background-color: var(--color-accent);  /* brighter color */
+    color: var(--color-white);              /* clearer text */
+    border: 2px solid var(--color-accent);
+    font-weight: bold;
+    pointer-events: none;
+}
+
+  .custom-page-link.disabled {
+    cursor: default;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  
