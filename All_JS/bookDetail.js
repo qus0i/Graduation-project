@@ -23,11 +23,25 @@ document.addEventListener('DOMContentLoaded', function () {
       const bookDetailsContent = `
         <div class="container mt-3 mt-md-5">
           <div class="row">
-            <div class="col-12 col-md-5 col-lg-4 mb-4 mb-md-0">
-              <div class="text-center text-md-start">
-                <img src="${image}" class="img-fluid rounded shadow-lg" alt="Book cover" style="max-height: 70vh; max-width: 100%; object-fit: contain;">
-              </div>
-            </div>
+<div class="col-12 col-md-5 col-lg-4 mb-4 mb-md-0">
+  <div class="text-center text-md-start">
+    <div style="position: relative; display: inline-block;">
+      <img src="${image}" class="img-fluid rounded shadow-lg" alt="Book cover" style="max-height: 70vh; max-width: 100%; object-fit: contain;">
+ <!--this is the favourite button link it with data base-->
+<form method="post" id="favourite">     
+  <button type="button" class="heart-button" onclick="this.classList.toggle('active')">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
+               2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09
+               C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5
+               c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+  </button>
+</form>
+    </div>
+  </div>
+</div>
+
             <div class="col-12 col-md-7 col-lg-8">
               <div class="ps-md-4">
                 <h1 class="display-5 display-md-3 mb-2 mb-md-3">${title}</h1>

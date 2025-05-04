@@ -876,5 +876,41 @@ textarea {
     opacity: 0.4;
     pointer-events: none;
   }
+  /*favorit button*/
+  .heart-button {
+    background-color:rgba(0, 0, 0, 0);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+  }
 
-  
+  .heart-button svg {
+    fill: none;
+    stroke: var(--color-primary-light);
+    stroke-width: 2;
+    transition: fill 0.3s ease, stroke 0.3s ease;
+  }
+
+  .heart-button:hover svg {
+    fill:var(--color-accent);
+    stroke:var(--color-accent);
+  }
+
+  .heart-button.active svg {
+    fill: var(--color-primary-light);
+    stroke: var(--color-primary-light);
+  }
+  .heart-button.active:hover svg {
+    fill: var(--color-accent);
+    stroke: var(--color-accent);
+    transition-delay: 0.05s;
+  }
