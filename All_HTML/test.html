@@ -1,92 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NextChapter - Discover Your Next Great Read</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJpT7li6l+bm9Viy5rMXTArV8jj08mxVZsDh0B7hw05Q0P5XqB0KhsZsXq+z" crossorigin="anonymous">
-    <link rel="stylesheet" href="../All_CSS/main.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From Our Readers</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #0B0804;
+      color: #F9C172;
+    }
+
+    /* Main container */
+    .from-our-readers {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: row;
+    }
+
+    /* Left section: Title and Subtitle */
+    .left-side-text {
+      text-align: center;
+      margin-right: 50px;
+      max-width: 400px; /* Controls the width of the title area */
+    }
+
+    .left-side-text h1 {
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 68px;
+      color: #F9C172;
+    }
+
+    .left-side-text p {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #F9C172;
+    }
+
+/* Card Styling */
+.card-custom {
+  background: linear-gradient(180deg, rgba(193, 123, 54, 0.3) 0%, rgba(45, 36, 31, 0.3) 100%);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: row;
+  height: 500px;
+  width: 800px; /* Adjusted the width of the card */
+  max-width: 100%; /* Ensures responsiveness */
+  border-width: 0px;
+}
+
+/* Left side of the card - Book image */
+.card-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%; /* Reduced left side width */
+}
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      border-radius: 8px;
+    }
+
+
+
+/* Right side of the card - Book details */
+.card-content {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #F9C172; /* Text color */
+  width: 60%; /* Increased right side width */
+}
+
+    .pfp {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    .stars span {
+      font-size: 1.25rem;
+    }
+
+    .btn-nav {
+      background: none;
+      border: none;
+      color: #F9C172;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .navigation-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .navigation-wrapper button {
+      border-radius: 50%;
+      border: 2px solid #F9C172;
+      background-color: transparent;
+      color: #F9C172;
+      padding: 10px;
+      font-size: 20px;
+    }
+  </style>
 </head>
 <body>
-    
-    <!-- Hero Section -->
-    <section class="hero-section position-relative w-100" style="height: 600px;">
-        <div class="background position-absolute top-0 left-0 w-100 h-100" style="background-image: url('../All_IMAGES/Banner.png'); filter: blur(8px) brightness(0.6); z-index: 0;"></div>
-        <header class="header position-relative py-3 w-100">
-            <div class="logo-container d-flex align-items-center gap-3 position-relative z-index-1">
-                <div class="logo-icon rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background: linear-gradient(135deg, #c17b36 0%, #f9c172 100%); box-shadow: 0 4px 15px rgba(193, 123, 54, 0.3);">
-                    <div class="book-icon" style="width: 25px; height: 20px; background-color: #0b0804; position: relative; transform: perspective(100px) rotateY(-15deg);"></div>
-                </div>
-                <div class="logo-text fs-3 fw-bold text-warning">NextChapter</div>
-            </div>
-        </header>
-        <main class="text-center position-absolute top-50 start-50 translate-middle w-100">
-            <h1 class="hero-text display-3 fw-bold text-warning mb-3">Discover your next great read</h1>
-            <div class="firstPage-buttons d-flex justify-content-center gap-4">
-                <button class="btn btn-warning px-4 py-2 rounded-pill">Sign Up</button>
-                <button class="btn btn-outline-warning px-4 py-2 rounded-pill">Sign In</button>
-            </div>
-        </main>
-    </section>
+  <div class="from-our-readers">
+    <!-- Left Section: Title and Subtitle -->
+    <div class="left-side-text">
+      <h1>From Our Readers</h1>
+      <p>From Our Readers to your library</p>
+    </div>
 
-    <!-- Content Section -->
-    <section class="content1 bg-dark text-warning py-5">
-        <div class="container">
-            <h1 class="page-title display-4 fw-bold text-center mb-5">Why NextChapter?</h1>
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-                <!-- Feature Card 1 -->
-                <div class="col">
-                    <div class="feature p-4 rounded bg-opacity-25">
-                        <div class="feature-icon d-flex align-items-center justify-content-center rounded-circle" style="width: 80px; height: 80px; background: linear-gradient(135deg, #c17b36 0%, #f9c172 100%); font-size: 2rem; color: #0C0804;">
-                            <i class="bi bi-brain"></i>
-                        </div>
-                        <h2 class="feature-title fs-5 fw-bold text-warning mt-3">Smart Recommendations</h2>
-                        <p class="feature-desc text-warning">Our AI learns your reading preferences to suggest books you'll truly love.</p>
-                    </div>
-                </div>
-                <!-- Feature Card 2 -->
-                <div class="col">
-                    <div class="feature p-4 rounded bg-opacity-25">
-                        <div class="feature-icon d-flex align-items-center justify-content-center rounded-circle" style="width: 80px; height: 80px; background: linear-gradient(135deg, #c17b36 0%, #f9c172 100%); font-size: 2rem; color: #0C0804;">
-                            <i class="bi bi-book"></i>
-                        </div>
-                        <h2 class="feature-title fs-5 fw-bold text-warning mt-3">Organize Your Reads</h2>
-                        <p class="feature-desc text-warning">Track what you've read, what you're reading, and what you want to read next.</p>
-                    </div>
-                </div>
-                <!-- Feature Card 3 -->
-                <div class="col">
-                    <div class="feature p-4 rounded bg-opacity-25">
-                        <div class="feature-icon d-flex align-items-center justify-content-center rounded-circle" style="width: 80px; height: 80px; background: linear-gradient(135deg, #c17b36 0%, #f9c172 100%); font-size: 2rem; color: #0C0804;">
-                            <i class="bi bi-compass"></i>
-                        </div>
-                        <h2 class="feature-title fs-5 fw-bold text-warning mt-3">Explore With Ease</h2>
-                        <p class="feature-desc text-warning">Discover new genres and authors through our curated collections.</p>
-                    </div>
-                </div>
-                <!-- Feature Card 4 -->
-                <div class="col">
-                    <div class="feature p-4 rounded bg-opacity-25">
-                        <div class="feature-icon d-flex align-items-center justify-content-center rounded-circle" style="width: 80px; height: 80px; background: linear-gradient(135deg, #c17b36 0%, #f9c172 100%); font-size: 2rem; color: #0C0804;">
-                            <i class="bi bi-trophy"></i>
-                        </div>
-                        <h2 class="feature-title fs-5 fw-bold text-warning mt-3">Earn Rewards</h2>
-                        <p class="feature-desc text-warning">Get badges and discounts as you reach reading milestones.</p>
-                    </div>
-                </div>
-            </div>
+    <!-- Right Section: Card with Book Details -->
+    <div class="card card-custom">
+      <!-- Left Side: Book Image -->
+      <div class="card-image">
+        <img id="bookImage" src="" alt="Book Image">
+      </div>
 
-            <div class="cta-section text-center mt-5">
-                <button class="btn btn-warning px-5 py-3 rounded-pill">Explore More</button>
-                <p class="testimonial mt-3 fs-4 text-warning">NextChapter helped me discover my favorite series</p>
-            </div>
+      <!-- Right Side: Book Details -->
+      <div class="card-content">
+        <img id="pfp" class="pfp" src="" alt="User profile picture">
+        <span class="fw-semibold" id="username">User Name:</span><br />
+        <p id="reviewText" class="mb-3">Here will be readers' opinion about their books.</p>
+
+        <div class="user-info mb-2">
+          <span class="fw-bold fs-4" id="bookTitle">Book Title</span><br />
+          <span id="author">Author</span><br />
+          <span id="genre">Genre</span><br />
+          <span id="bookRating">Rating</span>
         </div>
-    </section>
+        <div id="stars" class="stars mb-3"></div>
+      </div>
+      
+    </div>
+    
+  </div>
+  <!-- Navigation Buttons -->
+  <div class="navigation-wrapper">
+    <button id="prevBtn" class="btn-nav me-3">&#8592;</button>
+    <button id="nextBtn" class="btn-nav">&#8594;</button>
+  </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybGyR0HxZLwV4l0b6pWgS6VXV6yJfu5R7/8n7ltnC1D4E9z5G" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0a1z7NnXzVV7pPzjS7fcf5DZ4h5PCu4Ner7XqeblXzTzD2+f" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+
+  <script>
+    // Example comments data
+    const comments = [
+      {
+        username: "Guest",
+        rating: 5,
+        comment: "Amazing book! Highly recommend it.",
+        pfpUrl: "https://api.dicebear.com/6.x/initials/svg?seed=Guest",
+        timestamp: 1746321619,
+        bookId: "icKmd-tlvPMC"
+      },
+      {
+        username: "Guest",
+        rating: 3,
+        comment: "Amazing book! Highly recommend it.",
+        pfpUrl: "https://api.dicebear.com/6.x/initials/svg?seed=Guest",
+        timestamp: 1746321619,
+        bookId: "icKmd-tlvPMC"
+      }
+    ];
+
+    // Function to randomly select a comment
+    function getRandomComment() {
+      const randomIndex = Math.floor(Math.random() * comments.length);
+      return comments[randomIndex];
+    }
+
+    // Function to display the selected comment and book details
+    function displayComment(comment) {
+      const apiURL = `https://www.googleapis.com/books/v1/volumes/${comment.bookId}`;
+      
+      fetch(apiURL)
+        .then(response => response.json())
+        .then(data => {
+          const book = data.volumeInfo;
+          const title = book.title;
+          const authors = book.authors ? book.authors.join(', ') : 'Unknown';
+          const genre = book.categories ? book.categories.join(', ') : 'Unknown Genre';
+          const rating = book.averageRating || 0;
+          const image = book.imageLinks ? book.imageLinks.thumbnail : 'https://via.placeholder.com/150';
+
+          document.getElementById('reviewText').textContent = comment.comment;
+          document.getElementById('username').textContent = comment.username;
+          document.getElementById('bookTitle').textContent = title;
+          document.getElementById('author').textContent = authors;
+          document.getElementById('genre').textContent = genre;
+          document.getElementById('bookRating').textContent = `★${rating}/5`;
+          document.getElementById('bookImage').src = image;
+
+          const starsContainer = document.getElementById('stars');
+          starsContainer.innerHTML = '';
+          for (let i = 0; i < 5; i++) {
+            const star = document.createElement('span');
+            star.textContent = '★';
+            star.style.color = i < comment.rating ? '#F9C172' : '#E7D6C4';
+            starsContainer.appendChild(star);
+          }
+        })
+        .catch(error => console.error('Error fetching book details:', error));
+    }
+
+    // Fetch random comment and display
+    const comment = getRandomComment();
+    displayComment(comment);
+
+    // Navigation buttons
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      const comment = getRandomComment();
+      displayComment(comment);
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      const comment = getRandomComment();
+      displayComment(comment);
+    });
+  </script>
 </body>
 </html>

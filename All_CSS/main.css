@@ -3,7 +3,6 @@
     --color-primary-light: #f9c172;
     --color-secondary-dark: #0C0804;
     --color-3rd-dark: #1c0f05;
-
     --color-accent: #c17b36;
     --color-card-light: #e0c8c1;
     --color-card-dark: #bb8d5c;
@@ -11,7 +10,6 @@
     --prev-img: url(../All_IMAGES/prev.svg);
     --next-img: url(../All_IMAGES/next.svg);
 }
-
 * {
     margin: 0;
     padding: 0;
@@ -914,3 +912,4 @@ textarea {
     stroke: var(--color-accent);
     transition-delay: 0.05s;
   }
+  
