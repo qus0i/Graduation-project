@@ -3,117 +3,158 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Book Selector</title>
+    <title>Book Collection</title>
     <style>
         body {
             background-color: black;
-            color: black;
+            color: #C17B36;
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
         }
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 2rem 1rem;
         }
+        
         .filter-buttons {
             display: flex;
             justify-content: center;
-            margin-bottom: 30px;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
+        
         .filter-button {
-            padding: 10px 20px;
-            margin: 0 5px;
+            padding: 0.5rem 1.25rem;
+            margin: 0.25rem;
             background-color: black;
             color: #C17B36;
             border: 1px solid #C17B36;
             cursor: pointer;
         }
+        
         .filter-button.active {
             background-color: #C17B36;
             color: black;
         }
+        
         .book-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
         }
+        
+        @media (min-width: 640px) {
+            .book-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .book-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
         .book-card {
-            background: linear-gradient(to bottom, #000 0%, #C17B36 100%);
-            border-radius: 15px;
-            padding: 20px;
             height: 400px;
+            background-image: linear-gradient(to bottom, black, #C17B36);
+            padding: 1.25rem;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
+        
         .book-title {
-            font-size: 1.2rem;
+            font-size: 1.125rem;
             font-weight: bold;
             color: black;
-            margin-bottom: 10px;
-            background: rgba(255,255,255,0.5);
-            padding: 5px;
-            border-radius: 5px;
+            margin-bottom: 0.5rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
+        
         .book-details {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+        
         .book-author {
             color: black;
-            background: rgba(255,255,255,0.5);
-            padding: 5px;
-            border-radius: 5px;
             max-width: 60%;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        .book-rating {
+        
+        .star-rating {
             display: flex;
         }
+        
         .star {
+            width: 1rem;
+            height: 1rem;
+            margin-left: 0.125rem;
             color: #FFD700;
-            margin-left: 2px;
+            fill: #FFD700;
         }
+        
+        .star.empty {
+            fill: none;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .pagination span {
+            margin: 0 0.5rem;
+            cursor: pointer;
+        }
+        
+        .pagination span.active {
+            font-weight: bold;
+        }
+        
         .footer {
-            margin-top: 50px;
+            margin-top: 3rem;
             text-align: center;
-            color: #C17B36;
         }
+        
         .footer-features {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
+            gap: 2rem;
+            margin-top: 1.25rem;
+            flex-wrap: wrap;
         }
+        
         .footer-feature {
             text-align: center;
             max-width: 250px;
         }
-        .footer-feature-title {
-            color: #C17B36;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .footer-feature-description {
-            color: #C17B36;
-        }
-        .pagination {
+        
+        .icon-container {
             display: flex;
             justify-content: center;
-            margin-top: 30px;
-            color: #C17B36;
+            margin-bottom: 0.75rem;
         }
-        .pagination-button {
-            margin: 0 10px;
-            cursor: pointer;
+        
+        .icon {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+        
+        .footer-feature-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
         }
     </style>
 </head>
@@ -126,74 +167,132 @@
             <button class="filter-button">Author</button>
             <button class="filter-button">Rating</button>
         </div>
-
+        
         <div class="book-grid">
             <div class="book-card">
-                <div class="book-title">Book Title 1</div>
+                <div class="book-title">To Kill a Mockingbird</div>
                 <div class="book-details">
-                    <div class="book-author">Author Name</div>
-                    <div class="book-rating">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
+                    <div class="book-author">Harper Lee</div>
+                    <div class="star-rating">
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                     </div>
                 </div>
             </div>
             <div class="book-card">
-                <div class="book-title">Another Book Title</div>
+                <div class="book-title">1984</div>
                 <div class="book-details">
-                    <div class="book-author">Different Author</div>
-                    <div class="book-rating">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">☆</span>
+                    <div class="book-author">George Orwell</div>
+                    <div class="star-rating">
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star empty" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                     </div>
                 </div>
             </div>
             <div class="book-card">
-                <div class="book-title">Long Book Title That Might Overflow</div>
+                <div class="book-title">The Great Gatsby</div>
                 <div class="book-details">
-                    <div class="book-author">Yet Another Author</div>
-                    <div class="book-rating">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">☆</span>
-                        <span class="star">☆</span>
+                    <div class="book-author">F. Scott Fitzgerald</div>
+                    <div class="star-rating">
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star empty" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-title">Pride and Prejudice</div>
+                <div class="book-details">
+                    <div class="book-author">Jane Austen</div>
+                    <div class="star-rating">
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-title">The Catcher in the Rye</div>
+                <div class="book-details">
+                    <div class="book-author">J.D. Salinger</div>
+                    <div class="star-rating">
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star empty" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star empty" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-title">One Hundred Years of Solitude</div>
+                <div class="book-details">
+                    <div class="book-author">Gabriel García Márquez</div>
+                    <div class="star-rating">
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                     </div>
                 </div>
             </div>
         </div>
-
+        
         <div class="pagination">
-            <span class="pagination-button">&lt; Previous</span>
-            <span>1</span>
+            <span>&lt; Previous</span>
+            <span class="active">1</span>
             <span>2</span>
-            <span>3</span>
-            <span class="pagination-button">Next &gt;</span>
+            <span>Next &gt;</span>
         </div>
-
+        
         <footer class="footer">
             <div class="footer-features">
                 <div class="footer-feature">
+                    <div class="icon-container">
+                        <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#C17B36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                    </div>
                     <div class="footer-feature-title">Tailored Recommendations</div>
-                    <div class="footer-feature-description">Get book suggestions based on your reading habits</div>
+                    <div>Get book suggestions based on your reading habits</div>
                 </div>
                 <div class="footer-feature">
+                    <div class="icon-container">
+                        <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#C17B36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                    </div>
                     <div class="footer-feature-title">Wide Variety of Genres</div>
-                    <div class="footer-feature-description">Explore an extensive collection of books across all genres</div>
+                    <div>Explore an extensive collection of books across all genres</div>
                 </div>
                 <div class="footer-feature">
+                    <div class="icon-container">
+                        <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#C17B36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
                     <div class="footer-feature-title">Community Reviews</div>
-                    <div class="footer-feature-description">Read reviews and ratings from other book enthusiasts</div>
+                    <div>Read reviews and ratings from other book enthusiasts</div>
                 </div>
             </div>
         </footer>
     </div>
+    
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
 </body>
 </html>
