@@ -41,12 +41,12 @@
 
         .genre-card {
             height: 256px;
-            border-radius: 0.5rem;
+            border-radius: 0; /* Sharp corners */
             overflow: hidden;
             position: relative;
             cursor: pointer;
             background: linear-gradient(to bottom, #000000 0%, #C17B36 100%);
-            box-shadow: 0 0 15px rgba(193,123,54,0.3);
+            box-shadow: none; /* Remove shadow */
             transition: transform 0.3s ease;
         }
 
@@ -74,9 +74,9 @@
             color: #C17B36;
             background-color: black;
             border: 1px solid #C17B36;
-            border-radius: 0.375rem;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            border-radius: 0; /* Sharp corners for button too */
         }
 
         .show-more-btn:hover {
