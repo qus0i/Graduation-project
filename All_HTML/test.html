@@ -127,6 +127,9 @@
     }
     #bookRating{
       font-size: 2rem!important;
+    }
+    .bookRating{
+      font-size: 5rem!important;
 
     }
   </style>
@@ -157,6 +160,7 @@
           <span class="fw-bold fs-5" id="bookTitle">Book Title</span><br />
           <span class="fs-6" id="author">Author</span><br />
           <span class="fs-6" id="genre">Genre</span><br />
+          <span class="bookRating">★</span>
           <span id="bookRating">Rating</span>
         </div>
         <div id="stars" class="stars d-flex flex-row-reverse"></div>
@@ -179,10 +183,10 @@
       </span>
     </button>
   </div>
-
+<!--
   <script>
     // Example comments data
-    const comments = [
+  /*  const comments = [
       {
         username: "Guest",
         rating: 5,
@@ -201,6 +205,17 @@
       }
     ];
 
+    function fetchComments() {
+    fetch(`../PHP/comments.php?bookId=${bookId}`)
+      .then(response => response.json())
+      .then(comments => {
+        commentsData = comments.sort((a, b) => b.timestamp - a.timestamp);
+        totalComments = commentsData.length;
+        renderReviews();
+        renderPagination();
+      })
+      .catch(error => console.error('Error fetching comments:', error));
+  }
     // Function to randomly select a comment
     function getRandomComment() {
       const randomIndex = Math.floor(Math.random() * comments.length);
@@ -254,7 +269,88 @@
     document.getElementById('nextBtn').addEventListener('click', () => {
       const comment = getRandomComment();
       displayComment(comment);
+    });*/
+  </script>-->
+  <script>
+    // Function to fetch random comments from the server (PHP)
+    function fetchComments() {
+      fetch('../PHP/test.php') // This will call the PHP script
+        .then(response => response.json())
+        .then(comments => {
+          // If no comments returned, handle gracefully
+          if (comments.length === 0) {
+            console.log("No comments available.");
+            return;
+          }
+  
+          // Sort the selected comments by timestamp
+          const sortedComments = comments.sort((a, b) => b.timestamp - a.timestamp);
+  
+          // Display the first random comment
+          const comment = sortedComments[0]; // Display the first comment as a default
+          displayComment(comment);
+  
+          // Store the random comments globally for navigation
+          selectedComments = sortedComments;
+        })
+        .catch(error => console.error('Error fetching comments:', error));
+    }
+  
+    // Function to display the selected comment and book details
+    function displayComment(comment) {
+      const apiURL = `https://www.googleapis.com/books/v1/volumes/${comment.bookId}`;
+      
+      fetch(apiURL)
+        .then(response => response.json())
+        .then(data => {
+          const book = data.volumeInfo;
+          const title = book.title;
+          const authors = book.authors ? book.authors.join(', ') : 'Unknown';
+          const genre = book.categories ? book.categories.join(', ') : 'Unknown Genre';
+          const rating = book.averageRating || 0;
+          const image = book.imageLinks ? book.imageLinks.thumbnail : 'https://via.placeholder.com/150';
+  
+          // Update DOM with book and comment details
+          document.getElementById('reviewText').textContent = comment.comment;
+          document.getElementById('username').textContent = comment.username;
+          document.getElementById('bookTitle').textContent = title;
+          document.getElementById('author').textContent = authors;
+          document.getElementById('genre').textContent = genre;
+          document.getElementById('bookRating').textContent = `${rating}/5`;
+          document.getElementById('bookImage').src = image;
+  
+          // Update stars for rating
+          const starsContainer = document.getElementById('stars');
+          starsContainer.innerHTML = '';
+          for (let i = 0; i < 5; i++) {
+            const star = document.createElement('span');
+            star.textContent = '★';
+            star.style.color = i < comment.rating ? '#F9C172' : '#E7D6C4';
+            starsContainer.appendChild(star);
+          }
+        })
+        .catch(error => console.error('Error fetching book details:', error));
+    }
+  
+    // Fetch comments when the page loads
+    fetchComments();
+  
+    // Navigation buttons to switch between comments
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      // Get a random comment from the list of selected comments
+      const randomIndex = Math.floor(Math.random() * selectedComments.length);
+      const comment = selectedComments[randomIndex];
+      displayComment(comment);
+    });
+  
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      // Get a random comment from the list of selected comments
+      const randomIndex = Math.floor(Math.random() * selectedComments.length);
+      const comment = selectedComments[randomIndex];
+      displayComment(comment);
     });
   </script>
+  
+  
 </body>
 </html>
