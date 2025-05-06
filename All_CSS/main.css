@@ -912,4 +912,36 @@ textarea {
     stroke: var(--color-accent);
     transition-delay: 0.05s;
   }
-  
+  /*lists icons*/
+  .library-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    color: #f9c172;
+    transition: color 0.3s;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+  }
+
+  .library-icon-wrapper:hover {
+    color: #c17b36;
+  }
+
+  .library-icon-wrapper.active {
+    color: #f9c172;
+  }
+
+  .library-icon-wrapper.active:hover {
+    color: #c17b36;
+  }
+
+  .library-icon {
+    width: 100%;
+    height: 100%;
+  }
+
+  .hidden {
+    display: none;
+  }
