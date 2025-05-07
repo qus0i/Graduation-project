@@ -38,9 +38,22 @@ document.addEventListener('DOMContentLoaded', function () {
     </svg>
   </button>
 </form>
-    </div>
-    <!--testing-->
-    <form action="/your-action-url" method="POST">
+</div>
+  </div>
+</div>
+            <div class="col-12 col-md-7 col-lg-8">
+<div class="ps-md-4 d-flex flex-column" style="height: 100%;">
+                <h1 class="display-5 display-md-3 mb-2 mb-md-3">${title}</h1>
+                <h2 class="h4 h3-md mb-2 mb-md-3">by ${authors}</h2>
+                <h3 class="h6 mb-3 mb-md-4"><strong>Genre:</strong> ${genre}</h3>
+                <div class="3">
+                  <div class="star-rating pb-2 me-1">
+                    ★<span class="fs-1">${Number(rating).toFixed(1)}/5.0</span>
+                  </div>
+                  </div>                  
+<div class="mt-auto d-flex flex-column align-items-end">
+               <!--testing-->
+    <form  class="mt-auto p-2"  action="/your-action-url" method="POST">
   <button type="button" class="library-icon-wrapper" id="library-toggle-button" name="libraryButton" value="submit">
     <!-- Inactive Icon -->
     <svg id="library-icon-default" class="library-icon" fill="currentColor" height="800px" width="800px" version="1.1"
@@ -60,7 +73,6 @@ document.addEventListener('DOMContentLoaded', function () {
           </g>
         </g>
     </svg>
-
     <!-- Active Icon -->
     <svg id="library-icon-active" class="library-icon hidden" fill="black" height="800px" width="800px" version="1.1"
          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -148,23 +160,10 @@ document.addEventListener('DOMContentLoaded', function () {
     </svg>
   </button>
 </form>
-  </div>
-</div>
-
-            <div class="col-12 col-md-7 col-lg-8">
-              <div class="ps-md-4">
-                <h1 class="display-5 display-md-3 mb-2 mb-md-3">${title}</h1>
-                <h2 class="h4 h3-md mb-2 mb-md-3">by ${authors}</h2>
-                <h3 class="h6 mb-3 mb-md-4"><strong>Genre:</strong> ${genre}</h3>
-                <div class="3">
-                  <div class="star-rating pb-2 me-1">
-                    ★<span class="fs-1">${Number(rating).toFixed(1)}/5.0</span>
-                  </div>
-                </div>
               </div>
+             </div>
+                 </div>
             </div>
-          </div>
-
           <div class="row mt-4 mt-md-5">
             <div class="col-12">
               <h3 class="h4 mb-3 mb-md-4">Description</h3>
@@ -173,7 +172,6 @@ document.addEventListener('DOMContentLoaded', function () {
               </div>
             </div>
           </div>
-
           <h3 class="mt-4 mb-4">Leave a Review</h3>
           <div class="row mt-4 mt-md-5">
             <div class="col-12 rounded-4 mb-5">
@@ -198,18 +196,15 @@ document.addEventListener('DOMContentLoaded', function () {
               </div>
             </div>
           </div>
-
           <h3 class="h4 mb-4">User Reviews</h3>
           <div id="userReviews" class="d-flex flex-column gap-4"></div>
           <div id="customReviewPagination" class="d-flex justify-content-center mt-4"></div>
         </div>
       `;
-
       document.getElementById('bookDetails').innerHTML = bookDetailsContent;
       const libraryButton = document.getElementById('library-toggle-button');
       const libraryIconDefault = document.getElementById('library-icon-default');
       const libraryIconActive = document.getElementById('library-icon-active');
-      
       libraryButton.addEventListener('click', function () {
         libraryButton.classList.toggle('active');
         const isActive = libraryButton.classList.contains('active');
@@ -356,5 +351,4 @@ document.addEventListener('DOMContentLoaded', function () {
       </div>
     `;
   }
-  
 });

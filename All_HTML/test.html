@@ -84,16 +84,34 @@
       color: #F9C172;
       width: 60%;
     }
-
-    .pfp {
+  .pfp {
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      margin-bottom: 1rem;
+      margin-right: 10px; /* Increased space between PFP and username */
     }
-   
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px; /* Spacing for user info */
+    }
+
+    .username {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 10px; /* Move username higher */
+    }
+
+    .timestamp {
+      font-size: 0.8rem;
+      color: #F9C172;
+      margin-top: 5px; /* Space between username and timestamp */
+    }
+
     .stars span {
-      font-size: 3.5rem!important;
+      font-size: 2rem;
+      color: #F9C172;
     }
 
     .btn-nav {
@@ -125,12 +143,29 @@
       cursor: pointer;
       left: 32%;
     }
-    #bookRating{
-      font-size: 2rem!important;
-    }
-    .bookRating{
-      font-size: 5rem!important;
 
+    /* Adjustments for comments and username */
+    .comment-text {
+      font-size: 0.9rem; /* Smaller font size */
+      line-height: 1.5;
+    }
+
+    .user-info {
+      font-size: 0.8rem; /* Smaller font size for user details */
+      margin-bottom: 10px;
+    }
+
+    .timestamp {
+      font-size: 0.7rem;
+      color: #F9C172;
+    }
+
+    #bookRating {
+      font-size: 1.5rem;
+    }
+
+    .bookRating {
+      font-size: 1.8rem;
     }
   </style>
 </head>
@@ -151,12 +186,17 @@
 
       <!-- Right Side: Book Details -->
       <div class="card-content">
-        <img id="pfp" class="pfp" src="" alt="User profile picture">
-        <span class="fw-semibold" id="username">User Name:</span><br />
-      
-        <p id="reviewText" class="mb-3">Here will be readers' opinion about their books.</p>
+         <div class="user-info">
+           <img id="pfp" class="pfp" src="" alt="User profile picture">
+           <div>
+              <span class="username" id="username">User Name</span>
+              <div class="timestamp" id="timestamp">Timestamp</div>
+           </div>
+          </div>
+        
+        <p id="reviewText" class="comment-text mb-3">Here will be readers' opinion about their books. This comment should be a longer paragraph to ensure proper alignment and text wrapping.</p>
 
-        <div class="user-info mb-2">
+        <div class="user-info">
           <span class="fw-bold fs-5" id="bookTitle">Book Title</span><br />
           <span class="fs-6" id="author">Author</span><br />
           <span class="fs-6" id="genre">Genre</span><br />
@@ -183,94 +223,7 @@
       </span>
     </button>
   </div>
-<!--
-  <script>
-    // Example comments data
-  /*  const comments = [
-      {
-        username: "Guest",
-        rating: 5,
-        comment: "Amazing book! Highly recommend it.",
-        pfpUrl: "https://api.dicebear.com/6.x/initials/svg?seed=Guest",
-        timestamp: 1746321619,
-        bookId: "icKmd-tlvPMC"
-      },
-      {
-        username: "Guest",
-        rating: 3,
-        comment: "Amazing book! Highly recommend it.",
-        pfpUrl: "https://api.dicebear.com/6.x/initials/svg?seed=Guest",
-        timestamp: 1746321619,
-        bookId: "icKmd-tlvPMC"
-      }
-    ];
-
-    function fetchComments() {
-    fetch(`../PHP/comments.php?bookId=${bookId}`)
-      .then(response => response.json())
-      .then(comments => {
-        commentsData = comments.sort((a, b) => b.timestamp - a.timestamp);
-        totalComments = commentsData.length;
-        renderReviews();
-        renderPagination();
-      })
-      .catch(error => console.error('Error fetching comments:', error));
-  }
-    // Function to randomly select a comment
-    function getRandomComment() {
-      const randomIndex = Math.floor(Math.random() * comments.length);
-      return comments[randomIndex];
-    }
-
-    // Function to display the selected comment and book details
-    function displayComment(comment) {
-      const apiURL = `https://www.googleapis.com/books/v1/volumes/${comment.bookId}`;
-      
-      fetch(apiURL)
-        .then(response => response.json())
-        .then(data => {
-          const book = data.volumeInfo;
-          const title = book.title;
-          const authors = book.authors ? book.authors.join(', ') : 'Unknown';
-          const genre = book.categories ? book.categories.join(', ') : 'Unknown Genre';
-          const rating = book.averageRating || 0;
-          const image = book.imageLinks ? book.imageLinks.thumbnail : 'https://via.placeholder.com/150';
-
-          document.getElementById('reviewText').textContent = comment.comment;
-          document.getElementById('username').textContent = comment.username;
-          document.getElementById('bookTitle').textContent = title;
-          document.getElementById('author').textContent = authors;
-          document.getElementById('genre').textContent = genre;
-          document.getElementById('bookRating').textContent =`★${rating}/5`;
-          document.getElementById('bookImage').src = image;
-
-          const starsContainer = document.getElementById('stars');
-          starsContainer.innerHTML = '';
-          for (let i = 0; i < 5; i++) {
-            const star = document.createElement('span');
-            star.textContent = '★';
-            star.style.color = i < comment.rating ? '#F9C172' : '#E7D6C4';
-            starsContainer.appendChild(star);
-          }
-        })
-        .catch(error => console.error('Error fetching book details:', error));
-    }
-
-    // Fetch random comment and display
-    const comment = getRandomComment();
-    displayComment(comment);
-
-    // Navigation buttons
-    document.getElementById('prevBtn').addEventListener('click', () => {
-      const comment = getRandomComment();
-      displayComment(comment);
-    });
-
-    document.getElementById('nextBtn').addEventListener('click', () => {
-      const comment = getRandomComment();
-      displayComment(comment);
-    });*/
-  </script>-->
+  
   <script>
     // Function to fetch random comments from the server (PHP)
     function fetchComments() {
@@ -282,20 +235,20 @@
             console.log("No comments available.");
             return;
           }
-  
+
           // Sort the selected comments by timestamp
           const sortedComments = comments.sort((a, b) => b.timestamp - a.timestamp);
-  
+
           // Display the first random comment
           const comment = sortedComments[0]; // Display the first comment as a default
           displayComment(comment);
-  
+
           // Store the random comments globally for navigation
           selectedComments = sortedComments;
         })
         .catch(error => console.error('Error fetching comments:', error));
     }
-  
+
     // Function to display the selected comment and book details
     function displayComment(comment) {
       const apiURL = `https://www.googleapis.com/books/v1/volumes/${comment.bookId}`;
@@ -309,7 +262,7 @@
           const genre = book.categories ? book.categories.join(', ') : 'Unknown Genre';
           const rating = book.averageRating || 0;
           const image = book.imageLinks ? book.imageLinks.thumbnail : 'https://via.placeholder.com/150';
-  
+       
           // Update DOM with book and comment details
           document.getElementById('reviewText').textContent = comment.comment;
           document.getElementById('username').textContent = comment.username;
@@ -318,7 +271,9 @@
           document.getElementById('genre').textContent = genre;
           document.getElementById('bookRating').textContent = `${rating}/5`;
           document.getElementById('bookImage').src = image;
-  
+          document.getElementById('pfp').src = comment.pfpUrl;
+          document.getElementById('timestamp').textContent = comment.timestamp;
+
           // Update stars for rating
           const starsContainer = document.getElementById('stars');
           starsContainer.innerHTML = '';
@@ -331,10 +286,10 @@
         })
         .catch(error => console.error('Error fetching book details:', error));
     }
-  
+
     // Fetch comments when the page loads
     fetchComments();
-  
+
     // Navigation buttons to switch between comments
     document.getElementById('prevBtn').addEventListener('click', () => {
       // Get a random comment from the list of selected comments
@@ -342,7 +297,7 @@
       const comment = selectedComments[randomIndex];
       displayComment(comment);
     });
-  
+
     document.getElementById('nextBtn').addEventListener('click', () => {
       // Get a random comment from the list of selected comments
       const randomIndex = Math.floor(Math.random() * selectedComments.length);
@@ -350,7 +305,6 @@
       displayComment(comment);
     });
   </script>
-  
   
 </body>
 </html>

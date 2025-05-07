@@ -67,7 +67,6 @@ if ($result && mysqli_num_rows($result) > 0) {
     <button type="submit" style="background:none; border:none; color:red; font-size:18px; cursor:pointer;" title="Remove">🗑 Remove</button>
   </form>
 </div>
-
         <?php endforeach; ?>
       </div>
     <?php endif; ?>

@@ -2,168 +2,310 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Toggle SVG Icon Button</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From Our Readers</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    .library-icon-wrapper {
-      width: 60px;
-      height: 60px;
-      display: inline-block;
-      color: #f9c172;
-      transition: color 0.3s;
-      cursor: pointer;
-      border: none;
-      background: none;
-      padding: 0;
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #0B0804;
+      color: #F9C172;
+      position: relative;
+      min-height: 100vh;
     }
 
-    .library-icon-wrapper:hover {
-      color: #c17b36;
+    /* Main container */
+    .from-our-readers {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      flex-wrap: wrap; /* Allow wrapping for responsiveness */
+      padding-top: 80px; /* Space for the navigation buttons */
     }
 
-    .library-icon-wrapper.active {
-      color: #f9c172;
+    /* Left section: Title and Subtitle */
+    .left-side-text {
+      text-align: center;
+      margin-right: 50px;
+      max-width: 400px;
     }
 
-    .library-icon-wrapper.active:hover {
-      color: #c17b36;
+    .left-side-text h1 {
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 68px;
+      color: #F9C172;
     }
 
-    .library-icon {
+    .left-side-text p {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #F9C172;
+    }
+
+    /* Card Styling */
+    .card-custom {
+      background: linear-gradient(180deg, rgba(193, 123, 54, 0.3) 0%, rgba(45, 36, 31, 0.3) 100%);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: row;
+      height: 500px;
+      width: 800px;
+      max-width: 100%;
+      border-width: 0px;
+      margin-bottom: 20px; /* Ensure space below the card */
+    }
+
+    /* Left side of the card - Book image */
+    .card-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40%;
+    }
+
+    .card-image img {
       width: 100%;
       height: 100%;
+      object-fit: fill;
+      border-radius: 8px;
     }
 
-    .hidden {
-      display: none;
+    /* Right side of the card - Book details */
+    .card-content {
+      flex: 1;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #F9C172;
+      width: 60%;
+    }
+  .pfp {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 10px; /* Increased space between PFP and username */
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px; /* Spacing for user info */
+    }
+
+    .username {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 10px; /* Move username higher */
+    }
+
+    .timestamp {
+      font-size: 0.8rem;
+      color: #F9C172;
+      margin-top: 5px; /* Space between username and timestamp */
+    }
+
+    .stars span {
+      font-size: 2rem;
+      color: #F9C172;
+    }
+
+    .btn-nav {
+      background: none;
+      border: none;
+      color: #F9C172;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Navigation buttons */
+    .navigation-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-top: 20px; /* Space between the card and buttons */
+    }
+
+    .navigation-wrapper button {
+      position: relative;
+      background: none;
+      border: 2px solid #F9C172;
+      color: #F9C172;
+      padding: 12px;
+      font-size: 20px;
+      border-radius: 50%;
+      margin: 0 10px;
+      cursor: pointer;
+      left: 32%;
+    }
+
+    /* Adjustments for comments and username */
+    .comment-text {
+      font-size: 0.9rem; /* Smaller font size */
+      line-height: 1.5;
+    }
+
+    .book-info {
+      font-size: 0.8rem; /* Smaller font size for user details */
+      margin-bottom: 10px;
+      
+    }
+
+    .timestamp {
+      font-size: 0.7rem;
+      color: #F9C172;
+    }
+
+    #bookRating {
+      font-size: 1.5rem;
+    }
+
+    .bookRating {
+      font-size: 1.8rem;
     }
   </style>
 </head>
-<body style="background-color: #0b0804;">
+<body>
+  <div class="from-our-readers">
+    <!-- Left Section: Title and Subtitle -->
+    <div class="left-side-text">
+      <h1>From Our Readers</h1>
+      <p>From Our Readers to your library</p>
+    </div>
 
-  <form action="/your-action-url" method="POST">
-    <button type="button" class="library-icon-wrapper" id="toggleButton" name="libraryButton" value="submit">
-      <!-- Default SVG icon (not active) -->
-        <svg  id="icon-default" class="library-icon" fill="currentColor" height="800px" width="800px" version="1.1"
-        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-        <g transform="translate(1 1)">
-          <g>
-            <g>
-        <path d="M186.736 400.064H75.792c-14.512 0 -25.6 -11.088 -25.6 -25.6s11.088 -25.6 25.6 -25.6h196.272c5.12 0 8.528 -3.408 8.528 -8.528s-3.408 -8.528 -8.528 -8.528H75.792c-23.888 0 -42.672 18.768 -42.672 42.672s18.768 42.672 42.672 42.672h110.928c5.12 0 8.528 -3.408 8.528 -8.528s-3.408 -8.528 -8.528 -8.528"/>
-        <path d="M306.192 400.064h-76.8c-5.12 0 -8.528 3.408 -8.528 8.528s3.408 8.528 8.528 8.528h76.8c5.12 0 8.528 -3.408 8.528 -8.528s-3.408 -8.528 -8.528 -8.528"/>
-        <path d="M84.336 365.936c-5.12 0 -8.528 3.408 -8.528 8.528s3.408 8.544 8.528 8.544h51.2c5.12 0 8.528 -3.408 8.528 -8.528s-3.408 -8.528 -8.528 -8.528z"/>
-        <path d="M348.864 255.008H186.736c-5.12 0 -8.528 3.408 -8.528 8.528s3.408 8.528 8.528 8.528h162.128c5.12 0 8.528 -3.408 8.528 -8.528s-3.408 -8.528 -8.528 -8.528"/>
-        <path d="M306.192 92.864h-102.384c-5.12 0 -8.528 3.408 -8.528 8.528s3.408 8.528 8.528 8.528h102.4c5.12 0 8.528 -3.408 8.528 -8.528s-3.408 -8.528 -8.528 -8.528"/>
-        <path d="M425.664 169.664H186.736c-5.12 0 -8.528 3.408 -8.528 8.528s3.408 8.528 8.528 8.528h238.928c5.12 0 8.528 -3.408 8.528 -8.528s-3.408 -8.528 -8.528 -8.528"/>
-        <path d="M502.464 434.192h-11.68a128 128 0 0 1 -7.376 -17.072h2c5.12 0 8.528 -3.408 8.528 -8.528s-3.408 -8.528 -8.528 -8.528h-6.736a128 128 0 0 1 -2.368 -17.056h9.936c4.272 0 8.528 -3.408 8.528 -8.528s-3.408 -8.528 -8.528 -8.528h-9.936a128 128 0 0 1 2.352 -17.072h6.736c5.12 0 8.528 -3.408 8.528 -8.528s-3.408 -8.528 -8.528 -8.528h-2a128 128 0 0 1 7.376 -17.072h11.68c5.12 0 8.528 -3.408 8.528 -8.528s-3.408 -8.528 -8.528 -8.528h-8.528v-76.8c0 -5.12 -3.408 -8.528 -8.528 -8.528H468.32v-76.8c0 -5.12 -3.408 -8.528 -8.528 -8.528h-8.528V67.264c0 -5.12 -3.408 -8.528 -8.528 -8.528H24.608c-5.12 0 -8.528 3.408 -8.528 8.528v68.272c0 5.12 3.408 8.528 8.528 8.528h17.072v68.272H7.536c-5.12 0 -8.528 3.408 -8.528 8.528v85.328c0 5.12 3.408 8.528 8.528 8.528h19.808a76.48 76.48 0 0 0 -28.352 59.744 76.48 76.48 0 0 0 76.8 76.8h426.672c5.12 0 8.528 -3.408 8.528 -8.528s-3.408 -8.528 -8.528 -8.528m-25.6 -136.528h-34.128v-68.272h34.128zm-68.272 0v-68.272h17.072v68.272zm-273.072 0v-68.272h256v68.272zm-51.2 -68.272h34.128v68.272H84.336zm25.6 -85.328h17.088v68.272H109.936zm42.672 -17.072V75.792h196.272v51.216zm281.6 85.328H144.064V144.064h307.2v68.272zm0 -85.328h-34.128V75.792h34.128zm-51.184 -51.216v51.216h-17.072V75.792zm-247.472 0v51.216H101.408V75.792zm-102.4 0h51.2v51.216h-51.2zm25.6 68.272h34.128v68.272H58.736zm-42.672 85.344h51.2v68.272h-51.2zm409.6 204.8H75.792c-33.28 0 -59.728 -26.448 -59.728 -59.728s26.464 -59.744 59.728 -59.744h395.952a144 144 0 0 0 -6.448 17.072h-159.104c-5.12 0 -8.528 3.408 -8.528 8.528s3.408 8.528 8.528 8.528h155.008a144 144 0 0 0 -2 17.072h-32.688l-0.432 0.016 -0.432 -0.016H178.192c-5.12 0 -8.528 3.408 -8.528 8.528s3.424 8.544 8.528 8.544h247.472l0.432 -0.016 0.432 0.016h32.688q0.496 8.576 2 17.072h-112.352c-5.12 0 -8.528 3.408 -8.528 8.528s3.408 8.528 8.528 8.528h116.432a144 144 0 0 0 6.448 17.072z"/>
-              <!-- (Paths truncated here for brevity – your original content stays intact) -->
-            </g>
-          </g>
-        </g>
-      </svg>
-      <!-- New active SVG icon -->
-      <svg id="icon-active" class="library-icon hidden" fill="black" viewBox="0 0 512 512"
-        height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-        viewBox="0 0 512 512" xml:space="preserve">
-   <g transform="translate(1 1)">
-       <path style="fill:#f9c172;" d="M441.027,374.467c0-24.747,6.827-47.787,18.773-68.267h-256H101.4
-           c-37.547,0-68.267,30.72-68.267,68.267s30.72,68.267,68.267,68.267h102.4h256C447.853,422.253,441.027,399.213,441.027,374.467"/>
-       <path style="fill:#E7D6C4;" d="M33.133,374.467c0-37.547,30.72-68.267,68.267-68.267H75.8c-37.547,0-68.267,30.72-68.267,68.267
-           s30.72,68.267,68.267,68.267h25.6C63.853,442.733,33.133,412.013,33.133,374.467"/>
-       <path style="fill:#c17b36;" d="M485.4,306.2h-25.6c-11.947,20.48-18.773,43.52-18.773,68.267c0,24.747,6.827,47.787,18.773,68.267
-           h25.6c-11.947-20.48-18.773-43.52-18.773-68.267C466.627,349.72,473.453,326.68,485.4,306.2"/>
-       <polygon style="fill:#f9c172;" points="7.533,306.2 485.4,306.2 485.4,220.867 7.533,220.867 	"/>
-       <polygon style="fill:#E7D6C4;" points="7.533,306.2 33.133,306.2 33.133,220.867 7.533,220.867 	"/>
-       <g>
-           <polygon style="fill:#f9c172;" points="50.2,220.867 459.8,220.867 459.8,135.533 50.2,135.533 		"/>
-           <polygon style="fill:#f9c172;" points="24.6,135.533 442.733,135.533 442.733,67.267 24.6,67.267 		"/>
-       </g>
-       <g>
-           <polygon style="fill:#E7D6C4;" points="24.6,135.533 50.2,135.533 50.2,67.267 24.6,67.267 		"/>
-           <polygon style="fill:#E7D6C4;" points="50.2,220.867 75.8,220.867 75.8,135.533 50.2,135.533 		"/>
-       </g>
-       <g>
-           <polygon style="fill:#c17b36;" points="459.8,306.2 485.4,306.2 485.4,220.867 459.8,220.867 		"/>
-           <polygon style="fill:#c17b36;" points="417.133,135.533 442.733,135.533 442.733,67.267 417.133,67.267 		"/>
-           <polygon style="fill:#c17b36;" points="434.2,220.867 459.8,220.867 459.8,135.533 434.2,135.533 		"/>
-       </g>
-       <g>
-           <polygon style="fill:#c17b36;" points="75.8,306.2 127,306.2 127,220.867 75.8,220.867 		"/>
-           <polygon style="fill:#c17b36;" points="400.067,306.2 434.2,306.2 434.2,220.867 400.067,220.867 		"/>
-           <polygon style="fill:#c17b36;" points="92.867,135.533 144.067,135.533 144.067,67.267 92.867,67.267 		"/>
-           <polygon style="fill:#c17b36;" points="357.4,135.533 391.533,135.533 391.533,67.267 357.4,67.267 		"/>
-           <polygon style="fill:#c17b36;" points="101.4,220.867 135.533,220.867 135.533,135.533 101.4,135.533 		"/>
-       </g>
-       <path d="M485.4,451.267H75.8c-42.667,0-76.8-34.133-76.8-76.8s34.133-76.8,76.8-76.8h409.6c3.413,0,5.973,1.707,7.68,4.267
-           c1.707,2.56,1.707,5.973,0,8.533c-11.093,19.627-17.067,41.813-17.067,64c0,22.187,5.973,44.373,17.067,64
-           c1.707,2.56,1.707,5.973,0,8.533C491.373,449.56,488.813,451.267,485.4,451.267z M75.8,314.733
-           c-33.28,0-59.733,26.453-59.733,59.733S42.52,434.2,75.8,434.2h395.947c-8.533-18.773-12.8-39.253-12.8-59.733
-           s4.267-40.96,12.8-59.733H75.8z"/>
-       <path d="M425.667,383H178.2c-5.12,0-8.533-3.413-8.533-8.533c0-5.12,3.413-8.533,8.533-8.533h247.467
-           c5.12,0,8.533,3.413,8.533,8.533C434.2,379.587,430.787,383,425.667,383z"/>
-       <path d="M186.733,417.133H75.8c-23.893,0-42.667-18.773-42.667-42.667c0-23.893,18.773-42.667,42.667-42.667h196.267
-           c5.12,0,8.533,3.413,8.533,8.533s-3.413,8.533-8.533,8.533H75.8c-14.507,0-25.6,11.093-25.6,25.6c0,14.507,11.093,25.6,25.6,25.6
-           h110.933c5.12,0,8.533,3.413,8.533,8.533C195.267,413.72,191.853,417.133,186.733,417.133z"/>
-       <path d="M485.4,348.867H306.2c-5.12,0-8.533-3.413-8.533-8.533c0-5.12,3.413-8.533,8.533-8.533h179.2
-           c5.12,0,8.533,3.413,8.533,8.533S490.52,348.867,485.4,348.867z"/>
-       <path d="M306.2,417.133h-76.8c-5.12,0-8.533-3.413-8.533-8.533c0-5.12,3.413-8.533,8.533-8.533h76.8
-           c5.12,0,8.533,3.413,8.533,8.533C314.733,413.72,311.32,417.133,306.2,417.133z"/>
-       <path d="M485.4,417.133H348.867c-5.12,0-8.533-3.413-8.533-8.533c0-5.12,3.413-8.533,8.533-8.533H485.4
-           c5.12,0,8.533,3.413,8.533,8.533C493.933,413.72,490.52,417.133,485.4,417.133z"/>
-       <path d="M135.533,383h-51.2c-5.12,0-8.533-3.413-8.533-8.533c0-5.12,3.413-8.533,8.533-8.533h51.2c5.12,0,8.533,3.413,8.533,8.533
-           C144.067,379.587,140.653,383,135.533,383z"/>
-       <path d="M485.4,314.733H7.533C2.413,314.733-1,311.32-1,306.2v-85.333c0-5.12,3.413-8.533,8.533-8.533H485.4
-           c5.12,0,8.533,3.413,8.533,8.533V306.2C493.933,311.32,490.52,314.733,485.4,314.733z M16.067,297.667h460.8V229.4h-460.8V297.667z
-           "/>
-       <path d="M127,314.733H75.8c-5.12,0-8.533-3.413-8.533-8.533v-85.333c0-5.12,3.413-8.533,8.533-8.533H127
-           c5.12,0,8.533,3.413,8.533,8.533V306.2C135.533,311.32,132.12,314.733,127,314.733z M84.333,297.667h34.133V229.4H84.333V297.667z"
-           />
-       <path d="M348.867,272.067H186.733c-5.12,0-8.533-3.413-8.533-8.533c0-5.12,3.413-8.533,8.533-8.533h162.133
-           c5.12,0,8.533,3.413,8.533,8.533C357.4,268.653,353.987,272.067,348.867,272.067z"/>
-       <path d="M434.2,314.733h-34.133c-5.12,0-8.533-3.413-8.533-8.533v-85.333c0-5.12,3.413-8.533,8.533-8.533H434.2
-           c5.12,0,8.533,3.413,8.533,8.533V306.2C442.733,311.32,439.32,314.733,434.2,314.733z M408.6,297.667h17.067V229.4H408.6V297.667z"
-           />
-       <path d="M442.733,144.067H24.6c-5.12,0-8.533-3.413-8.533-8.533V67.267c0-5.12,3.413-8.533,8.533-8.533h418.133
-           c5.12,0,8.533,3.413,8.533,8.533v68.267C451.267,140.653,447.853,144.067,442.733,144.067z M33.133,127H434.2V75.8H33.133V127z"/>
-       <path d="M144.067,144.067h-51.2c-5.12,0-8.533-3.413-8.533-8.533V67.267c0-5.12,3.413-8.533,8.533-8.533h51.2
-           c5.12,0,8.533,3.413,8.533,8.533v68.267C152.6,140.653,149.187,144.067,144.067,144.067z M101.4,127h34.133V75.8H101.4V127z"/>
-       <path d="M306.2,109.933H203.8c-5.12,0-8.533-3.413-8.533-8.533c0-5.12,3.413-8.533,8.533-8.533h102.4
-           c5.12,0,8.533,3.413,8.533,8.533C314.733,106.52,311.32,109.933,306.2,109.933z"/>
-       <path d="M391.533,144.067H357.4c-5.12,0-8.533-3.413-8.533-8.533V67.267c0-5.12,3.413-8.533,8.533-8.533h34.133
-           c5.12,0,8.533,3.413,8.533,8.533v68.267C400.067,140.653,396.653,144.067,391.533,144.067z M365.933,127H383V75.8h-17.067V127z"/>
-       <path d="M459.8,229.4H50.2c-5.12,0-8.533-3.413-8.533-8.533v-85.333c0-5.12,3.413-8.533,8.533-8.533h409.6
-           c5.12,0,8.533,3.413,8.533,8.533v85.333C468.333,225.987,464.92,229.4,459.8,229.4z M58.733,212.333h392.533v-68.267H58.733
-           V212.333z"/>
-       <path d="M135.533,229.4H101.4c-5.12,0-8.533-3.413-8.533-8.533v-85.333c0-5.12,3.413-8.533,8.533-8.533h34.133
-           c5.12,0,8.533,3.413,8.533,8.533v85.333C144.067,225.987,140.653,229.4,135.533,229.4z M109.933,212.333H127v-68.267h-17.067
-           V212.333z"/>
-       <path d="M425.667,186.733H186.733c-5.12,0-8.533-3.413-8.533-8.533c0-5.12,3.413-8.533,8.533-8.533h238.933
-           c5.12,0,8.533,3.413,8.533,8.533C434.2,183.32,430.787,186.733,425.667,186.733z"/>
-       <path d="M502.467,314.733h-76.8c-5.12,0-8.533-3.413-8.533-8.533s3.413-8.533,8.533-8.533h76.8c5.12,0,8.533,3.413,8.533,8.533
-           S507.587,314.733,502.467,314.733z"/>
-       <path d="M502.467,451.267h-76.8c-5.12,0-8.533-3.413-8.533-8.533c0-5.12,3.413-8.533,8.533-8.533h76.8
-           c5.12,0,8.533,3.413,8.533,8.533C511,447.853,507.587,451.267,502.467,451.267z"/>
-       <path d="M486.253,383H426.52c-5.12,0-8.533-3.413-8.533-8.533c0-5.12,3.413-8.533,8.533-8.533h59.733
-           c5.12,0,8.533,3.413,8.533,8.533C494.787,379.587,490.52,383,486.253,383z"/>
-   </g>
-      </svg>
+    <!-- Right Section: Card with Book Details -->
+    <div class="card card-custom">
+      <!-- Left Side: Book Image -->
+      <div class="card-image">
+        <img id="bookImage" src="" alt="Book Image">
+      </div>
+
+      <!-- Right Side: Book Details -->
+      <div class="card-content">
+         <div class="user-info">
+           <img id="pfp" class="pfp" src="" alt="User profile picture">
+           <div>
+              <span class="username" id="username">User Name</span>
+              <div class="timestamp" id="timestamp">Timestamp</div>
+           </div>
+          </div>
+        
+        <p id="reviewText" class="comment-text mb-3">Here will be readers' opinion about their books. This comment should be a longer paragraph to ensure proper alignment and text wrapping.</p>
+
+        <div class="book-info ">
+          <span class="fw-bold fs-5" id="bookTitle">Book Title</span><br />
+          <span class="fs-6" id="author">Author</span><br />
+          <span class="fs-6" id="genre">Genre</span><br />
+          <span class="bookRating">★</span>
+          <span id="bookRating">Rating</span>
+        </div>
+        <div id="stars" class="stars d-flex flex-row-reverse"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Buttons -->
+  <div class="navigation-wrapper">
+    <button id="prevBtn" class="btn-nav">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M15.41 7.41L10.83 12l4.58 4.59L14 18l-6-6 6-6 1.41 1.41z"/>
+      </svg></button>
+    <button id="nextBtn" class="btn-nav">
+      <span class="nxt" aria-hidden="true">
+        <!-- SVG for the "Next" icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M8.59 7.41L13.17 12l-4.58 4.59L10 18l6-6-6-6-1.41 1.41z"/>
+        </svg>
+      </span>
     </button>
-  </form>
-
+  </div>
+  
   <script>
-    const button = document.getElementById('toggleButton');
-    const iconDefault = document.getElementById('icon-default');
-    const iconActive = document.getElementById('icon-active');
+    // Function to fetch random comments from the server (PHP)
+    function fetchComments() {
+      fetch('../PHP/test.php') // This will call the PHP script
+        .then(response => response.json())
+        .then(comments => {
+          // If no comments returned, handle gracefully
+          if (comments.length === 0) {
+            console.log("No comments available.");
+            return;
+          }
 
-    button.addEventListener('click', function (e) {
-      // Optional: e.preventDefault(); // Prevent form submission if needed
+          // Sort the selected comments by timestamp
+          const sortedComments = comments.sort((a, b) => b.timestamp - a.timestamp);
 
-      button.classList.toggle('active');
+          // Display the first random comment
+          const comment = sortedComments[0]; // Display the first comment as a default
+          displayComment(comment);
 
-      const isActive = button.classList.contains('active');
-      iconDefault.classList.toggle('hidden', isActive);
-      iconActive.classList.toggle('hidden', !isActive);
+          // Store the random comments globally for navigation
+          selectedComments = sortedComments;
+        })
+        .catch(error => console.error('Error fetching comments:', error));
+    }
+
+    // Function to display the selected comment and book details
+    function displayComment(comment) {
+      const apiURL = `https://www.googleapis.com/books/v1/volumes/${comment.bookId}`;
+      
+      fetch(apiURL)
+        .then(response => response.json())
+        .then(data => {
+          const book = data.volumeInfo;
+          const title = book.title;
+          const authors = book.authors ? book.authors.join(', ') : 'Unknown';
+          const genre = book.categories ? book.categories.join(', ') : 'Unknown Genre';
+          const rating = book.averageRating || 0;
+          const image = book.imageLinks ? book.imageLinks.thumbnail : 'https://via.placeholder.com/150';
+       
+          // Update DOM with book and comment details
+          document.getElementById('reviewText').textContent = comment.comment;
+          document.getElementById('username').textContent = comment.username;
+          document.getElementById('bookTitle').textContent = title;
+          document.getElementById('author').textContent = authors;
+          document.getElementById('genre').textContent = genre;
+          document.getElementById('bookRating').textContent = `${rating}/5`;
+          document.getElementById('bookImage').src = image;
+          document.getElementById('pfp').src = comment.pfpUrl;
+          document.getElementById('timestamp').textContent = comment.timestamp;
+
+          // Update stars for rating
+          const starsContainer = document.getElementById('stars');
+          starsContainer.innerHTML = '';
+          for (let i = 0; i < 5; i++) {
+            const star = document.createElement('span');
+            star.textContent = '★';
+            star.style.color = i < comment.rating ? '#F9C172' : '#E7D6C4';
+            starsContainer.appendChild(star);
+          }
+        })
+        .catch(error => console.error('Error fetching book details:', error));
+    }
+
+    // Fetch comments when the page loads
+    fetchComments();
+
+    // Navigation buttons to switch between comments
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      // Get a random comment from the list of selected comments
+      const randomIndex = Math.floor(Math.random() * selectedComments.length);
+      const comment = selectedComments[randomIndex];
+      displayComment(comment);
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      // Get a random comment from the list of selected comments
+      const randomIndex = Math.floor(Math.random() * selectedComments.length);
+      const comment = selectedComments[randomIndex];
+      displayComment(comment);
     });
   </script>
-
+  
 </body>
 </html>
