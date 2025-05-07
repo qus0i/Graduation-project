@@ -159,6 +159,17 @@ document.addEventListener('DOMContentLoaded', function () {
    </g>
     </svg>
   </button>
+<button type="button" class="library-icon-wrapper" id="library-toggle-button" name="libraryButton" value="submit">
+
+</button>
+
+
+
+
+
+
+
+
 </form>
               </div>
              </div>

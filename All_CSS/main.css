@@ -660,17 +660,17 @@ header {
 }
 
 .slider-butt {
-    background-color: transparent;
-    color: var(--color-accent);
-    border: 2px solid var(--color-accent);
+    background-color: transparent!important;
+    color: var(--color-accent)!important;
+    border: 2px solid var(--color-accent)!important;
 }
 
 .slider-butt:hover {
-    background-color: var(--color-primary-light);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    color: var(--color-secondary-dark);
-    border: 2px solid var(--color-primary-light);
+    background-color: var(--color-primary-light)!important;
+    transform: translateY(-3px)!important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2)!important;
+    color: var(--color-secondary-dark)!important;
+    border: 2px solid var(--color-primary-light)!important;
 }
 .stars {
     position: absolute;
@@ -941,7 +941,6 @@ textarea {
     width: 100%;
     height: 100%;
   }
-
   .hidden {
     display: none;
   }

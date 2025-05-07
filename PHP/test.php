@@ -1,21 +1,23 @@
 <?php
-// Path to your comments.json file
+
 $commentsFile = 'comments.json';
+$commentsData = []; // Default empty array
 
-// Check if the file exists and read its contents
-if (file_exists($commentsFile)) {
-    $commentsData = json_decode(file_get_contents($commentsFile), true);
-
-    // Select a random subset of up to 10 comments
-    shuffle($commentsData); // Shuffle comments to randomize
-    $randomComments = array_slice($commentsData, 0, 10); // Get up to 10 comments
-
-    // Return the selected comments as JSON
-    header('Content-Type: application/json');
-    echo json_encode($randomComments);
-} else {
-    // If the comments.json file does not exist
-    header('Content-Type: application/json');
-    echo json_encode([]);
+if (file_exists($commentsFile) && is_readable($commentsFile)) {
+    $jsonContent = file_get_contents($commentsFile);
+    if ($jsonContent !== false) {
+        $decodedData = json_decode($jsonContent, true);
+        if (is_array($decodedData)) {
+            $commentsData = $decodedData;
+        }
+    }
 }
+
+// Shuffle and pick exactly 10 (or fewer if not enough)
+shuffle($commentsData);
+$randomComments = array_slice($commentsData, 0, 10); // Always 10 or less
+
+header('Content-Type: application/json');
+echo json_encode($randomComments);
+
 ?>

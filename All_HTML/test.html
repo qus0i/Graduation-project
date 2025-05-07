@@ -21,8 +21,8 @@
       justify-content: center;
       align-items: center;
       flex-direction: row;
-      flex-wrap: wrap; /* Allow wrapping for responsiveness */
-      padding-top: 80px; /* Space for the navigation buttons */
+      flex-wrap: wrap;
+      padding-top: 80px;
     }
 
     /* Left section: Title and Subtitle */
@@ -56,7 +56,27 @@
       width: 800px;
       max-width: 100%;
       border-width: 0px;
-      margin-bottom: 20px; /* Ensure space below the card */
+      margin-bottom: 20px;
+      overflow: hidden; /* Ensure animation stays within card bounds */
+    }
+
+    /* Slide animation styles */
+    .card-slide-out-left {
+      transform: translateX(-100%);
+      opacity: 0;
+      transition: transform 0.5s ease, opacity 0.3s ease;
+    }
+
+    .card-slide-out-right {
+      transform: translateX(100%);
+      opacity: 0;
+      transition: transform 0.5s ease, opacity 0.3s ease;
+    }
+
+    .card-slide-in {
+      transform: translateX(0);
+      opacity: 1;
+      transition: transform 0.5s ease, opacity 0.3s ease;
     }
 
     /* Left side of the card - Book image */
@@ -83,30 +103,32 @@
       justify-content: center;
       color: #F9C172;
       width: 60%;
+      height: 100%;
     }
-  .pfp {
+
+    .pfp {
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      margin-right: 10px; /* Increased space between PFP and username */
+      margin-right: 10px;
     }
 
     .user-info {
       display: flex;
       align-items: center;
-      margin-bottom: 10px; /* Spacing for user info */
+      margin-bottom: 10px;
     }
 
     .username {
       font-size: 1.2rem;
       font-weight: bold;
-      margin-top: 10px; /* Move username higher */
+      margin-top: 10px;
     }
 
     .timestamp {
       font-size: 0.8rem;
-      color: #F9C172;
-      margin-top: 5px; /* Space between username and timestamp */
+      color: #E7D6C4;
+      margin-top: 5px;
     }
 
     .stars span {
@@ -128,7 +150,7 @@
       display: flex;
       justify-content: center;
       width: 100%;
-      margin-top: 20px; /* Space between the card and buttons */
+      margin-top: 20px;
     }
 
     .navigation-wrapper button {
@@ -142,22 +164,23 @@
       margin: 0 10px;
       cursor: pointer;
       left: 32%;
+      transition: all 0.3s ease;
+    }
+
+    .navigation-wrapper button:hover {
+      background-color: rgba(249, 193, 114, 0.2);
+      transform: scale(1.1);
     }
 
     /* Adjustments for comments and username */
     .comment-text {
-      font-size: 0.9rem; /* Smaller font size */
+      font-size: 0.9rem;
       line-height: 1.5;
     }
 
-    .user-info {
-      font-size: 0.8rem; /* Smaller font size for user details */
+    .book-info {
+      font-size: 0.8rem;
       margin-bottom: 10px;
-    }
-
-    .timestamp {
-      font-size: 0.7rem;
-      color: #F9C172;
     }
 
     #bookRating {
@@ -166,6 +189,27 @@
 
     .bookRating {
       font-size: 1.8rem;
+    }
+
+    .ctext {
+      color: #E7D6C4;
+    }
+
+    /* Loading spinner */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .loading-spinner {
+      border: 4px solid rgba(249, 193, 114, 0.3);
+      border-radius: 50%;
+      border-top: 4px solid #F9C172;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+      display: none; /* Hidden by default */
     }
   </style>
 </head>
@@ -186,26 +230,27 @@
 
       <!-- Right Side: Book Details -->
       <div class="card-content">
-         <div class="user-info">
-           <img id="pfp" class="pfp" src="" alt="User profile picture">
-           <div>
-              <span class="username" id="username">User Name</span>
-              <div class="timestamp" id="timestamp">Timestamp</div>
-           </div>
+        <div class="user-info">
+          <img id="pfp" class="pfp" src="" alt="User profile picture">
+          <div>
+            <span class="username" id="username">User Name</span>
+            <div class="timestamp" id="timestamp">Timestamp</div>
           </div>
+        </div>
         
         <p id="reviewText" class="comment-text mb-3">Here will be readers' opinion about their books. This comment should be a longer paragraph to ensure proper alignment and text wrapping.</p>
 
-        <div class="user-info">
+        <div class="book-info align-items-end mt-auto">
           <span class="fw-bold fs-5" id="bookTitle">Book Title</span><br />
-          <span class="fs-6" id="author">Author</span><br />
-          <span class="fs-6" id="genre">Genre</span><br />
+          <span class="fs-6 ctext" id="author">Author</span><br />
+          <span class="fs-6 ctext" id="genre">Genre</span><br />
           <span class="bookRating">★</span>
           <span id="bookRating">Rating</span>
         </div>
-        <div id="stars" class="stars d-flex flex-row-reverse"></div>
+        <div id="stars" class="stars d-flex flex-row justify-content-end"></div>
       </div>
     </div>
+    <div class="loading-spinner" id="loadingSpinner"></div>
   </div>
 
   <!-- Navigation Buttons -->
@@ -216,7 +261,6 @@
       </svg></button>
     <button id="nextBtn" class="btn-nav">
       <span class="nxt" aria-hidden="true">
-        <!-- SVG for the "Next" icon -->
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
           <path d="M8.59 7.41L13.17 12l-4.58 4.59L10 18l6-6-6-6-1.41 1.41z"/>
         </svg>
@@ -225,86 +269,129 @@
   </div>
   
   <script>
+    let selectedComments = [];
+    let currentIndex = 0;
+
     // Function to fetch random comments from the server (PHP)
     function fetchComments() {
-      fetch('../PHP/test.php') // This will call the PHP script
+      document.getElementById('loadingSpinner').style.display = 'block';
+      
+      fetch('../PHP/test.php')
         .then(response => response.json())
         .then(comments => {
-          // If no comments returned, handle gracefully
           if (comments.length === 0) {
             console.log("No comments available.");
             return;
           }
 
-          // Sort the selected comments by timestamp
           const sortedComments = comments.sort((a, b) => b.timestamp - a.timestamp);
-
-          // Display the first random comment
-          const comment = sortedComments[0]; // Display the first comment as a default
-          displayComment(comment);
-
-          // Store the random comments globally for navigation
           selectedComments = sortedComments;
+          currentIndex = 0;
+          
+          // Display the first comment
+          displayComment(selectedComments[currentIndex]);
+          document.getElementById('loadingSpinner').style.display = 'none';
         })
-        .catch(error => console.error('Error fetching comments:', error));
+        .catch(error => {
+          console.error('Error fetching comments:', error);
+          document.getElementById('loadingSpinner').style.display = 'none';
+        });
     }
 
-    // Function to display the selected comment and book details
-    function displayComment(comment) {
-      const apiURL = `https://www.googleapis.com/books/v1/volumes/${comment.bookId}`;
+    // Function to display the selected comment with slide animation
+    async function displayComment(comment, direction = 'right') {
+      const card = document.querySelector('.card-custom');
+      const loadingSpinner = document.getElementById('loadingSpinner');
       
-      fetch(apiURL)
-        .then(response => response.json())
-        .then(data => {
-          const book = data.volumeInfo;
-          const title = book.title;
-          const authors = book.authors ? book.authors.join(', ') : 'Unknown';
-          const genre = book.categories ? book.categories.join(', ') : 'Unknown Genre';
-          const rating = book.averageRating || 0;
-          const image = book.imageLinks ? book.imageLinks.thumbnail : 'https://via.placeholder.com/150';
-       
-          // Update DOM with book and comment details
-          document.getElementById('reviewText').textContent = comment.comment;
-          document.getElementById('username').textContent = comment.username;
-          document.getElementById('bookTitle').textContent = title;
-          document.getElementById('author').textContent = authors;
-          document.getElementById('genre').textContent = genre;
-          document.getElementById('bookRating').textContent = `${rating}/5`;
-          document.getElementById('bookImage').src = image;
-          document.getElementById('pfp').src = comment.pfpUrl;
-          document.getElementById('timestamp').textContent = comment.timestamp;
-
-          // Update stars for rating
-          const starsContainer = document.getElementById('stars');
-          starsContainer.innerHTML = '';
-          for (let i = 0; i < 5; i++) {
-            const star = document.createElement('span');
-            star.textContent = '★';
-            star.style.color = i < comment.rating ? '#F9C172' : '#E7D6C4';
-            starsContainer.appendChild(star);
-          }
-        })
-        .catch(error => console.error('Error fetching book details:', error));
+      // Show loading spinner during transition
+      loadingSpinner.style.display = 'block';
+      
+      // Slide out current card
+      if (direction === 'right') {
+        card.classList.add('card-slide-out-left');
+      } else {
+        card.classList.add('card-slide-out-right');
+      }
+      
+      // Wait for slide out animation to complete
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      try {
+        const apiURL = `https://www.googleapis.com/books/v1/volumes/${comment.bookId}`;
+        const response = await fetch(apiURL);
+        const data = await response.json();
+        const book = data.volumeInfo;
+        
+        // Update DOM elements
+        document.getElementById('reviewText').textContent = comment.comment;
+        document.getElementById('username').textContent = comment.username;
+        document.getElementById('bookTitle').textContent = book.title;
+        document.getElementById('author').textContent = book.authors ? book.authors.join(', ') : 'Unknown';
+        document.getElementById('genre').textContent = book.categories ? book.categories.join(', ') : 'Unknown Genre';
+        document.getElementById('bookRating').textContent = `${book.averageRating || 0}/5`;
+        document.getElementById('bookImage').src = book.imageLinks ? book.imageLinks.thumbnail : 'https://via.placeholder.com/150';
+        document.getElementById('pfp').src = comment.pfpUrl;
+        
+        const date = new Date(comment.timestamp * 1000).toLocaleDateString(undefined, {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+        });
+        document.getElementById('timestamp').textContent = date;
+        
+        // Update stars
+        const starsContainer = document.getElementById('stars');
+        starsContainer.innerHTML = '';
+        for (let i = 0; i < 5; i++) {
+          const star = document.createElement('span');
+          star.textContent = '★';
+          star.style.color = i < comment.rating ? '#F9C172' : '#E7D6C4';
+          starsContainer.appendChild(star);
+        }
+        
+        // Reset card position for slide in
+        card.style.transform = direction === 'right' ? 'translateX(100%)' : 'translateX(-100%)';
+        card.style.opacity = '0';
+        card.classList.remove('card-slide-out-left', 'card-slide-out-right');
+        
+        // Force reflow to ensure reset takes effect
+        await new Promise(resolve => requestAnimationFrame(resolve));
+        
+        // Slide in new content
+        card.classList.add('card-slide-in');
+        card.style.transform = 'translateX(0)';
+        card.style.opacity = '1';
+        
+      } catch (error) {
+        console.error('Error:', error);
+      } finally {
+        // Hide loading spinner and clean up
+        loadingSpinner.style.display = 'none';
+        setTimeout(() => {
+          card.classList.remove('card-slide-in');
+        }, 500);
+      }
     }
 
-    // Fetch comments when the page loads
-    fetchComments();
-
-    // Navigation buttons to switch between comments
+    // Navigation button event listeners
     document.getElementById('prevBtn').addEventListener('click', () => {
-      // Get a random comment from the list of selected comments
-      const randomIndex = Math.floor(Math.random() * selectedComments.length);
-      const comment = selectedComments[randomIndex];
-      displayComment(comment);
+      if (selectedComments.length === 0) return;
+      
+      currentIndex = (currentIndex - 1 + selectedComments.length) % selectedComments.length;
+      displayComment(selectedComments[currentIndex], 'right');
     });
 
     document.getElementById('nextBtn').addEventListener('click', () => {
-      // Get a random comment from the list of selected comments
-      const randomIndex = Math.floor(Math.random() * selectedComments.length);
-      const comment = selectedComments[randomIndex];
-      displayComment(comment);
+      if (selectedComments.length === 0) return;
+      
+      currentIndex = (currentIndex + 1) % selectedComments.length;
+      displayComment(selectedComments[currentIndex], 'left');
     });
+
+    // Fetch comments when the page loads
+    fetchComments();
   </script>
-  
 </body>
 </html>
