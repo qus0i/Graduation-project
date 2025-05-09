@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <div class="mt-auto d-flex flex-column align-items-end">
                <!--testing-->
     <form  class="mt-auto p-2"  action="/your-action-url" method="POST">
-  <button type="button" class="library-icon-wrapper" id="library-toggle-button" name="libraryButton" value="submit">
+  <button type="button" class="library-icon-wrapper mr-2" id="library-toggle-button" name="libraryButton" value="submit">
     <!-- Inactive Icon -->
     <svg id="library-icon-default" class="library-icon" fill="currentColor" height="800px" width="800px" version="1.1"
          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -159,12 +159,52 @@ document.addEventListener('DOMContentLoaded', function () {
    </g>
     </svg>
   </button>
-<button type="button" class="library-icon-wrapper" id="library-toggle-button" name="libraryButton" value="submit">
+  <!--opencover-->
 
+  <button type="button" class="openCover-icon-wrapper" id="openCover-toggle-button">
+  <!-- Default Icon -->
+  <svg id="openCover-icon-default" class="openCover-icon" ...>
+    <!-- icon paths -->
+   
+   
+    <svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"  xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="currentColor" transform="rotate(0)matrix(-1, 0, 0, 1, 0, 0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier"stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css">  </style> <g> <path class="st0" d="M508.176,243.518c-5.5-6.281-15.109-6.859-21.391-1.313l-44.672,39.547L315.926,393.408 c-7.953,7.016-18.078,10.781-28.484,10.781c-3.031,0-6.063-0.297-9.109-0.938l-72.125-15.984l-87.094-19.219l-61.078-13.516 l-8.734-1.953c-2.766-0.938-5.219-2.156-7.375-3.766c-3.469-2.516-6.219-5.781-8.109-9.531c-1.938-3.766-2.953-7.953-2.953-12.219 c0-2.609,0.438-5.344,1.219-8.016c0.953-2.891,2.313-5.5,3.984-7.813c2.453-3.469,5.781-6.219,9.531-8.094 c3.703-1.953,7.875-2.953,12.156-2.953c0.719,0,1.438,0.063,2.156,0.063l62.953,13.594l146,31.578 c18.078,3.969,36.938-0.938,50.813-13.219l89.766-79.078l91.656-80.734c8.234-7.297,11.703-18.578,8.891-29.188 c-2.75-10.703-11.281-18.875-22.047-21.188l-11.422-2.453l-83.266-18L287.801,78.799c-18.063-3.969-36.922,0.938-50.813,13.234 L96.129,215.768L53.77,252.986L16.91,285.361c-1.516,1.734-2.813,3.469-3.969,5.344c-0.656,0.797-1.234,1.516-1.813,2.391 c-3.609,4.922-6.5,10.547-8.453,16.703c-1.813,5.703-2.672,11.563-2.672,17.266c0,12.359,3.969,24.141,10.984,33.828 c3.531,4.922,7.797,9.25,12.797,12.859c4.906,3.625,10.547,6.516,16.688,8.391l0.656,0.219l64.25,14.094l60.859,13.297 l105.672,23.125c5.125,1.156,10.328,1.672,15.531,1.672c17.703,0,34.984-6.359,48.578-18.297l3.609-3.172l125.469-111.094 l41.781-37C513.16,259.408,513.738,249.814,508.176,243.518z"></path> </g> </g></svg>
+</svg>
+  <!-- Active Icon (initially hidden) -->
+  <svg id="openCover-icon-active" class="openCover-icon hidden" ...>
+    <!-- icon paths -->
+    
+    <svg fill="currentColor" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>book</title> <path d="M15 25.875v-19.625c0 0-2.688-2.25-6.5-2.25s-6.5 2-6.5 2v19.875c0 0 2.688-1.938 6.5-1.938s6.5 1.938 6.5 1.938zM29 25.875v-19.625c0 0-2.688-2.25-6.5-2.25s-6.5 2-6.5 2v19.875c0 0 2.688-1.938 6.5-1.938s6.5 1.938 6.5 1.938zM31 8h-1v19h-12v1h-5v-1h-12v-19h-1v20h12v1h7.062l-0.062-1h12v-20z"></path> </g></svg>
+
+  </svg>
+</button>
+
+
+<!--closed cover -->
+<button type="button" class="closedCover-icon-wrapper mr-2" id="closedCover-toggle-button">
+  <!-- Default Icon (visible by default) -->
+  <svg id="closedCover-icon-default" class="closedCover-icon" fill="currentColor" viewBox="0 0 24 24" width="50" height="50">
+    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/>
+  </svg>
+  <!-- Active Icon (hidden by default) -->
+  <svg id="closedCover-icon-active" class="closedCover-icon hidden" fill="#F9C172" viewBox="0 0 24 24" width="50" height="50">
+    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
+  </svg>
 </button>
 
 
 
+<!--dustyShelves cover -->
+
+<button type="button" class="dustyShelves-icon-wrapper mr-2" id="dustyShelves-toggle-button">
+  <!-- Default Icon -->
+  <svg id="dustyShelves-icon-default" class="dustyShelves-icon" fill="currentColor" viewBox="0 0 24 24" width="50" height="50">
+    <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/>
+  </svg>
+  <!-- Active Icon -->
+  <svg id="dustyShelves-icon-active" class="dustyShelves-icon hidden" fill="#F9C172" viewBox="0 0 24 24" width="50" height="50">
+    <path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 5h-8v2h8V7zm0 4h-8v2h8v-2zm0 4h-8v2h8v-2zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6z"/>
+  </svg>
+</button>
 
 
 
@@ -212,7 +252,9 @@ document.addEventListener('DOMContentLoaded', function () {
           <div id="customReviewPagination" class="d-flex justify-content-center mt-4"></div>
         </div>
       `;
+
       document.getElementById('bookDetails').innerHTML = bookDetailsContent;
+
       const libraryButton = document.getElementById('library-toggle-button');
       const libraryIconDefault = document.getElementById('library-icon-default');
       const libraryIconActive = document.getElementById('library-icon-active');
@@ -222,10 +264,41 @@ document.addEventListener('DOMContentLoaded', function () {
         libraryIconDefault.classList.toggle('hidden', isActive);
         libraryIconActive.classList.toggle('hidden', !isActive);
       });
+ 
+      const openCoverButton = document.getElementById('openCover-toggle-button');
+      const openCoverIconDefault = document.getElementById('openCover-icon-default');
+      const openCoverIconActive = document.getElementById('openCover-icon-active');
+      openCoverButton.addEventListener('click', function () {
+        openCoverButton.classList.toggle('active');
+        const isActive = openCoverButton.classList.contains('active');
+        openCoverIconDefault.classList.toggle('hidden', isActive);
+        openCoverIconActive.classList.toggle('hidden', !isActive);
+      });
       
+      const closedCoverButton = document.getElementById('closedCover-toggle-button');
+const closedCoverIconDefault = document.getElementById('closedCover-icon-default');
+const closedCoverIconActive = document.getElementById('closedCover-icon-active');
+
+closedCoverButton.addEventListener('click', function() {
+  closedCoverButton.classList.toggle('active');
+  const isActive = closedCoverButton.classList.contains('active');
+  closedCoverIconDefault.classList.toggle('hidden', isActive);
+  closedCoverIconActive.classList.toggle('hidden', !isActive);
+});
+const dustyShelvesButton = document.getElementById('dustyShelves-toggle-button');
+const dustyShelvesIconDefault = document.getElementById('dustyShelves-icon-default');
+const dustyShelvesIconActive = document.getElementById('dustyShelves-icon-active');
+
+dustyShelvesButton.addEventListener('click', function() {
+  dustyShelvesButton.classList.toggle('active');
+  const isActive = dustyShelvesButton.classList.contains('active');
+  dustyShelvesIconDefault.classList.toggle('hidden', isActive);
+  dustyShelvesIconActive.classList.toggle('hidden', !isActive);
+});
       setupReviewForm();
       fetchComments();
     })
+    
     .catch(error => console.error('Error fetching book details:', error));
 
   function setupReviewForm() {
