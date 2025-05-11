@@ -4,7 +4,7 @@
     --color-secondary-dark: #0C0804;
     --color-3rd-dark: #1c0f05;
     --color-accent: #c17b36;
-    --color-card-light: #e0c8c1;
+    --color-card-text: #E7D6C4;
     --color-card-dark: #bb8d5c;
     --color-white: #fefae0;
     --prev-img: url(../All_IMAGES/prev.svg);
@@ -535,13 +535,14 @@ header {
     color: var(--color-primary-light) !important;
 }
 
+
 /* Slider */
 .card {
-    background: linear-gradient(to bottom, var(--color-card-light), var(--color-card-dark));
+    background: linear-gradient(to bottom, var(--color-accent), var(--color-primary-dark));
     color: var(--color-white);
     border: none;
     margin: 10px;
-    height: 350px;
+    height: 460px;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -578,7 +579,7 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top,rgba(193, 123, 54, 0.8), rgba(193, 123, 54, 0.3));
+    background: linear-gradient(to top,rgba(193, 123, 54 ,0.9),rgba(11, 8, 4, 0.3));/*rgba(193, 123, 54, 0.8), rgba(193, 123, 54, 0.3)*/
     transition: top 0.3s ease-out;
 }
 
@@ -638,6 +639,95 @@ header {
     background: none;
 }
 
+
+/* Mobile-specific styles for the slider */
+@media (max-width: 767.98px) {
+    .section2 {
+      padding: 1rem 0;
+    }
+    
+    .section2 .row {
+      flex-direction: column;
+    }
+    
+    .section2 .col-md-2 {
+      min-height: auto !important;
+      margin-bottom: 1.5rem;
+      padding: 0 1rem;
+    }
+    
+    .section2 .col-md-10 {
+      min-height: auto !important;
+      padding: 0;
+    }
+    
+    .homePage-button.slider-butt {
+      position: relative !important;
+      bottom: auto !important;
+      margin: 1rem auto !important;
+    }
+    
+    #bookCarousel {
+      overflow: hidden;
+    }
+    
+    .carousel-inner {
+      min-height: auto !important;
+    }
+    
+    .card {
+      height: 350px !important;
+      margin: 5px;
+    }
+    
+    .col-md-3 {
+      flex: 0 0 50%;
+      max-width: 50%;
+      padding: 0 5px;
+    }
+    
+    .carousel-item.active,
+    .carousel-item-next,
+    .carousel-item-prev {
+      display: flex;
+    }
+    
+    .carousel-control-prev, 
+    .carousel-control-next {
+      width: 15% !important;
+    }
+    
+    .prv svg,
+    .nxt svg {
+      width: 32px !important;
+      height: 32px !important;
+    }
+  }
+  
+  @media (max-width: 575.98px) {
+    .col-md-3 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+    
+    .card {
+      height: 300px !important;
+    }
+    
+    .card-title {
+      font-size: 1rem;
+    }
+    
+    .card-text {
+      font-size: 0.875rem;
+    }
+    
+    .stars {
+      font-size: 1rem !important;
+    }
+  }
+
+/*home page*/
 .homePage-buttons {
     position: absolute;
     top: 70%;
@@ -660,17 +750,17 @@ header {
 }
 
 .slider-butt {
-    background-color: transparent;
-    color: var(--color-accent);
-    border: 2px solid var(--color-accent);
+    background-color: transparent!important;
+    color: var(--color-accent)!important;
+    border: 2px solid var(--color-accent)!important;
 }
 
 .slider-butt:hover {
-    background-color: var(--color-primary-light);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    color: var(--color-secondary-dark);
-    border: 2px solid var(--color-primary-light);
+    background-color: var(--color-primary-light)!important;
+    transform: translateY(-3px)!important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2)!important;
+    color: var(--color-secondary-dark)!important;
+    border: 2px solid var(--color-primary-light)!important;
 }
 .stars {
     position: absolute;
@@ -681,7 +771,7 @@ header {
   }
   
   .star {
-    color: var(--color-primary-dark); /* Default color for empty stars */
+    color: var(--color-card-text); /* Default color for empty stars */
   }
   
   .star.filled {
@@ -714,7 +804,7 @@ header {
     opacity: 1; /* Shows the box when hovering over the star */
   }
   .author{
-    color:var(--color-white)!important;
+    color:var(--color-card-text)!important;
   }
   .bookImg{
     width: 30%;
@@ -941,7 +1031,36 @@ textarea {
     width: 100%;
     height: 100%;
   }
-
   .hidden {
     display: none;
   }
+  /*openCover*/
+  .openCover-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    color: #f9c172;
+    transition: color 0.3s;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+  }
+
+  .openCover-icon-wrapper:hover {
+    color: #c17b36;
+  }
+
+  .openCover-icon-wrapper.active {
+    color: #f9c172;
+  }
+
+  .openCover-icon-wrapper.active:hover {
+    color: #c17b36;
+  }
+
+  .openCover-icon {
+    width: 100%;
+    height: 100%;
+  }
+  
