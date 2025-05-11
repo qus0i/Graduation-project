@@ -58,6 +58,12 @@
             }
         }
         
+        @media (min-width: 1024px) {
+            .book-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
         .book-card {
             height: 400px;
             background-image: linear-gradient(to bottom, #0B0804, #C17B36);
@@ -65,13 +71,31 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            box-shadow: 0 4px 8px rgba(#0B0804);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .book-card img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .card-content {
+            position: relative;
+            z-index: 1;
         }
         
         .book-title {
             font-size: 1.125rem;
             font-weight: bold;
-            color: black;
+            color: white;
             margin-bottom: 0.5rem;
             white-space: nowrap;
             overflow: hidden;
@@ -85,7 +109,7 @@
         }
         
         .book-author {
-            color: #0B0804;
+            color: white;
             max-width: 60%;
             white-space: nowrap;
             overflow: hidden;
@@ -156,6 +180,11 @@
             font-weight: bold;
             margin-bottom: 0.5rem;
         }
+        
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+        }
     </style>
 </head>
 <body>
@@ -168,85 +197,8 @@
             <button class="filter-button">Rating</button>
         </div>
         
-        <div class="book-grid">
-            <div class="book-card">
-                <div class="book-title">To Kill a Mockingbird</div>
-                <div class="book-details">
-                    <div class="book-author">Harper Lee</div>
-                    <div class="star-rating">
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    </div>
-                </div>
-            </div>
-            <div class="book-card">
-                <div class="book-title">1984</div>
-                <div class="book-details">
-                    <div class="book-author">George Orwell</div>
-                    <div class="star-rating">
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star empty" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    </div>
-                </div>
-            </div>
-            <div class="book-card">
-                <div class="book-title">The Great Gatsby</div>
-                <div class="book-details">
-                    <div class="book-author">F. Scott Fitzgerald</div>
-                    <div class="star-rating">
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star empty" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    </div>
-                </div>
-            </div>
-            <div class="book-card">
-                <div class="book-title">Pride and Prejudice</div>
-                <div class="book-details">
-                    <div class="book-author">Jane Austen</div>
-                    <div class="star-rating">
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    </div>
-                </div>
-            </div>
-            <div class="book-card">
-                <div class="book-title">The Catcher in the Rye</div>
-                <div class="book-details">
-                    <div class="book-author">J.D. Salinger</div>
-                    <div class="star-rating">
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star empty" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star empty" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    </div>
-                </div>
-            </div>
-            <div class="book-card">
-                <div class="book-title">One Hundred Years of Solitude</div>
-                <div class="book-details">
-                    <div class="book-author">Gabriel García Márquez</div>
-                    <div class="star-rating">
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    </div>
-                </div>
-            </div>
+        <div class="book-grid" id="bookGrid">
+            <!-- Book cards will be generated here by JavaScript -->
         </div>
         
         <div class="pagination">
@@ -293,6 +245,169 @@
         </footer>
     </div>
     
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <script>
+        // Sample book data - expanded to 16 books for 4x4 grid
+        const books = [
+            {
+                id: 1,
+                title: "To Kill a Mockingbird",
+                authors: "Harper Lee",
+                image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                rating: 5
+            },
+            {
+                id: 2,
+                title: "1984",
+                authors: "George Orwell",
+                image: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                rating: 4
+            },
+            {
+                id: 3,
+                title: "The Great Gatsby",
+                authors: "F. Scott Fitzgerald",
+                image: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                rating: 4
+            },
+            {
+                id: 4,
+                title: "Pride and Prejudice",
+                authors: "Jane Austen",
+                image: "https://images.unsplash.com/photo-1531346878377-a5be20888e57?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                rating: 5
+            },
+            {
+                id: 5,
+                title: "The Catcher in the Rye",
+                authors: "J.D. Salinger",
+                image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                rating: 3
+            },
+            {
+                id: 6,
+                title: "One Hundred Years of Solitude",
+                authors: "Gabriel García Márquez",
+                image: "https://images.unsplash.com/photo-1531346878377-a5be20888e57?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                rating: 5
+            },
+            {
+                id: 7,
+                title: "The Hobbit",
+                authors: "J.R.R. Tolkien",
+                image: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                rating: 4
+            },
+            {
+                id: 8,
+                title: "Brave New World",
+                authors: "Aldous Huxley",
+                image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                rating: 4
+            },
+            {
+                id: 9,
+                title: "The Lord of the Rings",
+                authors: "J.R.R. Tolkien",
+                image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                rating: 5
+            },
+            {
+                id: 10,
+                title: "Crime and Punishment",
+                authors: "Fyodor Dostoevsky",
+                image: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                rating: 4
+            },
+            {
+                id: 11,
+                title: "The Brothers Karamazov",
+                authors: "Fyodor Dostoevsky",
+                image: "https://images.unsplash.com/photo-1531346878377-a5be20888e57?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                rating: 5
+            },
+            {
+                id: 12,
+                title: "War and Peace",
+                authors: "Leo Tolstoy",
+                image: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                rating: 4
+            },
+            {
+                id: 13,
+                title: "Anna Karenina",
+                authors: "Leo Tolstoy",
+                image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                rating: 5
+            },
+            {
+                id: 14,
+                title: "Moby Dick",
+                authors: "Herman Melville",
+                image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                rating: 3
+            },
+            {
+                id: 15,
+                title: "The Odyssey",
+                authors: "Homer",
+                image: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                rating: 4
+            },
+            {
+                id: 16,
+                title: "Ulysses",
+                authors: "James Joyce",
+                image: "https://images.unsplash.com/photo-1531346878377-a5be20888e57?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+                rating: 4
+            }
+        ];
+
+        // Function to generate star rating HTML
+        function generateStarRating(rating) {
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= rating) {
+                    stars += `<svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`;
+                } else {
+                    stars += `<svg class="star empty" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`;
+                }
+            }
+            return stars;
+        }
+
+        // Function to generate book cards
+        function generateBookCards() {
+            const bookGrid = document.getElementById('bookGrid');
+            bookGrid.innerHTML = '';
+            
+            books.forEach(book => {
+                const starRating = generateStarRating(book.rating);
+                
+                const bookCard = document.createElement('a');
+                bookCard.href = `book-detail.html?bookId=${book.id}`;
+                bookCard.className = 'card-link';
+                
+                bookCard.innerHTML = `
+                    <div class="book-card">
+                        <img src="${book.image}" alt="Book Image">
+                        <div class="card-content">
+                            <div class="book-title">${book.title}</div>
+                            <div class="book-details">
+                                <div class="book-author">${book.authors}</div>
+                                <div class="star-rating" data-rating="${book.rating}">
+                                    ${starRating}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                bookGrid.appendChild(bookCard);
+            });
+        }
+
+        // Generate book cards when page loads
+        document.addEventListener('DOMContentLoaded', generateBookCards);
+    </script>
 </body>
 </html>
