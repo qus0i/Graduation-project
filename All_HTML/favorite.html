@@ -1,806 +1,870 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book Glimpse</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* Reset and base styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      border-color: hsl(var(--border));
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NextChapter</title>
+    <meta name="description" content="Discover your next great book with NextChapter" />
+    <meta name="author" content="NextChapter" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-    :root {
-      --background: 0 0% 100%;
-      --foreground: 222.2 84% 4.9%;
-      --card: 0 0% 100%;
-      --card-foreground: 222.2 84% 4.9%;
-      --popover: 0 0% 100%;
-      --popover-foreground: 222.2 84% 4.9%;
-      --primary: 222.2 47.4% 11.2%;
-      --primary-foreground: 210 40% 98%;
-      --secondary: 210 40% 96.1%;
-      --secondary-foreground: 222.2 47.4% 11.2%;
-      --muted: 210 40% 96.1%;
-      --muted-foreground: 215.4 16.3% 46.9%;
-      --accent: 210 40% 96.1%;
-      --accent-foreground: 222.2 47.4% 11.2%;
-      --destructive: 0 84.2% 60.2%;
-      --destructive-foreground: 210 40% 98%;
-      --border: 214.3 31.8% 91.4%;
-      --input: 214.3 31.8% 91.4%;
-      --ring: 222.2 84% 4.9%;
-      --radius: 0.5rem;
-      --sidebar-background: 0 0% 98%;
-      --sidebar-foreground: 240 5.3% 26.1%;
-      --sidebar-primary: 240 5.9% 10%;
-      --sidebar-primary-foreground: 0 0% 98%;
-      --sidebar-accent: 240 4.8% 95.9%;
-      --sidebar-accent-foreground: 240 5.9% 10%;
-      --sidebar-border: 220 13% 91%;
-      --sidebar-ring: 217.2 91.2% 59.8%;
-    }
+    <meta property="og:title" content="NextChapter" />
+    <meta property="og:description" content="Discover your next great book with NextChapter" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
-    body {
-      background-color: #0B0804;
-      color: white;
-      font-family: 'Inter', sans-serif;
-      line-height: 1.5;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-
-    /* Header styles */
-    header {
-      width: 100%;
-      margin-bottom: 2.5rem;
-    }
-
-    .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-
-    .site-title {
-      color: #f59e0b;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .nav-link {
-      color: #f59e0b;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .nav-link:hover {
-      color: #d97706;
-    }
-
-    .user-profile {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .username {
-      color: #f59e0b;
-    }
-
-    .user-icon {
-      color: #f59e0b;
-    }
-
-    .profile-summary {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .profile-image {
-      width: 6rem;
-      height: 6rem;
-      border-radius: 50%;
-      background-color: #6b7280;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .profile-name {
-      color: #f59e0b;
-      font-size: 1.25rem;
-      font-weight: bold;
-    }
-
-    .page-title {
-      color: #f59e0b;
-      font-size: 1.875rem;
-      font-weight: bold;
-      margin-bottom: 2.5rem;
-    }
-
-    /* Book Section styles */
-    .book-section {
-      margin-bottom: 4rem;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .section-title {
-      color: #fbbf24;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-
-    .section-button {
-      padding: 0.5rem 1.5rem;
-      border: 1px solid #fbbf24;
-      color: #fbbf24;
-      background-color: transparent;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .section-button:hover {
-      background-color: #ffd700;
-      color: black;
-      border-color: #ffd700;
-    }
-
-    .books-grid {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 1rem;
-    }
-
-    @media (min-width: 640px) {
-      .books-grid {
-        grid-template-columns: repeat(2, 1fr);
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    
+    <style>
+      /* Reset and base styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
-    }
 
-    @media (min-width: 768px) {
-      .books-grid {
-        grid-template-columns: repeat(3, 1fr);
+      body {
+        background-color: #0B0804;
+        color: white;
+        font-family: 'Inter', sans-serif;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+        min-height: 100%;
+        width: 100%;
       }
-    }
 
-    @media (min-width: 1024px) {
-      .books-grid {
-        grid-template-columns: repeat(4, 1fr);
+      html {
+        background-color: #0B0804;
+        height: 100%;
       }
-    }
 
-    /* Book Card styles */
-    .book-card {
-      height: 400px;
-      position: relative;
-      padding: 1rem;
-      background-image: linear-gradient(to bottom, #0B0804, #c17b36);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      overflow: hidden;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
 
-    .book-cover {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      mix-blend-mode: overlay;
-      opacity: 0.6;
-    }
+      /* Header styles */
+      header {
+        width: 100%;
+        margin-bottom: 2.5rem;
+      }
 
-    .book-overlay {
-      position: absolute;
-      inset: 0;
-      background-color: rgba(0, 0, 0, 0.3);
-      z-index: 0;
-    }
+      .header-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
 
-    .book-content {
-      position: relative;
-      z-index: 10;
-    }
+      .site-title {
+        color: #f59e0b;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
 
-    .book-title {
-      font-size: 1rem;
-      font-weight: bold;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      margin-bottom: 0.5rem;
-    }
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+        list-style-type: none;
+      }
 
-    .book-details {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+      .nav-link {
+        color: #f59e0b;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
 
-    .book-author {
-      font-size: 0.875rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 60%;
-    }
+      .nav-link:hover {
+        color: #d97706;
+      }
 
-    .rating {
-      display: flex;
-    }
+      .user-profile {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
 
-    .star {
-      margin-left: 0.25rem;
-      width: 1rem;
-      height: 1rem;
-    }
+      .username {
+        color: #f59e0b;
+      }
 
-    .star-filled {
-      fill: #ffd700;
-      color: #ffd700;
-    }
+      .user-icon {
+        color: #f59e0b;
+      }
 
-    .star-empty {
-      color: #9ca3af;
-    }
+      .profile-summary {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
 
-    /* Footer styles */
-    footer {
-      background-color: #0B0804;
-      color: #E7D6C4;
-    }
+      .profile-image {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 50%;
+        background-color: #6b7280;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-    .features-section {
-      padding: 3rem 0;
-      border-bottom: 1px solid rgba(231, 214, 196, 0.1);
-    }
+      .profile-name {
+        color: #f59e0b;
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
 
-    .features-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
+      .page-title {
+        color: #f59e0b;
+        font-size: 1.875rem;
+        font-weight: bold;
+        margin-bottom: 2.5rem;
+      }
 
-    @media (min-width: 768px) {
+      /* Book Section styles */
+      .book-section {
+        margin-bottom: 4rem;
+      }
+
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .section-title {
+        color: #fbbf24;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      .section-button {
+        padding: 0.5rem 1.5rem;
+        border: 1px solid #fbbf24;
+        color: #fbbf24;
+        background-color: transparent;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .section-button:hover {
+        background-color: #ffd700;
+        color: black;
+        border-color: #ffd700;
+      }
+
+      .books-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1rem;
+      }
+
+      @media (min-width: 640px) {
+        .books-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 768px) {
+        .books-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .books-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      /* Book Card styles */
+      .book-card {
+        height: 400px;
+        position: relative;
+        padding: 1rem;
+        background-image: linear-gradient(to bottom, #0B0804, #c17b36);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        overflow: hidden;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .book-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .book-cover {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        mix-blend-mode: overlay;
+        opacity: 0.6;
+        transition: opacity 0.3s ease;
+      }
+
+      .book-card:hover .book-cover {
+        opacity: 0.8;
+      }
+
+      .book-overlay {
+        position: absolute;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 0;
+      }
+
+      .book-content {
+        position: relative;
+        z-index: 10;
+      }
+
+      .book-title {
+        font-size: 1rem;
+        font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 0.5rem;
+      }
+
+      .book-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .book-author {
+        font-size: 0.875rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 60%;
+      }
+
+      .rating {
+        display: flex;
+      }
+
+      .star {
+        margin-left: 0.25rem;
+        width: 1rem;
+        height: 1rem;
+      }
+
+      .star-filled {
+        fill: #ffd700;
+        color: #ffd700;
+      }
+
+      .star-empty {
+        color: #9ca3af;
+      }
+
+      /* Footer styles */
+      footer {
+        background-color: #0B0804;
+        color: #E7D6C4;
+      }
+
+      .features-section {
+        padding: 3rem 0;
+        border-bottom: 1px solid rgba(231, 214, 196, 0.1);
+      }
+
       .features-grid {
-        grid-template-columns: repeat(3, 1fr);
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
       }
-    }
 
-    .feature {
-      text-align: center;
-    }
+      @media (min-width: 768px) {
+        .features-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
 
-    .feature-icon-container {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 1rem;
-    }
+      .feature {
+        text-align: center;
+      }
 
-    .feature-icon {
-      padding: 1rem;
-      color: #C17B36;
-    }
+      .feature-icon-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
 
-    .feature-title {
-      color: #F9C172;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      font-size: 1.125rem;
-    }
+      .feature-icon {
+        padding: 1rem;
+        color: #C17B36;
+      }
 
-    .feature-description {
-      color: #E7D6C4;
-    }
+      .feature-title {
+        color: #F9C172;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        font-size: 1.125rem;
+      }
 
-    .footer-content {
-      padding: 2.5rem 0;
-    }
+      .feature-description {
+        color: #E7D6C4;
+      }
 
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
+      .footer-content {
+        padding: 2.5rem 0;
+      }
 
-    @media (min-width: 768px) {
       .footer-grid {
-        grid-template-columns: 4fr 2fr 3fr 3fr;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
       }
-    }
 
-    .footer-column h4 {
-      color: #F9C172;
-      font-size: 1.125rem;
-      font-weight: 600;
-      margin-bottom: 1.25rem;
-    }
+      @media (min-width: 768px) {
+        .footer-grid {
+          grid-template-columns: 4fr 2fr 3fr 3fr;
+        }
+      }
 
-    .footer-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
+      .footer-column h4 {
+        color: #F9C172;
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 1.25rem;
+      }
 
-    .footer-link {
-      color: #E7D6C4;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
+      .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
 
-    .footer-link:hover {
-      color: #F9C172;
-    }
+      .footer-link {
+        color: #E7D6C4;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
 
-    .social-links {
-      display: flex;
-      gap: 1rem;
-    }
+      .footer-link:hover {
+        color: #F9C172;
+      }
 
-    .social-link {
-      color: #E7D6C4;
-      transition: color 0.3s;
-    }
+      .social-links {
+        display: flex;
+        gap: 1rem;
+      }
 
-    .social-link:hover {
-      color: #F9C172;
-    }
+      .social-link {
+        color: #E7D6C4;
+        transition: color 0.3s;
+      }
 
-    .footer-bottom {
-      margin-top: 2rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid rgba(231, 214, 196, 0.1);
-      text-align: center;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <!-- Header -->
-    <header>
-      <div class="header-top">
-        <div class="site-title">Name of the website.</div>
-        
-        <nav>
-          <ul class="nav-links">
-            <li><a href="#" class="nav-link">Home</a></li>
-            <li><a href="#" class="nav-link">Recommendations</a></li>
-            <li><a href="#" class="nav-link">About</a></li>
-          </ul>
-        </nav>
-        
-        <div class="user-profile">
-          <span class="username">UserName</span>
-          <svg class="user-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-          </svg>
+      .social-link:hover {
+        color: #F9C172;
+      }
+
+      .footer-bottom {
+        margin-top: 2rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid rgba(231, 214, 196, 0.1);
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header>
+        <div class="header-top">
+          <div class="site-title">NextChapter</div>
+          
+          <nav>
+            <ul class="nav-links">
+              <li><a href="#" class="nav-link">Home</a></li>
+              <li><a href="#" class="nav-link">Recommendations</a></li>
+              <li><a href="#" class="nav-link">About</a></li>
+            </ul>
+          </nav>
+          
+          <div class="user-profile">
+            <span class="username">UserName</span>
+            <svg class="user-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
         </div>
-      </div>
-      
-      <div class="profile-summary">
-        <div class="profile-image">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-          </svg>
+        
+        <div class="profile-summary">
+          <div class="profile-image">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div>
+            <h2 class="profile-name">Tyler Anderson</h2>
+          </div>
         </div>
+        
         <div>
-          <h2 class="profile-name">Tyler Anderson</h2>
+          <h1 class="page-title">Discover Your Read</h1>
         </div>
-      </div>
+      </header>
       
-      <div>
-        <h1 class="page-title">Discover Your Read</h1>
-      </div>
-    </header>
-    
-    <!-- Favorite Books Section -->
-    <section class="book-section">
-      <div class="section-header">
-        <h2 class="section-title">Favorite</h2>
-        <button class="section-button">Read More</button>
-      </div>
-      <div class="books-grid">
-        <!-- Book Card 1 -->
-        <div class="book-card">
-          <img class="book-cover" src="https://images.unsplash.com/photo-1544947950-fa07a98d237f" alt="Book cover" />
-          <div class="book-overlay"></div>
-          <div class="book-content">
-            <h3 class="book-title">The Great Gatsby</h3>
-            <div class="book-details">
-              <p class="book-author">F. Scott Fitzgerald</p>
-              <div class="rating">
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star">★</span>
-              </div>
-            </div>
-          </div>
+      <!-- Favorite Books Section -->
+      <section class="book-section">
+        <div class="section-header">
+          <h2 class="section-title">Favorite</h2>
+          <button class="section-button">Read More</button>
         </div>
-        
-        <!-- Book Card 2 -->
-        <div class="book-card">
-          <img class="book-cover" src="https://images.unsplash.com/photo-1495640388908-05fa85288e61" alt="Book cover" />
-          <div class="book-overlay"></div>
-          <div class="book-content">
-            <h3 class="book-title">To Kill a Mockingbird</h3>
-            <div class="book-details">
-              <p class="book-author">Harper Lee</p>
-              <div class="rating">
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
+        <div class="books-grid">
+          <!-- Book Card 1 -->
+          <div class="book-card">
+            <img class="book-cover" src="https://images.unsplash.com/photo-1544947950-fa07a98d237f" alt="Book cover" />
+            <div class="book-overlay"></div>
+            <div class="book-content">
+              <h3 class="book-title">The Great Gatsby</h3>
+              <div class="book-details">
+                <p class="book-author">F. Scott Fitzgerald</p>
+                <div class="rating">
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star">★</span>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        
-        <!-- Book Card 3 -->
-        <div class="book-card">
-          <img class="book-cover" src="https://images.unsplash.com/photo-1589998059171-988d887df646" alt="Book cover" />
-          <div class="book-overlay"></div>
-          <div class="book-content">
-            <h3 class="book-title">1984</h3>
-            <div class="book-details">
-              <p class="book-author">George Orwell</p>
-              <div class="rating">
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star">★</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Book Card 4 -->
-        <div class="book-card">
-          <img class="book-cover" src="https://images.unsplash.com/photo-1512820790803-83ca734da794" alt="Book cover" />
-          <div class="book-overlay"></div>
-          <div class="book-content">
-            <h3 class="book-title">Pride and Prejudice</h3>
-            <div class="book-details">
-              <p class="book-author">Jane Austen</p>
-              <div class="rating">
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star">★</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Wish List Section -->
-    <section class="book-section">
-      <div class="section-header">
-        <h2 class="section-title">Wish List</h2>
-        <button class="section-button">Read More</button>
-      </div>
-      <div class="books-grid">
-        <!-- Book cards for wish list -->
-        <div class="book-card">
-          <div class="book-overlay"></div>
-          <div class="book-content">
-            <h3 class="book-title">The Catcher in the Rye</h3>
-            <div class="book-details">
-              <p class="book-author">J.D. Salinger</p>
-              <div class="rating">
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="book-card">
-          <div class="book-overlay"></div>
-          <div class="book-content">
-            <h3 class="book-title">Brave New World</h3>
-            <div class="book-details">
-              <p class="book-author">Aldous Huxley</p>
-              <div class="rating">
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star">★</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="book-card">
-          <div class="book-overlay"></div>
-          <div class="book-content">
-            <h3 class="book-title">The Hobbit</h3>
-            <div class="book-details">
-              <p class="book-author">J.R.R. Tolkien</p>
-              <div class="rating">
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="book-card">
-          <div class="book-overlay"></div>
-          <div class="book-content">
-            <h3 class="book-title">The Lord of the Rings</h3>
-            <div class="book-details">
-              <p class="book-author">J.R.R. Tolkien</p>
-              <div class="rating">
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star">★</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Currently Reading Section -->
-    <section class="book-section">
-      <div class="section-header">
-        <h2 class="section-title">Your Reading</h2>
-        <button class="section-button">Read More</button>
-      </div>
-      <div class="books-grid">
-        <!-- Book cards for currently reading -->
-        <div class="book-card">
-          <div class="book-overlay"></div>
-          <div class="book-content">
-            <h3 class="book-title">Dune</h3>
-            <div class="book-details">
-              <p class="book-author">Frank Herbert</p>
-              <div class="rating">
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star">★</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="book-card">
-          <div class="book-overlay"></div>
-          <div class="book-content">
-            <h3 class="book-title">The Alchemist</h3>
-            <div class="book-details">
-              <p class="book-author">Paulo Coelho</p>
-              <div class="rating">
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Done Reading Section -->
-    <section class="book-section">
-      <div class="section-header">
-        <h2 class="section-title">Done Reading</h2>
-        <button class="section-button">Read More</button>
-      </div>
-      <div class="books-grid">
-        <!-- Book cards for done reading -->
-        <div class="book-card">
-          <div class="book-overlay"></div>
-          <div class="book-content">
-            <h3 class="book-title">The Da Vinci Code</h3>
-            <div class="book-details">
-              <p class="book-author">Dan Brown</p>
-              <div class="rating">
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star">★</span>
-                <span class="star">★</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="book-card">
-          <div class="book-overlay"></div>
-          <div class="book-content">
-            <h3 class="book-title">Harry Potter and the Philosopher's Stone</h3>
-            <div class="book-details">
-              <p class="book-author">J.K. Rowling</p>
-              <div class="rating">
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="book-card">
-          <div class="book-overlay"></div>
-          <div class="book-content">
-            <h3 class="book-title">The Hunger Games</h3>
-            <div class="book-details">
-              <p class="book-author">Suzanne Collins</p>
-              <div class="rating">
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star star-filled">★</span>
-                <span class="star">★</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-  
-  <!-- Footer -->
-  <footer>
-    <!-- Features section -->
-    <div class="features-section">
-      <div class="container">
-        <div class="features-grid">
-          <div class="feature">
-            <div class="feature-icon-container">
-              <div class="feature-icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                </svg>
-              </div>
-            </div>
-            <h3 class="feature-title">Tailored Recommendations</h3>
-            <p class="feature-description">Get book suggestions based on your reading habits</p>
           </div>
           
-          <div class="feature">
-            <div class="feature-icon-container">
-              <div class="feature-icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                </svg>
+          <!-- Book Card 2 -->
+          <div class="book-card">
+            <img class="book-cover" src="https://images.unsplash.com/photo-1495640388908-05fa85288e61" alt="Book cover" />
+            <div class="book-overlay"></div>
+            <div class="book-content">
+              <h3 class="book-title">To Kill a Mockingbird</h3>
+              <div class="book-details">
+                <p class="book-author">Harper Lee</p>
+                <div class="rating">
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                </div>
               </div>
             </div>
-            <h3 class="feature-title">Wide Variety of Genres</h3>
-            <p class="feature-description">Explore an extensive collection of books across all genres</p>
           </div>
           
-          <div class="feature">
-            <div class="feature-icon-container">
-              <div class="feature-icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="9" cy="7" r="4"></circle>
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                </svg>
+          <!-- Book Card 3 -->
+          <div class="book-card">
+            <img class="book-cover" src="https://images.unsplash.com/photo-1589998059171-988d887df646" alt="Book cover" />
+            <div class="book-overlay"></div>
+            <div class="book-content">
+              <h3 class="book-title">1984</h3>
+              <div class="book-details">
+                <p class="book-author">George Orwell</p>
+                <div class="rating">
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star">★</span>
+                </div>
               </div>
             </div>
-            <h3 class="feature-title">Community Reviews</h3>
-            <p class="feature-description">Read reviews and ratings from other book enthusiasts</p>
+          </div>
+          
+          <!-- Book Card 4 -->
+          <div class="book-card">
+            <img class="book-cover" src="https://images.unsplash.com/photo-1512820790803-83ca734da794" alt="Book cover" />
+            <div class="book-overlay"></div>
+            <div class="book-content">
+              <h3 class="book-title">Pride and Prejudice</h3>
+              <div class="book-details">
+                <p class="book-author">Jane Austen</p>
+                <div class="rating">
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star">★</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
+      
+      <!-- Library Section -->
+      <section class="book-section">
+        <div class="section-header">
+          <h2 class="section-title">Library</h2>
+          <button class="section-button">Read More</button>
+        </div>
+        <div class="books-grid">
+          <!-- Book cards for library -->
+          <div class="book-card">
+            <img class="book-cover" src="https://images.unsplash.com/photo-1541963463532-d68292c34b19" alt="Book cover" />
+            <div class="book-overlay"></div>
+            <div class="book-content">
+              <h3 class="book-title">The Catcher in the Rye</h3>
+              <div class="book-details">
+                <p class="book-author">J.D. Salinger</p>
+                <div class="rating">
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star">★</span>
+                  <span class="star">★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="book-card">
+            <img class="book-cover" src="https://images.unsplash.com/photo-1531989417401-0f85f7e673f8" alt="Book cover" />
+            <div class="book-overlay"></div>
+            <div class="book-content">
+              <h3 class="book-title">Brave New World</h3>
+              <div class="book-details">
+                <p class="book-author">Aldous Huxley</p>
+                <div class="rating">
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star">★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="book-card">
+            <img class="book-cover" src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e" alt="Book cover" />
+            <div class="book-overlay"></div>
+            <div class="book-content">
+              <h3 class="book-title">The Hobbit</h3>
+              <div class="book-details">
+                <p class="book-author">J.R.R. Tolkien</p>
+                <div class="rating">
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="book-card">
+            <img class="book-cover" src="https://images.unsplash.com/photo-1629992101753-56d196c8aabb" alt="Book cover" />
+            <div class="book-overlay"></div>
+            <div class="book-content">
+              <h3 class="book-title">The Lord of the Rings</h3>
+              <div class="book-details">
+                <p class="book-author">J.R.R. Tolkien</p>
+                <div class="rating">
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star">★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Currently Reading Section -->
+      <section class="book-section">
+        <div class="section-header">
+          <h2 class="section-title">Your Reading</h2>
+          <button class="section-button">Read More</button>
+        </div>
+        <div class="books-grid">
+          <!-- Book cards for currently reading -->
+          <div class="book-card">
+            <img class="book-cover" src="https://images.unsplash.com/photo-1609866138210-84df7c22a5e8" alt="Book cover" />
+            <div class="book-overlay"></div>
+            <div class="book-content">
+              <h3 class="book-title">Dune</h3>
+              <div class="book-details">
+                <p class="book-author">Frank Herbert</p>
+                <div class="rating">
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star">★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="book-card">
+            <img class="book-cover" src="https://images.unsplash.com/photo-1544947950-fa07a98d237f" alt="Book cover" />
+            <div class="book-overlay"></div>
+            <div class="book-content">
+              <h3 class="book-title">The Alchemist</h3>
+              <div class="book-details">
+                <p class="book-author">Paulo Coelho</p>
+                <div class="rating">
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star">★</span>
+                  <span class="star">★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="book-card">
+            <img class="book-cover" src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" alt="Book cover" />
+            <div class="book-overlay"></div>
+            <div class="book-content">
+              <h3 class="book-title">Atomic Habits</h3>
+              <div class="book-details">
+                <p class="book-author">James Clear</p>
+                <div class="rating">
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star">★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="book-card">
+            <img class="book-cover" src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" alt="Book cover" />
+            <div class="book-overlay"></div>
+            <div class="book-content">
+              <h3 class="book-title">The Midnight Library</h3>
+              <div class="book-details">
+                <p class="book-author">Matt Haig</p>
+                <div class="rating">
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Done Reading Section -->
+      <section class="book-section">
+        <div class="section-header">
+          <h2 class="section-title">Done Reading</h2>
+          <button class="section-button">Read More</button>
+        </div>
+        <div class="books-grid">
+          <!-- Book cards for done reading -->
+          <div class="book-card">
+            <img class="book-cover" src="https://images.unsplash.com/photo-1587876931567-564ce588bfbd" alt="Book cover" />
+            <div class="book-overlay"></div>
+            <div class="book-content">
+              <h3 class="book-title">The Da Vinci Code</h3>
+              <div class="book-details">
+                <p class="book-author">Dan Brown</p>
+                <div class="rating">
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star">★</span>
+                  <span class="star">★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="book-card">
+            <img class="book-cover" src="https://images.unsplash.com/photo-1618365908648-e71bd5716cba" alt="Book cover" />
+            <div class="book-overlay"></div>
+            <div class="book-content">
+              <h3 class="book-title">Harry Potter and the Philosopher's Stone</h3>
+              <div class="book-details">
+                <p class="book-author">J.K. Rowling</p>
+                <div class="rating">
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="book-card">
+            <img class="book-cover" src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73" alt="Book cover" />
+            <div class="book-overlay"></div>
+            <div class="book-content">
+              <h3 class="book-title">The Hunger Games</h3>
+              <div class="book-details">
+                <p class="book-author">Suzanne Collins</p>
+                <div class="rating">
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star">★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="book-card">
+            <img class="book-cover" src="https://images.unsplash.com/photo-1531297484001-80022131f5a1" alt="Book cover" />
+            <div class="book-overlay"></div>
+            <div class="book-content">
+              <h3 class="book-title">Sapiens</h3>
+              <div class="book-details">
+                <p class="book-author">Yuval Noah Harari</p>
+                <div class="rating">
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star star-filled">★</span>
+                  <span class="star">★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Footer -->
+      <footer>
+        <!-- Features section -->
+        <div class="features-section">
+          <div class="container">
+            <div class="features-grid">
+              <div class="feature">
+                <div class="feature-icon-container">
+                  <div class="feature-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                  </div>
+                </div>
+                <h3 class="feature-title">Tailored Recommendations</h3>
+                <p class="feature-description">Get book suggestions based on your reading habits</p>
+              </div>
+              
+              <div class="feature">
+                <div class="feature-icon-container">
+                  <div class="feature-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                  </div>
+                </div>
+                <h3 class="feature-title">Wide Variety of Genres</h3>
+                <p class="feature-description">Explore an extensive collection of books across all genres</p>
+              </div>
+              
+              <div class="feature">
+                <div class="feature-icon-container">
+                  <div class="feature-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="9" cy="7" r="4"></circle>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                  </div>
+                </div>
+                <h3 class="feature-title">Community Reviews</h3>
+                <p class="feature-description">Read reviews and ratings from other book enthusiasts</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Main footer content -->
+        <div class="footer-content">
+          <div class="container">
+            <div class="footer-grid">
+              <div class="footer-column">
+                <h4>About Us</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.</p>
+              </div>
+              
+              <div class="footer-column">
+                <h4>Quick Links</h4>
+                <div class="footer-links">
+                  <a href="#" class="footer-link">Home</a>
+                  <a href="#" class="footer-link">About</a>
+                </div>
+              </div>
+              
+              <div class="footer-column">
+                <h4>Contact Info</h4>
+                <address>
+                  <a href="https://www.linkedin.com/in/malek-alhwaide-56a4b227a/" target="_blank" rel="noopener noreferrer" class="footer-link">
+                    LinkedIn: Malek Alhwaide
+                  </a>
+                </address>
+              </div>
+              
+              <div class="footer-column">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                  <a href="#" class="social-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                    </svg>
+                  </a>
+                  <a href="#" class="social-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                    </svg>
+                  </a>
+                  <a href="#" class="social-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                  </a>
+                  <a href="https://www.linkedin.com/in/malek-alhwaide-56a4b227a/" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                      <rect x="2" y="9" width="4" height="12"></rect>
+                      <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="footer-bottom">
+              <p>&copy; 2023 Your Company. All rights reserved.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
-    
-    <!-- Main footer content -->
-    <div class="footer-content">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-column">
-            <h4>About Us</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.</p>
-          </div>
-          
-          <div class="footer-column">
-            <h4>Quick Links</h4>
-            <div class="footer-links">
-              <a href="#" class="footer-link">Home</a>
-              <a href="#" class="footer-link">About</a>
-            </div>
-          </div>
-          
-          <div class="footer-column">
-            <h4>Contact Info</h4>
-            <address>
-              <a href="https://www.linkedin.com/in/malek-alhwaide-56a4b227a/" target="_blank" rel="noopener noreferrer" class="footer-link">
-                LinkedIn: Malek Alhwaide
-              </a>
-            </address>
-          </div>
-          
-          <div class="footer-column">
-            <h4>Follow Us</h4>
-            <div class="social-links">
-              <a href="#" class="social-link">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                </svg>
-              </a>
-              <a href="#" class="social-link">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-                </svg>
-              </a>
-              <a href="#" class="social-link">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                </svg>
-              </a>
-              <a href="https://www.linkedin.com/in/malek-alhwaide-56a4b227a/" target="_blank" rel="noopener noreferrer" class="social-link">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                  <rect x="2" y="9" width="4" height="12"></rect>
-                  <circle cx="4" cy="4" r="2"></circle>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="footer-bottom">
-          <p>&copy; 2023 Your Company. All rights reserved.</p>
-        </div>
-      </div>
-    </div>
-  </footer>
-</body>
+  </body>
 </html>
