@@ -802,7 +802,11 @@ header {
   
   .star:hover::after {
     opacity: 1; /* Shows the box when hovering over the star */
+
+
   }
+
+  
   .author{
     color:var(--color-card-text)!important;
   }
@@ -1063,4 +1067,161 @@ textarea {
     width: 100%;
     height: 100%;
   }
+*
+/*closedCover*/
+  .closedCover-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    color: #f9c172;
+    transition: color 0.3s;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+  }
+
+  .closedCover-icon-wrapper:hover {
+    color: #c17b36;
+  }
+
+  .closedCover-icon-wrapper.active {
+    color: #f9c172;
+  }
+
+  .closedCover-icon-wrapper.active:hover {
+    color: #c17b36;
+  }
+
+  .closedCover-icon {
+    width: 100%;
+    height: 100%;
+  }
+
+/*dustyShelves*/
+  .dustyShelves-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    color: #f9c172;
+    transition: color 0.3s;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+  }
+
+  .dustyShelves-icon-wrapper:hover {
+    color: #c17b36;
+  }
+
+  .dustyShelves-icon-wrapper.active {
+    color: #f9c172;
+  }
+
+  .dustyShelves-icon-wrapper.active:hover {
+    color: #c17b36;
+  }
+
+  .dustyShelves-icon {
+    width: 100%;
+    height: 100%;
+  }
+  /* Generic wrapper tooltip */
+[data-tooltip] {
+  position: relative;             /* establish a positioned parent */
+  cursor: pointer;
+}
+[data-tooltip]::after {
   
+  content: attr(data-tooltip);    /* pull the text from the attribute */
+  position: absolute;
+  bottom: 100%;                   /* sit just above the button */
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px);
+  background-color: rgba(0, 0, 0, 0.75);
+  color: var(--color-primary-light);
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 10;
+}
+[data-tooltip]:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-8px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*footer*/
+          .custom-footer {
+            background-color: #0B0804!important;
+            color: #E7D6C4!important;
+            padding: 40px 0!important;
+        }
+        
+        .footer-title {
+            color: #F9C172!important;
+            margin-bottom: 20px!important;
+            font-weight: 600!important;
+        }
+        
+        .footer-links a {
+            color: #E7D6C4!important;
+            text-decoration: none!important;
+            display: block!important;
+            margin-bottom: 8px!important;
+            transition: color 0.3s!important;
+        }
+        
+        .footer-links a:hover {
+            color: #F9C172!important;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(231, 214, 196, 0.1)!important;
+            padding-top: 20px!important;
+            margin-top: 30px!important;
+        }
+        
+        .social-icons a {
+            color: #E7D6C4!important;
+            font-size: 20px!important;
+            margin-right: 15px!important;
+            transition: color 0.3s!important;
+        }
+        
+        .social-icons a:hover {
+            color: #F9C172!important;
+        }

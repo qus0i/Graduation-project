@@ -1,4 +1,50 @@
 document.addEventListener('DOMContentLoaded', function () {
+   
+  function setupToggleButtons() {
+     const toggleButtons = [
+    {
+      id: 'library-toggle-button',
+      defaultIcon: 'library-icon-default',
+      activeIcon: 'library-icon-active'
+    },
+    {
+      id: 'openCover-toggle-button',
+      defaultIcon: 'openCover-icon-default',
+      activeIcon: 'openCover-icon-active'
+    },
+    {
+      id: 'closedCover-toggle-button',
+      defaultIcon: 'closedCover-icon-default',
+      activeIcon: 'closedCover-icon-active'
+    },
+    {
+      id: 'dustyShelves-toggle-button',
+      defaultIcon: 'dustyShelves-icon-default',
+      activeIcon: 'dustyShelves-icon-active'
+    }
+  ];
+
+    
+  toggleButtons.forEach(buttonConfig => {
+    const button = document.getElementById(buttonConfig.id);
+    if (button) {
+      button.addEventListener('click', function() {
+        const isActive = this.classList.toggle('active');
+        
+        // Update tooltip
+        const newTooltip = isActive ? 
+          this.getAttribute('data-tooltip-active') : 
+          this.getAttribute('data-tooltip-inactive');
+        this.setAttribute('data-tooltip', newTooltip);
+        
+        // Toggle SVG icons
+        document.getElementById(buttonConfig.defaultIcon).classList.toggle('hidden', isActive);
+        document.getElementById(buttonConfig.activeIcon).classList.toggle('hidden', !isActive);
+      });
+    }
+  });
+}
+
   const urlParams = new URLSearchParams(window.location.search);
   const bookId = urlParams.get('bookId');
   const apiURL = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
@@ -6,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const reviewsPerPage = 4;
   let totalComments = 0;
   let commentsData = [];
+  
   
   fetch(apiURL)
     .then(response => response.json())
@@ -29,8 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
       <img src="${image}" class="img-fluid rounded shadow-lg" alt="Book cover" style="max-height: 70vh; max-width: 100%; object-fit: contain;">
  <!--this is the favourite button link it with data base-->
 <form method="post" id="favourite">     
-  <button type="button" class="heart-button" onclick="this.classList.toggle('active')">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50">
+  <button type="button" class="heart-button" onclick="this.classList.toggle('active')"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50" >
       <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
                2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09
                C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5
@@ -54,7 +100,9 @@ document.addEventListener('DOMContentLoaded', function () {
 <div class="mt-auto d-flex flex-column align-items-end">
                <!--testing-->
     <form  class="mt-auto p-2"  action="/your-action-url" method="POST">
-  <button type="button" class="library-icon-wrapper mr-2" id="library-toggle-button" name="libraryButton" value="submit">
+  <button type="button" class="library-icon-wrapper mr-2" id="library-toggle-button" name="libraryButton" value="submit"  data-tooltip-inactive="Add to My Library"
+  data-tooltip-active="Remove from My Library"
+  data-tooltip="Add to My Library">
     <!-- Inactive Icon -->
     <svg id="library-icon-default" class="library-icon" fill="currentColor" height="800px" width="800px" version="1.1"
          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -161,15 +209,19 @@ document.addEventListener('DOMContentLoaded', function () {
   </button>
   <!--opencover-->
 
-  <button type="button" class="openCover-icon-wrapper" id="openCover-toggle-button">
+  <button type="button" class="openCover-icon-wrapper mr-2" id="openCover-toggle-button"  data-tooltip-inactive="Add to My Open Cover List"
+  data-tooltip-active="Remove from My Open Cover List"
+  data-tooltip="Add to My Open Cover List">
   <!-- Default Icon -->
   <svg id="openCover-icon-default" class="openCover-icon" ...>
     <!-- icon paths -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" x="0px" y="0px"  fill="currentColor">
+<path d="M49,0H42a1.993,1.993,0,0,0-1.722,1H24.184a3.186,3.186,0,0,0-2.3,1h-4.16A1.993,1.993,0,0,0,16,1H12A5.006,5.006,0,0,0,7,6V55a5.006,5.006,0,0,0,5,5H46a3,3,0,0,0,3-3V53a3,3,0,0,0,3-3V43a1.993,1.993,0,0,0-1-1.722V33.722A1.993,1.993,0,0,0,52,32V21a1.993,1.993,0,0,0-1-1.722V11.722A1.993,1.993,0,0,0,52,10V3A3,3,0,0,0,49,0ZM42,2h7a1,1,0,0,1,1,1l0,7H48.414L42,3.586ZM18,4h2.471A2.984,2.984,0,0,0,20,5.605V7.586L18.293,5.879A1,1,0,0,1,18,5.172ZM16.879,7.293l2.21,2.21A1.721,1.721,0,0,0,22,8.3V5.605a.994.994,0,0,1,.168-.554l1.008-1.512A1.205,1.205,0,0,1,24.184,3H40v.586A2.015,2.015,0,0,0,40.586,5L47,11.414A2.015,2.015,0,0,0,48.414,12H49v7a3,3,0,0,0-2.871,2.129A3,3,0,0,0,44,24v5a3,3,0,0,0,2.129,2.871A3,3,0,0,0,49,34v7h-.586A2.015,2.015,0,0,0,47,41.586L40.586,48A2.015,2.015,0,0,0,40,49.414V50H34V45a1,1,0,0,0-2,0v5H23V48a1,1,0,0,0-2,0v2H19V45a1,1,0,0,0-2,0v5H13V3h3V5.172A2.978,2.978,0,0,0,16.879,7.293ZM50,32H49a1,1,0,0,1-1-1,1,1,0,0,0-1-1,1,1,0,0,1-1-1V24a1,1,0,0,1,1-1,1,1,0,0,0,1-1,1,1,0,0,1,1-1l1,0ZM11,3.184V50.1a5,5,0,0,0-2,.923V6A3,3,0,0,1,11,3.184ZM47,57a1,1,0,0,1-1,1H12a3,3,0,1,1,0-6H40.278A1.993,1.993,0,0,0,42,53h5Zm3-7a1,1,0,0,1-1,1H42V49.414L48.414,43H50Z"/><path d="M19.615,27.063a3,3,0,0,1,2.322,2.324A1.992,1.992,0,0,0,23.893,31H36.107a1.99,1.99,0,0,0,1.955-1.613,3.005,3.005,0,0,1,2.325-2.325A1.992,1.992,0,0,0,42,25.107V18.893a1.99,1.99,0,0,0-1.613-1.955,3.005,3.005,0,0,1-2.325-2.325A1.992,1.992,0,0,0,36.107,13H23.893a1.994,1.994,0,0,0-1.956,1.615,3,3,0,0,1-2.324,2.323A1.99,1.99,0,0,0,18,18.893v6.214A1.994,1.994,0,0,0,19.615,27.063ZM20.02,18.9a5.023,5.023,0,0,0,2.73-1.588A4.947,4.947,0,0,0,23.893,15l12.211.021a5.01,5.01,0,0,0,1.146,2.287,5.087,5.087,0,0,0,2.75,1.6l-.022,6.2A4.986,4.986,0,0,0,36.107,29L23.9,28.98a5.023,5.023,0,0,0-1.588-2.73A4.947,4.947,0,0,0,20,25.107Z"/><path d="M41,54H36a1,1,0,0,0,0,2h5a1,1,0,0,0,0-2Z"/><path d="M32,54H16a1,1,0,0,0,0,2H32a1,1,0,0,0,0-2Z"/></svg>
+
+</svg>   
    
-   
-    <svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"  xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="currentColor" transform="rotate(0)matrix(-1, 0, 0, 1, 0, 0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier"stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css">  </style> <g> <path class="st0" d="M508.176,243.518c-5.5-6.281-15.109-6.859-21.391-1.313l-44.672,39.547L315.926,393.408 c-7.953,7.016-18.078,10.781-28.484,10.781c-3.031,0-6.063-0.297-9.109-0.938l-72.125-15.984l-87.094-19.219l-61.078-13.516 l-8.734-1.953c-2.766-0.938-5.219-2.156-7.375-3.766c-3.469-2.516-6.219-5.781-8.109-9.531c-1.938-3.766-2.953-7.953-2.953-12.219 c0-2.609,0.438-5.344,1.219-8.016c0.953-2.891,2.313-5.5,3.984-7.813c2.453-3.469,5.781-6.219,9.531-8.094 c3.703-1.953,7.875-2.953,12.156-2.953c0.719,0,1.438,0.063,2.156,0.063l62.953,13.594l146,31.578 c18.078,3.969,36.938-0.938,50.813-13.219l89.766-79.078l91.656-80.734c8.234-7.297,11.703-18.578,8.891-29.188 c-2.75-10.703-11.281-18.875-22.047-21.188l-11.422-2.453l-83.266-18L287.801,78.799c-18.063-3.969-36.922,0.938-50.813,13.234 L96.129,215.768L53.77,252.986L16.91,285.361c-1.516,1.734-2.813,3.469-3.969,5.344c-0.656,0.797-1.234,1.516-1.813,2.391 c-3.609,4.922-6.5,10.547-8.453,16.703c-1.813,5.703-2.672,11.563-2.672,17.266c0,12.359,3.969,24.141,10.984,33.828 c3.531,4.922,7.797,9.25,12.797,12.859c4.906,3.625,10.547,6.516,16.688,8.391l0.656,0.219l64.25,14.094l60.859,13.297 l105.672,23.125c5.125,1.156,10.328,1.672,15.531,1.672c17.703,0,34.984-6.359,48.578-18.297l3.609-3.172l125.469-111.094 l41.781-37C513.16,259.408,513.738,249.814,508.176,243.518z"></path> </g> </g></svg>
-</svg>
-  <!-- Active Icon (initially hidden) -->
+
+    <!-- Active Icon (initially hidden) -->
   <svg id="openCover-icon-active" class="openCover-icon hidden" ...>
     <!-- icon paths -->
     
@@ -178,32 +230,37 @@ document.addEventListener('DOMContentLoaded', function () {
   </svg>
 </button>
 
-
 <!--closed cover -->
-<button type="button" class="closedCover-icon-wrapper mr-2" id="closedCover-toggle-button">
+<button type="button" class="closedCover-icon-wrapper mr-2" id="closedCover-toggle-button" data-tooltip-inactive="Add to MY Closed Cover List"
+  data-tooltip-active="Remove from My Open Cover List"
+  data-tooltip="Add to My Open Cover List">
   <!-- Default Icon (visible by default) -->
   <svg id="closedCover-icon-default" class="closedCover-icon" fill="currentColor" viewBox="0 0 24 24" width="50" height="50">
-    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/>
-  </svg>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100">
+ <path d="m66.363 31.301c-2.043-1.8594-5.207-1.707-7.0625 0.33594l-14.301 15.738-4.3008-4.7305c-1.8555-2.0469-5.0195-2.1953-7.0625-0.33984-2.043 1.8555-2.1953 5.0195-0.33594 7.0625l5.293 5.8281c3.3984 3.7383 9.4141 3.7383 12.812 0l15.293-16.832c1.8594-2.043 1.707-5.207-0.33594-7.0625zm-5.582 1.6836c1.1133-1.2266 3.0117-1.3203 4.2344-0.20312 1.2266 1.1133 1.3203 3.0117 0.20312 4.2344l-15.293 16.832c-2.6055 2.8711-7.2461 2.8711-9.8516 0l-5.293-5.8242c-1.1172-1.2266-1.0234-3.125 0.20312-4.2383 1.2227-1.1133 3.1211-1.0234 4.2344 0.20312l5.043 5.5469c0.1875 0.20703 0.45703 0.32812 0.73828 0.32812s0.55078-0.12109 0.73828-0.32812z" fill-rule="evenodd"/>
+ <path d="m15 19c0-4.9688 4.0312-9 9-9h52c4.9688 0 9 4.0312 9 9v48c0 3.5352-2.0352 6.5938-5 8.0664v8.9336h2c1.6562 0 3 1.3438 3 3s-1.3438 3-3 3h-58c-4.9688 0-9-4.0312-9-9zm61 57c0.6875 0 1.3555-0.078125 2-0.22266v8.2227h-53c-2.2109 0-4-1.7891-4-4s1.7891-4 4-4zm-52-64c-3.8672 0-7 3.1328-7 7v62c0 3.8672 3.1328 7 7 7h58c0.55078 0 1-0.44922 1-1s-0.44922-1-1-1h-57c-3.3125 0-6-2.6875-6-6s2.6875-6 6-6h51c3.8672 0 7-3.1328 7-7v-48c0-3.8672-3.1328-7-7-7z" fill-rule="evenodd"/>
+</svg>
+</svg>
   <!-- Active Icon (hidden by default) -->
-  <svg id="closedCover-icon-active" class="closedCover-icon hidden" fill="#F9C172" viewBox="0 0 24 24" width="50" height="50">
-    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
-  </svg>
+  
+  <svg id="closedCover-icon-active" class="closedCover-icon hidden" fill="currentColor" viewBox="0 0 24 24" width="50" height="50">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100">
+ <path d="m24 10c-4.9688 0-9 4.0312-9 9v62c0 4.9688 4.0312 9 9 9h58c1.6562 0 3-1.3438 3-3s-1.3438-3-3-3h-2v-8.9336c2.9648-1.4727 5-4.5312 5-8.0664v-48c0-4.9688-4.0312-9-9-9zm54 65.777v8.2227h-53c-2.2109 0-4-1.7891-4-4s1.7891-4 4-4h51c0.6875 0 1.3555-0.078125 2-0.22266zm-18.699-44.141c1.8555-2.043 5.0195-2.1953 7.0625-0.33594 2.043 1.8555 2.1953 5.0195 0.33594 7.0625l-15.293 16.832c-3.3984 3.7383-9.4141 3.7383-12.812 0l-5.293-5.8281c-1.8594-2.043-1.707-5.207 0.33594-7.0625 2.043-1.8555 5.207-1.707 7.0625 0.33984l4.3008 4.7305z" fill-rule="evenodd"/>
+</svg>
 </button>
-
 
 
 <!--dustyShelves cover -->
 
-<button type="button" class="dustyShelves-icon-wrapper mr-2" id="dustyShelves-toggle-button">
+<button type="button" class="dustyShelves-icon-wrapper mr-2" id="dustyShelves-toggle-button"  data-tooltip-inactive="Add to My Dusty Shelves List"
+  data-tooltip-active="Remove from My Dusty Shelves List"
+  data-tooltip="Add to My Dusty Shelves List">
   <!-- Default Icon -->
   <svg id="dustyShelves-icon-default" class="dustyShelves-icon" fill="currentColor" viewBox="0 0 24 24" width="50" height="50">
-    <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/>
-  </svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 5 55 50"  xml:space="preserve"><path d="M40.1549072,6c-4.4111328,0-8.3378906,2.0809326-10.875061,5.3046875H12.0426025  c-3.3320313,0-6.0424805,2.7109375-6.0424805,6.0429688V48.375h0.0174561  c0.0784302,1.3699951,0.6101685,2.6552124,1.5543213,3.6845703C8.7022705,53.2929688,10.3096924,54,11.9820557,54h24.5639648  l0.5791016-0.0224609l0.5961914-0.9443359l-0.2089844-0.4931641c-1.3984375-3.3007813-1.4091797-6.2392578-0.0336914-8.9833984  h-0.0004883l0.2509766-0.5390625l-0.1079102-0.1691895v-9.401001c0.8226929,0.1529541,1.6673584,0.243042,2.5336914,0.243042  c7.6342773,0,13.8452148-6.2109375,13.8452148-13.8447266C54.0001221,12.2109375,47.7891846,6,40.1549072,6z M11.9820557,52  c-1.1132813,0-2.1835938-0.4707031-2.9360352-1.2919922c-0.7631836-0.8320313-1.1289063-1.9150391-1.0302734-3.0488281  c0.1767578-2.0322266,2.0322266-3.6230469,4.2246094-3.6230469h22.8642578  c-0.3808594,1.0802002-0.5818481,2.1954346-0.6239014,3.3388672H12.8843994v2h21.6916504  c0.1117554,0.8609619,0.3037109,1.7352295,0.5969238,2.625H11.9820557z M35.6212158,42.0361328H12.2403564  c-1.6221924,0-3.1190796,0.6081543-4.2402344,1.6014404v-26.289917c0-2.2294922,1.8134766-4.0429688,4.0424805-4.0429688h15.914856  c-1.0494995,1.9493408-1.6477661,4.1762085-1.6477661,6.5410156c0,6.0444336,3.9003906,11.1834106,9.3115234,13.0668335V42.0361328z   M40.1549072,31.6904297c-6.53125,0-11.8452148-5.3134766-11.8452148-11.8447266C28.3096924,13.3134766,33.6236572,8,40.1549072,8  s11.8452148,5.3134766,11.8452148,11.8457031C52.0001221,26.3769531,46.6861572,31.6904297,40.1549072,31.6904297z"/><rect x="16.5460205" y="36.421875" width="10.5297852" height="2"/><rect x="16.5460205" y="30.8066406" width="10.5297852" height="2"/><path d="M40.1549072,9.9003906c-5.4838867,0-9.9453125,4.4619141-9.9453125,9.9453125s4.4614258,9.9453125,9.9453125,9.9453125  s9.9453125-4.4619141,9.9453125-9.9453125S45.6387939,9.9003906,40.1549072,9.9003906z M40.1549072,11.9003906  c1.8305054,0,3.5136108,0.628479,4.8585815,1.6726685L33.8822632,24.7042847  c-1.0441895-1.3449707-1.6726685-3.0280762-1.6726685-4.8585815C32.2095947,15.4648438,35.7740479,11.9003906,40.1549072,11.9003906  z M40.1549072,27.7910156c-1.8305054,0-3.5136108-0.628479-4.8585815-1.6726685l11.1312256-11.1312256  c1.0441895,1.3449707,1.6726685,3.0280762,1.6726685,4.8585815C48.1002197,24.2265625,44.5357666,27.7910156,40.1549072,27.7910156z  "/></svg>  </svg>
   <!-- Active Icon -->
-  <svg id="dustyShelves-icon-active" class="dustyShelves-icon hidden" fill="#F9C172" viewBox="0 0 24 24" width="50" height="50">
-    <path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 5h-8v2h8V7zm0 4h-8v2h8v-2zm0 4h-8v2h8v-2zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6z"/>
-  </svg>
+  <svg id="dustyShelves-icon-active" class="dustyShelves-icon hidden" fill="currentColor" viewBox="0 0 24 24" width="50" height="50">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 5 55 50"  xml:space="preserve"><g><path d="M47.9209251,13.6223145l-12.143158,12.1431561c1.4672432,1.1391144,3.3033562,1.824728,5.3002739,1.824728   c4.7791176,0,8.667614-3.8884945,8.667614-8.667614C49.7456551,16.9256706,49.0600395,15.0895548,47.9209251,13.6223145z"/><path d="M11.3283949,51.136364v-2.1818199h23.5596123c0.0458794-1.2473793,0.2651367-2.4640007,0.6806221-3.6423988H10.625802   c-2.3916903,0-4.4158378,1.7354393-4.6086645,3.9524155c-0.1075993,1.2368584,0.2913709,2.4183235,1.1239347,3.3259926   C7.9619174,53.4865074,9.1295309,54,10.3440199,54h25.2991829c-0.31987-0.9706573-0.529274-1.9244041-0.6511917-2.863636   H11.3283949z"/><path d="M41.0780411,10.2549715c-4.7791214,0-8.667614,3.8884945-8.667614,8.667613   c0,1.9969158,0.6856117,3.8330307,1.8247299,5.300272l12.1431541-12.1431561   C44.911068,10.9405851,43.074955,10.2549715,41.0780411,10.2549715z"/><path d="M25.9741688,18.9225845c0-2.5797882,0.6526546-5.009099,1.7975636-7.1356525H10.4100704   c-2.4316401,0-4.4099784,1.9783382-4.4099784,4.410511v28.6799107c1.2230783-1.0835876,2.8560462-1.7470284,4.62571-1.7470284   h25.5063934v-9.9530144C30.2291412,31.1226692,25.9741688,25.5165119,25.9741688,18.9225845z M26.8099289,39.1875H15.3228903   v-2.1818199h11.4870386V39.1875z M26.8099289,33.0617905H15.3228903v-2.181818h11.4870386V33.0617905z"/><path d="M41.0780411,6c-7.125,0-12.9220543,5.7965202-12.9220543,12.9225845c0,7.125,5.7970543,12.9215202,12.9220543,12.9215202   s12.9220505-5.7965202,12.9220505-12.9215202C54.0000916,11.7965202,48.2030411,6,41.0780411,6z M41.0780411,29.7720165   c-5.9824219,0-10.8494339-4.8675423-10.8494339-10.849432s4.867012-10.849431,10.8494339-10.849431   s10.8494301,4.8675423,10.8494301,10.849431S47.060463,29.7720165,41.0780411,29.7720165z"/></g></svg>  </svg>
 </button>
 
 
@@ -254,47 +311,7 @@ document.addEventListener('DOMContentLoaded', function () {
       `;
 
       document.getElementById('bookDetails').innerHTML = bookDetailsContent;
-
-      const libraryButton = document.getElementById('library-toggle-button');
-      const libraryIconDefault = document.getElementById('library-icon-default');
-      const libraryIconActive = document.getElementById('library-icon-active');
-      libraryButton.addEventListener('click', function () {
-        libraryButton.classList.toggle('active');
-        const isActive = libraryButton.classList.contains('active');
-        libraryIconDefault.classList.toggle('hidden', isActive);
-        libraryIconActive.classList.toggle('hidden', !isActive);
-      });
- 
-      const openCoverButton = document.getElementById('openCover-toggle-button');
-      const openCoverIconDefault = document.getElementById('openCover-icon-default');
-      const openCoverIconActive = document.getElementById('openCover-icon-active');
-      openCoverButton.addEventListener('click', function () {
-        openCoverButton.classList.toggle('active');
-        const isActive = openCoverButton.classList.contains('active');
-        openCoverIconDefault.classList.toggle('hidden', isActive);
-        openCoverIconActive.classList.toggle('hidden', !isActive);
-      });
-      
-      const closedCoverButton = document.getElementById('closedCover-toggle-button');
-const closedCoverIconDefault = document.getElementById('closedCover-icon-default');
-const closedCoverIconActive = document.getElementById('closedCover-icon-active');
-
-closedCoverButton.addEventListener('click', function() {
-  closedCoverButton.classList.toggle('active');
-  const isActive = closedCoverButton.classList.contains('active');
-  closedCoverIconDefault.classList.toggle('hidden', isActive);
-  closedCoverIconActive.classList.toggle('hidden', !isActive);
-});
-const dustyShelvesButton = document.getElementById('dustyShelves-toggle-button');
-const dustyShelvesIconDefault = document.getElementById('dustyShelves-icon-default');
-const dustyShelvesIconActive = document.getElementById('dustyShelves-icon-active');
-
-dustyShelvesButton.addEventListener('click', function() {
-  dustyShelvesButton.classList.toggle('active');
-  const isActive = dustyShelvesButton.classList.contains('active');
-  dustyShelvesIconDefault.classList.toggle('hidden', isActive);
-  dustyShelvesIconActive.classList.toggle('hidden', !isActive);
-});
+      setupToggleButtons();
       setupReviewForm();
       fetchComments();
     })
@@ -421,6 +438,7 @@ dustyShelvesButton.addEventListener('click', function() {
     const date = new Date(timestamp * 1000).toLocaleDateString(undefined, {
       year: 'numeric', month: 'long', day: 'numeric'
     });
+    
     return `
       <div class="comment-card p-4 rounded-4">
         <div class="d-flex align-items-center mb-3">

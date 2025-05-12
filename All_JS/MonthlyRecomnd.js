@@ -19,11 +19,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const rating = book.volumeInfo.averageRating || 0;
         const image = book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : 'https://via.placeholder.com/150';
         
-        let starRating = '';
-        for (let i = 1; i <= 5; i++) {
-          starRating += `<span class="star ${i <= rating ? 'filled' : ''}" data-rating="${i}">★</span>`;
-        }
-
+let starRating = '';
+for (let i = 1; i <= 5; i++) {
+  starRating += `<span
+    class="star ${i <= rating ? 'filled' : ''}"
+    data-rating="${rating.toFixed(1)}"
+  >★</span>`;
+}
         if (index % cardsPerSlide === 0) {
           carouselContent += `<div class="carousel-item ${index === 0 ? 'active' : ''}"><div class="row justify-content-center mx-0">`;
         }
