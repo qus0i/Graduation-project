@@ -1,5 +1,4 @@
 // Add your JavaScript functionality here
-
 document.querySelector('.explore-btn').addEventListener('click', function() {
     alert('Exploring more!');
 });

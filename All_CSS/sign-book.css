@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Cormorant+Garamond:300,400,600|Tulpen+One&display=swap");
 :root {
   /* colors */
-  --body-bg: url(../All_IMAGES/tabel.png);
+ /* --body-bg: url(../All_IMAGES/tabel.png);*/
+    --body-bg:#0C0804;
   --page-bg: url(../All_IMAGES/Paper.png);
   --dark-text: #0C0804;
   --ourYello:#f9c172;

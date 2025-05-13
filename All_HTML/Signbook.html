@@ -24,8 +24,7 @@
       </form>
                 </div>
                 <div class="page__number">I</div>
-            </label>
-            
+            </label>           
             <label for="page-2" class="book__page book__page--4">
                 <h1 class="page__content page__content-book-title">Sign Up</h1>
               <form  class="cen-form"action="#" method="post">
@@ -33,15 +32,12 @@
                 <input type="email" class="input-field" placeholder="Email" required>
                 <input type="password" class="input-field" placeholder="Password" required>
                 <button type="submit" class="button">Sign Up</button>
-              </form>
-              
+              </form>             
               <div class="page__number">IIII</div>
 
-            </label>
-              
+            </label>              
             <!-- Resets the page -->
-            <input type="radio" name="page" id="page-1"/>
-              
+            <input type="radio" name="page" id="page-1"/>             
             <!-- Goes to the second page -->
             <input type="radio" name="page" id="page-2"/>
         <label class="book__page book__page--2">
@@ -76,9 +72,7 @@
                     <span>SIGN IN NOW</span>
                     <span>With ease, in a single trace</span>
                     <span>Let your journey continue today</span>
-                  </p>
-                  
-                  
+                  </p>                 
                   <div class="page__number">III</div>
                 </div>
                
@@ -87,5 +81,18 @@
           </div>
           </div>
         </div>
+        <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash;
+    if (hash === '#page-2') {
+      // Show Sign-Up
+      document.getElementById('page-2').checked = true;
+    } else {
+      // Default to Sign-In (page-1)
+      document.getElementById('page-1').checked = true;
+    }
+  });
+</script>
+
     </body>
     </html>
