@@ -1,413 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Book Collection</title>
-    <style>
-        body {
-            background-color: #0B0804;
-            color: #C17B36;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-        
-        .filter-buttons {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .filter-button {
-            padding: 0.5rem 1.25rem;
-            margin: 0.25rem;
-            background-color: #0B0804;
-            color: #C17B36;
-            border: 1px solid #C17B36;
-            cursor: pointer;
-        }
-        
-        .filter-button.active {
-            background-color: #C17B36;
-            color: black;
-        }
-        
-        .book-grid {
-            display: grid;
-            grid-template-columns: repeat(1, 1fr);
-            gap: 1.5rem;
-        }
-        
-        @media (min-width: 640px) {
-            .book-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (min-width: 768px) {
-            .book-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            .book-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-        
-        .book-card {
-            height: 400px;
-            background-image: linear-gradient(to bottom, #0B0804, #C17B36);
-            padding: 1.25rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .book-card img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.3;
-            z-index: 0;
-        }
-        
-        .card-content {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .book-title {
-            font-size: 1.125rem;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 0.5rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        .book-details {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .book-author {
-            color: white;
-            max-width: 60%;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        .star-rating {
-            display: flex;
-        }
-        
-        .star {
-            width: 1rem;
-            height: 1rem;
-            margin-left: 0.125rem;
-            color: #FFD700;
-            fill: #FFD700;
-        }
-        
-        .star.empty {
-            fill: none;
-        }
-        
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-        
-        .pagination span {
-            margin: 0 0.5rem;
-            cursor: pointer;
-        }
-        
-        .pagination span.active {
-            font-weight: bold;
-        }
-        
-        .footer {
-            margin-top: 3rem;
-            text-align: center;
-        }
-        
-        .footer-features {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1.25rem;
-            flex-wrap: wrap;
-        }
-        
-        .footer-feature {
-            text-align: center;
-            max-width: 250px;
-        }
-        
-        .icon-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 0.75rem;
-        }
-        
-        .icon {
-            width: 1.5rem;
-            height: 1.5rem;
-        }
-        
-        .footer-feature-title {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        
-        .card-link {
-            text-decoration: none;
-            color: inherit;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recommendations</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../All_CSS/main.css">
 </head>
 <body>
-    <div class="container">
-        <form class="filter-buttons">
-            <button class="filter-button active">All</button>
-            <button class="filter-button">Language</button>
-            <button class="filter-button">Genre</button>
-            <button class="filter-button">Author</button>
-            <button class="filter-button">Rating</button>
-        </form>
-        
-        <div class="book-grid" id="bookGrid">
-            <!-- Book cards will be generated here by JavaScript -->
-        </div>
-        
-        <div class="pagination">
-            <span>&lt; Previous</span>
-            <span class="active">1</span>
-            <span>2</span>
-            <span>Next &gt;</span>
-        </div>
-        
-        <footer class="footer">
-            <div class="footer-features">
-                <div class="footer-feature">
-                    <div class="icon-container">
-                        <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#C17B36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                        </svg>
-                    </div>
-                    <div class="footer-feature-title">Tailored Recommendations</div>
-                    <div>Get book suggestions based on your reading habits</div>
-                </div>
-                <div class="footer-feature">
-                    <div class="icon-container">
-                        <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#C17B36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                        </svg>
-                    </div>
-                    <div class="footer-feature-title">Wide Variety of Genres</div>
-                    <div>Explore an extensive collection of books across all genres</div>
-                </div>
-                <div class="footer-feature">
-                    <div class="icon-container">
-                        <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#C17B36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
-                    </div>
-                    <div class="footer-feature-title">Community Reviews</div>
-                    <div>Read reviews and ratings from other book enthusiasts</div>
-                </div>
-            </div>
-        </footer>
+  <div class="container py-5">
+    <form class="filter-buttons mb-4 d-flex flex-wrap justify-content-center gap-2">
+      <button type="button" class="filter-button active">All</button>
+      <button type="button" class="filter-button">Language</button>
+      <button type="button" class="filter-button">Genre</button>
+      <button type="button" class="filter-button">Author</button>
+      <button type="button" class="filter-button">Rating</button>
+    </form>
+
+    <div class="row g-3" id="bookGrid">
+      <!-- Book cards will be inserted here -->
     </div>
-    
-    <script>
-        // Sample book data - expanded to 16 books for 4x4 grid
-        const books = [
-            {
-                id: 1,
-                title: "To Kill a Mockingbird",
-                authors: "Harper Lee",
-                image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-                rating: 5
-            },
-            {
-                id: 2,
-                title: "1984",
-                authors: "George Orwell",
-                image: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-                rating: 4
-            },
-            {
-                id: 3,
-                title: "The Great Gatsby",
-                authors: "F. Scott Fitzgerald",
-                image: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-                rating: 4
-            },
-            {
-                id: 4,
-                title: "Pride and Prejudice",
-                authors: "Jane Austen",
-                image: "https://images.unsplash.com/photo-1531346878377-a5be20888e57?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-                rating: 5
-            },
-            {
-                id: 5,
-                title: "The Catcher in the Rye",
-                authors: "J.D. Salinger",
-                image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-                rating: 3
-            },
-            {
-                id: 6,
-                title: "One Hundred Years of Solitude",
-                authors: "Gabriel García Márquez",
-                image: "https://images.unsplash.com/photo-1531346878377-a5be20888e57?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-                rating: 5
-            },
-            {
-                id: 7,
-                title: "The Hobbit",
-                authors: "J.R.R. Tolkien",
-                image: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-                rating: 4
-            },
-            {
-                id: 8,
-                title: "Brave New World",
-                authors: "Aldous Huxley",
-                image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-                rating: 4
-            },
-            {
-                id: 9,
-                title: "The Lord of the Rings",
-                authors: "J.R.R. Tolkien",
-                image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-                rating: 5
-            },
-            {
-                id: 10,
-                title: "Crime and Punishment",
-                authors: "Fyodor Dostoevsky",
-                image: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-                rating: 4
-            },
-            {
-                id: 11,
-                title: "The Brothers Karamazov",
-                authors: "Fyodor Dostoevsky",
-                image: "https://images.unsplash.com/photo-1531346878377-a5be20888e57?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-                rating: 5
-            },
-            {
-                id: 12,
-                title: "War and Peace",
-                authors: "Leo Tolstoy",
-                image: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-                rating: 4
-            },
-            {
-                id: 13,
-                title: "Anna Karenina",
-                authors: "Leo Tolstoy",
-                image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-                rating: 5
-            },
-            {
-                id: 14,
-                title: "Moby Dick",
-                authors: "Herman Melville",
-                image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-                rating: 3
-            },
-            {
-                id: 15,
-                title: "The Odyssey",
-                authors: "Homer",
-                image: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-                rating: 4
-            },
-            {
-                id: 16,
-                title: "Ulysses",
-                authors: "James Joyce",
-                image: "https://images.unsplash.com/photo-1531346878377-a5be20888e57?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-                rating: 4
-            }
-        ];
+  </div>
 
-        // Function to generate star rating HTML
-        function generateStarRating(rating) {
-            let stars = '';
+  <!-- Bootstrap Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const apiURL = 'https://www.googleapis.com/books/v1/volumes?q=subject:fiction&maxResults=40';
+      const bookGrid = document.getElementById('bookGrid');
+
+      fetch(apiURL)
+        .then(response => response.json())
+        .then(data => {
+          const books = data.items.slice(0, 16); // 4x4 layout
+
+          books.forEach(book => {
+            const title = book.volumeInfo.title?.length > 30 ? 
+              book.volumeInfo.title.slice(0, 30) + "..." : book.volumeInfo.title || "No Title";
+
+            const authors = book.volumeInfo.authors?.join(', ') || "Unknown";
+            const authorsTrimmed = authors.length > 30 ? authors.slice(0, 30) + "..." : authors;
+
+            const rating = book.volumeInfo.averageRating || 0;
+            const image = book.volumeInfo.imageLinks?.thumbnail || 'https://via.placeholder.com/150';
+
+            let starRating = '';
             for (let i = 1; i <= 5; i++) {
-                if (i <= rating) {
-                    stars += `<svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`;
-                } else {
-                    stars += `<svg class="star empty" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`;
-                }
+              starRating += `<span class="star ${i <= rating ? 'filled' : ''}" data-rating="${rating.toFixed(1)}">★</span>`;
             }
-            return stars;
-        }
 
-        // Function to generate book cards
-        function generateBookCards() {
-            const bookGrid = document.getElementById('bookGrid');
-            bookGrid.innerHTML = '';
-            
-            books.forEach(book => {
-                const starRating = generateStarRating(book.rating);
-                
-                const bookCard = document.createElement('a');
-                bookCard.href = `book-detail.html?bookId=${book.id}`;
-                bookCard.className = 'card-link';
-                
-                bookCard.innerHTML = `
-                    <div class="book-card">
-                        <img src="${book.image}" alt="Book Image">
-                        <div class="card-content">
-                            <div class="book-title">${book.title}</div>
-                            <div class="book-details">
-                                <div class="book-author">${book.authors}</div>
-                                <div class="star-rating" data-rating="${book.rating}">
-                                    ${starRating}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                bookGrid.appendChild(bookCard);
-            });
-        }
+            const col = document.createElement('div');
+            col.className = 'col-md-3 col-sm-6';
 
-        // Generate book cards when page loads
-        document.addEventListener('DOMContentLoaded', generateBookCards);
-    </script>
+            col.innerHTML = `
+              <a href="book-detail.html?bookId=${book.id}" class="card-link text-decoration-none">
+                <div class="card h-100">
+                  <img src="${image}" class="card-img-top" loading="lazy" alt="${title}">
+                  <div class="card-body">
+                    <h5 class="card-title card-link">${title}</h5>
+                    <p class="card-text card-link author">${authorsTrimmed}</p>
+                    <div class="stars" data-rating="${rating}">${starRating}</div>
+                  </div>
+                </div>
+              </a>
+            `;
+
+            bookGrid.appendChild(col);
+          });
+        })
+        .catch(error => {
+          bookGrid.innerHTML = "<p class='text-danger'>Failed to load recommendations.</p>";
+          console.error('Error fetching books:', error);
+        });
+    });
+  </script>
 </body>
 </html>
