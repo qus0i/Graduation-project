@@ -31,7 +31,7 @@ for (let i = 1; i <= 5; i++) {
         }
 
         carouselContent += `
-          <div class="col-md-3 px-1">
+          <div class="col-md-3 col-sm-6 px-1">
             <a href="book-detail.html?bookId=${book.id}" class="card-link">
               <div class="card">
                 <img src="${image}" class="card-img-top" loading="lazy" alt="${title}">

@@ -557,7 +557,6 @@ header {
     color: var(--color-primary-light) !important;
 }
 
-
 /* Slider */
 .card {
     background: linear-gradient(to bottom, var(--color-accent), var(--color-primary-dark));
@@ -586,7 +585,7 @@ header {
     position: relative;
     z-index: 2;
     padding: 20px;
-    background: linear-gradient(to top,rgba(255), rgba(0, 0, 0, 0));/* rgba(193, 123, 54, 0.4)*/
+    background: linear-gradient(to top,rgba(255), rgba(0, 0, 0, 0));
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -1247,3 +1246,60 @@ textarea {
         .social-icons a:hover {
             color: #F9C172!important;
         }
+
+        /*Filter*/
+    .filter-buttons {
+      display: inline-flex;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .filter-buttons .filter-button {
+      background: none;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin: 0;
+      color: var(--color-accent);
+      font-weight: 500;
+    }
+    .filter-buttons .filter-button.active {
+      background-color:var(--color-primary-light);
+      color:#fff;
+    }
+    .filter-buttons .filter-button:not(:first-child) {
+      border-left: 1px solid var(--color-accent);
+    }
+      /* Responsive for tablets */
+  @media (max-width: 768px) {
+    .filter-buttons {
+      /* allow wrapping and center alignment */
+      flex-wrap: wrap;
+    }
+    .filter-buttons .filter-button {
+      padding: .5rem .75rem;
+      font-size: .9rem;
+    }
+  }
+  /* Responsive for phones */
+  @media (max-width: 576px) {
+    .filter-buttons {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    .filter-buttons .filter-button {
+      width: 100%;
+      text-align: center;
+      border-right: none;
+      border: 1px solid var(--color-accent);
+      padding: .75rem 0;
+    }
+ 
+  }
+  /* Hover effects */
+    .filter-buttons .filter-button:not(.active):hover {
+     background-color: var(--color-accent);
+      color: #fff;
+    }
+    .filter-buttons .filter-button.active:hover {
+      background-color: var(--color-accent);
+    }
