@@ -13,6 +13,8 @@
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        overflow: hidden; /* hide any scrollbars */
+
     }
     
     .reviews-iframe {
@@ -20,6 +22,8 @@
       height: 600px; /* Adjust based on your content */
       border: none;
       background: transparent;
+        overflow: hidden; /* hide any scrollbars */
+
     }
   
     @media (max-width: 768px) {
@@ -92,7 +96,6 @@
   scrolling="no"
   style="overflow:hidden;">
 </iframe>
-
         </div>
       </div>
     </div>
@@ -125,7 +128,6 @@
       iframe.style.transition = 'height 0.3s ease';
     }
   });
-  
   // Fallback: Set initial min-height
   document.querySelector('.reviews-iframe').style.minHeight = '500px';
   </script>

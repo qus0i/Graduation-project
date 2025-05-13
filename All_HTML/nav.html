@@ -6,45 +6,78 @@
   <title>Responsive Navbar</title>
   <!-- Bootstrap 4 CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+        crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="../All_CSS/main.css">
+    <style>
+  .dropdown-divider{
+    border-top:1px solid #f9c172!important;;
+  }
+    .navbar-toggler {
+      border-color: #E7D6C4;
+    }
+    .navbar-toggler .menu-icon svg {
+      stroke: #E7D6C4;
+    }
+    .dropdown-menu {
+      background-color: #2D241F; /* darker shade */
+    }
+    .dropdown-header {
+      color: #f9c172;
+    }
+    .dropdown-item {
+      color: #E7D6C4;
+    }
+    .dropdown-item:hover {
+      background-color: #c17b36;
+      color: #E7D6C4;
+    }
+  </style>
 </head>
 <body>
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light nav-bg">
     <div class="logo-container d-flex align-items-center gap-3 position-relative z-index-1">
-        <div class="logo-icon rounded-circle d-flex align-items-center justify-content-center" style="width: 37.5px; height: 37.5px; background: linear-gradient(135deg, #c17b36 0%, #f9c172 100%); box-shadow: 0 4px 15px rgba(193, 123, 54, 0.3);">
-            <div class="book-icon" style="width: 25px; height: 20px; background-color: #0b0804; position: relative; transform: perspective(100px) rotateY(-15deg);"></div>
-        </div>
-        <div class="logo-text fs-3 fw-bold ">NextChapter</div>
+      <div class="logo-icon rounded-circle d-flex align-items-center justify-content-center" style="width: 37.5px; height: 37.5px; background: linear-gradient(135deg, #c17b36 0%, #f9c172 100%); box-shadow: 0 4px 15px rgba(193, 123, 54, 0.3);">
+        <div class="book-icon" style="width: 25px; height: 20px; background-color: #0b0804; position: relative; transform: perspective(100px) rotateY(-15deg);"></div>
+      </div>
+      <div class="logo-text fs-3 fw-bold">NextChapter</div>
     </div>
     <button class="navbar-toggler nav-cr" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <button class="navbar-toggler nav-cr" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="menu-icon" aria-hidden="true">
-          <!-- Inline SVG for full styling control -->
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
-      </button>
+      <span class="menu-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item mr-4 ">
+        <li class="nav-item mr-4">
           <a class="nav-link all-nav" href="home.html">Home</a>
         </li>
-        <li class="nav-item mr-4 ">
+        <li class="nav-item mr-4">
           <a class="nav-link all-nav" href="#">Recommendation</a>
         </li>
         <li class="nav-item mr-custom">
           <a class="nav-link all-nav" href="#">About</a>
         </li>
-        <!-- Profile Icon Button with larger margin-right -->
-        <li class="nav-item mr-4">
-          <button class="btn btn-link nav-link all-nav" type="button">
+        <!-- Profile Dropdown Fixed -->
+        <li class="nav-item dropdown mr-4">
+          <a class="nav-link dropdown-toggle all-nav" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-user"></i>
-          </button>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+            
+            <a class="dropdown-item" href="#"><img src="./assets/icons/user.png" class="mr-2" />My profile</a>
+            <a class="dropdown-item" href="#"><img src="./assets/icons/edit.png" class="mr-2" />Edit profile</a>
+            <a class="dropdown-item" href="#"><img src="./assets/icons/envelope.png" class="mr-2" />Inbox</a>
+            <a class="dropdown-item" href="#"><img src="./assets/icons/settings.png" class="mr-2" />Setting</a>
+            <a class="dropdown-item" href="#"><img src="./assets/icons/question.png" class="mr-2" />Help</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#"><img src="./assets/icons/log-out.png" class="mr-2" />Logout</a>
+          </div>
         </li>
         <!-- Sign Out Icon Button -->
         <li class="nav-item">
@@ -56,7 +89,7 @@
     </div>
   </nav>
 
-  <!-- Bootstrap 4 and jQuery JS (necessary for navbar toggle to work) -->
+  <!-- Bootstrap 4 and jQuery JS for dropdown functionality -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
