@@ -164,10 +164,14 @@ body {
 form {
   height: 250px;
   width: 100%;
+  justify-content: center;
+
 }
 
+
 .ceen-form {
-  margin-top: 2rem !important;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .cen-form {
@@ -212,11 +216,16 @@ button:hover {
 
 /* Page content */
 .book__page .page__content {
-  padding: var(--baseline);
+padding: 0 calc(var(--baseline) * 3);
   height: 100%;
   position: relative;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* vertical center */
+  align-items: center;      /* horizontal center */
 }
+
 
 .book__page .page__content-book-title {
   font-family: var(--book-title);

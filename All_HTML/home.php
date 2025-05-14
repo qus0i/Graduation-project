@@ -48,20 +48,16 @@
 
 
 }
-/* On small screens, give a bit more vertical space */
 @media (max-width: 768px) {
   .genre-iframe {
     height: 1200px;
   }
 }
-
   </style>
-  
 </head>
 <body>
   <!-- Navbar -->
   <div id="navbar-placeholder"></div>
-
 <script>
   fetch('nav.html')
     .then(response => response.text())
