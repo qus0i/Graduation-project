@@ -30,13 +30,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (mysqli_query($link, $query)) {
         $_SESSION['user'] = $email;
         $_SESSION['login_message'] = "Account created successfully!";
-        header("Location: home.php");
+        header("Location: ALL_HTML/preferences.html");
         exit();
     } else {
         echo "<div class='alert alert-danger'>Something went wrong. Try again.</div>";
     }
 } else {
-    header("Location: register.html");
+    header("Location: ALL_HTML/signbook.html");
     exit();
 }
 ?>

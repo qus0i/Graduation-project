@@ -1,6 +1,6 @@
 <?php
 // Parse the Railway DB URL
-$url = "mysql://root:lrWXeczfBOxqWEarLXZOiWLLLHhXkwWq@shortline.proxy.rlwy.net:32522/railway";
+$url = "mysql://root:NWgFxpnPgUhdfkdmejYtARqUBNXbLrxJ@crossover.proxy.rlwy.net:35233/railway";
 $parts = parse_url($url);
 
 $host = $parts['host'];              // containers-us-west-34.railway.app

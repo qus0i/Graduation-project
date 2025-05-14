@@ -13,6 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['user_id'])) {
 } else {
     echo "Invalid request.";
 }
+
+
 ?>
 <form action="123.php" method="POST">
   <input type="number" name="user_id" placeholder="Enter User ID" required>
