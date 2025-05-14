@@ -1303,3 +1303,15 @@ textarea {
     .filter-buttons .filter-button.active:hover {
       background-color: var(--color-accent);
     }
+
+    .profile{
+background-color: var(--color-secondary-dark);
+    }
+    .profiletxt{
+      color: var(--color-primary-light);
+
+    }
+       .profiletxt2{
+      color: var(--color-card-text);
+
+    }
