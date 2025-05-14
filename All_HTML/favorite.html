@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Your Favorite Books</title>
+<style>
+  body {
+    margin: 0;
+    background-color: #0B0804;
+    color: #F9C172;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+  }
+  header {
+    padding: 4rem 1rem 3rem;
+    text-align: center;
+    background-color: #0B0804;
+    position: relative;
+    z-index: 10;
+  }
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #F9C172;
+  }
+
+  /* Wider Search input styling */
+  .search-container {
+    max-width: 700px;  /* wider search bar */
+    margin: 0 auto;
+    position: relative;
+  }
+  input[type="search"] {
+    width: 100%;
+    padding: 0.6rem 1rem 0.6rem 2.8rem; /* space for icon */
+    font-size: 1rem;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    background-color: #f1c9a9; /* light peach */
+    color: #7a5a43; /* brown text */
+    font-weight: 500;
+  }
+  input[type="search"]::placeholder {
+    color: #7a5a43;
+    opacity: 1;
+  }
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    stroke: #7a5a43;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  .book-list > div {
+    background: #1c1a17;
+    padding: 1rem 1rem 3rem 1rem; /* extra bottom padding for controls */
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    position: relative;
+    gap: 1rem;
+    color: #f9c172;
+    transition: background-color 0.2s;
+  }
+  .book-list > div:hover {
+    background-color: #2a2723;
+  }
+  .book-image {
+    width: 80px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .book-info {
+    flex-grow: 1;
+    padding-right: 90px; /* space so text doesn't go under controls */
+  }
+  .book-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin: 0 0 0.25rem 0;
+  }
+  .book-author {
+    font-size: 0.9rem;
+    color: #e2bb66;
+    margin: 0 0 0.25rem 0;
+  }
+  .book-description {
+    font-size: 0.9rem;
+    margin: 0 0 0.25rem 0;
+    line-height: 1.2;
+    color: #d8c27f;
+  }
+  .right-controls {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 60px;
+  }
+  .rating-stars {
+    display: flex;
+    gap: 2px;
+  }
+  .star {
+    width: 16px;
+    height: 16px;
+    fill: #F9C172;
+    stroke: #F9C172;
+  }
+  .star.empty {
+    fill: transparent;
+  }
+  .favorite-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  .favorite-icon {
+    width: 24px;
+    height: 24px;
+    stroke: #f9c172;
+    fill: transparent;
+    transition: fill 0.3s;
+  }
+  .favorite-icon.favorited {
+    fill: #f9c172;
+  }
+  /* Pagination */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 3rem;
+  }
+  .pagination button {
+    background: #2a2723;
+    border: none;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    color: #f9c172;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  .pagination button:hover:not(.active) {
+    background: #3e3a35;
+  }
+  .pagination button.active {
+    background: #f9c172;
+    color: #0b0804;
+    cursor: default;
+  }
+  .pagination .arrow-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .arrow-icon {
+    stroke: #f9c172;
+    width: 20px;
+    height: 20px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Your Favorite Books</h1>
+  <div class="search-container">
+    <input id="searchInput" type="search" placeholder="Find book you like" />
+    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+    </svg>
+  </div>
+</header>
+
+<div class="container">
+  <div id="bookList" class="book-list"></div>
+  <div class="pagination" id="pagination"></div>
+</div>
+
+<script>
+  const booksData = [
+    { id: 1, title: "The Great Gatsby", author: "F. Scott Fitzgerald", favorite: false, image: "https://via.placeholder.com/80x120?text=Gatsby", rating: 5, description: "Set in the Roaring Twenties, this novel explores themes of wealth, excess, and the elusive American Dream through the tragic story of Jay Gatsby and his unrequited love for Daisy Buchanan." },
+    { id: 2, title: "To Kill a Mockingbird", author: "Harper Lee", favorite: true, image: "https://via.placeholder.com/80x120?text=Mockingbird", rating: 4, description: "A powerful exploration of racial injustice and moral growth seen through the eyes of Scout Finch, a young girl growing up in the racially charged Deep South during the 1930s." },
+    { id: 3, title: "1984", author: "George Orwell", favorite: false, image: "https://via.placeholder.com/80x120?text=1984", rating: 3, description: "A dystopian masterpiece depicting a totalitarian regime where Big Brother watches every move and independent thought is a crime, exploring themes of surveillance, propaganda, and loss of individuality." },
+    { id: 4, title: "Pride and Prejudice", author: "Jane Austen", favorite: false, image: "https://via.placeholder.com/80x120?text=Pride", rating: 4, description: "A timeless romance and social satire centered on the intelligent Elizabeth Bennet as she navigates issues of manners, upbringing, and marriage in early 19th century England." },
+    { id: 5, title: "The Catcher in the Rye", author: "J.D. Salinger", favorite: false, image: "https://via.placeholder.com/80x120?text=Catcher", rating: 2, description: "The story of Holden Caulfield, a disenchanted teenager wandering New York City while grappling with the complexities of identity, alienation, and the painful transition into adulthood." },
+    { id: 6, title: "Moby Dick", author: "Herman Melville", favorite: true, image: "https://via.placeholder.com/80x120?text=Moby", rating: 3, description: "An epic tale of obsession and revenge following Captain Ahab’s relentless pursuit of the white whale, Moby Dick, blending adventure with profound philosophical reflections." },
+    { id: 7, title: "War and Peace", author: "Leo Tolstoy", favorite: false, image: "https://via.placeholder.com/80x120?text=War", rating: 5, description: "A sweeping historical novel portraying Russian society during the Napoleonic Wars, combining vivid characters with deep explorations of fate, free will, and the human condition." },
+    { id: 8, title: "The Odyssey", author: "Homer", favorite: false, image: "https://via.placeholder.com/80x120?text=Odyssey", rating: 4, description: "The legendary epic poem recounting Odysseus’s long and perilous journey home after the Trojan War, filled with mythical creatures, divine intervention, and timeless themes of perseverance and cunning." },
+    { id: 9, title: "Crime and Punishment", author: "Fyodor Dostoevsky", favorite: false, image: "https://via.placeholder.com/80x120?text=Crime", rating: 5, description: "A psychological exploration of guilt, redemption, and morality centered on Raskolnikov, a poor student who commits a murder and wrestles with his conscience and the consequences of his crime." },
+    { id: 10, title: "The Brothers Karamazov", author: "Fyodor Dostoevsky", favorite: false, image: "https://via.placeholder.com/80x120?text=Brothers", rating: 4, description: "A profound philosophical novel exploring themes of faith, doubt, free will, and the complexity of family dynamics through the turbulent lives of the Karamazov brothers." },
+  ];
+
+  const booksPerPage = 4;
+  let currentPage = 1;
+  let books = [...booksData];
+  let searchTerm = '';
+
+  const bookListEl = document.getElementById('bookList');
+  const paginationEl = document.getElementById('pagination');
+  const searchInput = document.getElementById('searchInput');
+
+  function renderBooks() {
+    const filteredBooks = books.filter(book => book.title.toLowerCase().includes(searchTerm.toLowerCase()));
+
+    const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
+    if(currentPage > totalPages) currentPage = totalPages || 1;
+
+    const start = (currentPage - 1) * booksPerPage;
+    const currentBooks = filteredBooks.slice(start, start + booksPerPage);
+
+    bookListEl.innerHTML = '';
+
+    currentBooks.forEach((book, index) => {
+      const bookDiv = document.createElement('div');
+      bookDiv.className = 'book-item';
+
+      const img = document.createElement('img');
+      img.src = book.image;
+      img.alt = book.title;
+      img.className = 'book-image';
+
+      const infoDiv = document.createElement('div');
+      infoDiv.className = 'book-info';
+      infoDiv.style.cursor = 'pointer';
+
+      const title = document.createElement('h2');
+      title.className = 'book-title';
+      title.textContent = book.title;
+
+      const author = document.createElement('p');
+      author.className = 'book-author';
+      author.textContent = `by ${book.author}`;
+
+      const description = document.createElement('p');
+      description.className = 'book-description';
+      description.textContent = book.description;
+
+      infoDiv.appendChild(title);
+      infoDiv.appendChild(author);
+      infoDiv.appendChild(description);
+
+      const rightControls = document.createElement('div');
+      rightControls.className = 'right-controls';
+
+      const favBtn = document.createElement('button');
+      favBtn.className = 'favorite-btn';
+      favBtn.setAttribute('aria-label', 'Toggle favorite');
+
+      const heartSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      heartSvg.setAttribute('viewBox', '0 0 24 24');
+      heartSvg.setAttribute('fill', book.favorite ? '#F9C172' : 'none');
+      heartSvg.setAttribute('stroke', '#F9C172');
+      heartSvg.setAttribute('stroke-width', '2');
+      heartSvg.setAttribute('stroke-linecap', 'round');
+      heartSvg.setAttribute('stroke-linejoin', 'round');
+      heartSvg.classList.add('favorite-icon');
+      if(book.favorite) heartSvg.classList.add('favorited');
+      heartSvg.innerHTML = '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>';
+
+      favBtn.appendChild(heartSvg);
+
+      const ratingDiv = document.createElement('div');
+      ratingDiv.className = 'rating-stars';
+
+      for(let i = 1; i <= 5; i++) {
+        const starSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        starSvg.setAttribute('viewBox', '0 0 24 24');
+        starSvg.classList.add('star');
+        if(i <= book.rating) {
+          starSvg.innerHTML = `<path stroke="none" d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />`;
+        } else {
+          starSvg.classList.add('empty');
+          starSvg.innerHTML = `<path fill="none" stroke="currentColor" stroke-width="2" d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />`;
+        }
+        ratingDiv.appendChild(starSvg);
+      }
+
+      rightControls.appendChild(favBtn);
+      rightControls.appendChild(ratingDiv);
+
+      favBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        book.favorite = !book.favorite;
+        renderBooks();
+      });
+
+      infoDiv.addEventListener('click', () => {
+        const adjustedIndex = start + index;
+        if ((adjustedIndex + 1) % 4 === 0) {
+          alert(`Navigate to: /book-special/${book.id}`);
+        } else {
+          alert(`Navigate to: /book/${book.id}`);
+        }
+      });
+
+      bookDiv.appendChild(img);
+      bookDiv.appendChild(infoDiv);
+      bookDiv.appendChild(rightControls);
+
+      bookListEl.appendChild(bookDiv);
+    });
+
+    renderPagination(totalPages);
+  }
+
+  function renderPagination(totalPages) {
+    paginationEl.innerHTML = '';
+
+    if (currentPage > 1) {
+      const prevBtn = document.createElement('button');
+      prevBtn.className = 'arrow-btn';
+      prevBtn.setAttribute('aria-label', 'Previous page');
+      prevBtn.innerHTML = `
+        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      `;
+      prevBtn.addEventListener('click', () => {
+        currentPage = Math.max(1, currentPage - 1);
+        renderBooks();
+      });
+      paginationEl.appendChild(prevBtn);
+    }
+
+    for(let i = 1; i <= totalPages; i++) {
+      const pageBtn = document.createElement('button');
+      pageBtn.textContent = i;
+      pageBtn.className = i === currentPage ? 'active' : '';
+      pageBtn.setAttribute('aria-label', `Page ${i}`);
+      if(i === currentPage) {
+        pageBtn.setAttribute('aria-current', 'page');
+      }
+      pageBtn.addEventListener('click', () => {
+        currentPage = i;
+        renderBooks();
+      });
+      paginationEl.appendChild(pageBtn);
+    }
+
+    if (currentPage < totalPages) {
+      const nextBtn = document.createElement('button');
+      nextBtn.className = 'arrow-btn';
+      nextBtn.setAttribute('aria-label', 'Next page');
+      nextBtn.innerHTML = `
+        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      `;
+      nextBtn.addEventListener('click', () => {
+        currentPage = Math.min(totalPages, currentPage + 1);
+        renderBooks();
+      });
+      paginationEl.appendChild(nextBtn);
+    }
+  }
+
+  searchInput.addEventListener('input', (e) => {
+    searchTerm = e.target.value;
+    currentPage = 1;
+    renderBooks();
+  });
+
+  renderBooks();
+</script>
+
+</body>
+</html>
