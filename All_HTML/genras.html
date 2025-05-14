@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recommendations</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../All_CSS/main.css">
+</head>
+<body>
+  <!-- Nav Bar -->
+  <div id="navbar-placeholder"></div>
+  <script>
+    fetch('nav.html')
+      .then(r => r.text())
+      .then(html => document.getElementById('navbar-placeholder').innerHTML = html);
+  </script>
+
+  <div class="container py-5" style="max-width: 1400px;">
+    <form class="filter-buttons mb-4 d-flex flex-wrap ">
+      <button type="button" class="filter-button active">All</button>
+      <button type="button" class="filter-button">Language</button>
+      <button type="button" class="filter-button">Genre</button>
+      <button type="button" class="filter-button">Author</button>
+      <button type="button" class="filter-button">Rating</button>
+    </form>
+
+    <div id="bookGrid" class="row g-3"></div>
+    <!-- Pagination controls -->
+    <div id="customReviewPagination" class="d-flex justify-content-center mt-4"></div>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer-placeholder"></div>
+  <script>
+    fetch('footer.html')
+      .then(r => r.text())
+      .then(html => {
+        const temp = document.createElement('div');
+        temp.innerHTML = html;
+        document.getElementById('footer-placeholder').appendChild(temp.querySelector('footer'));
+      });
+  </script>
+
+  <!-- Bootstrap Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const apiURL = 'https://www.googleapis.com/books/v1/volumes?q=subject:fiction&maxResults=40';
+      const booksPerPage = 16;
+      let currentPage = 1;
+      let books = [];
+
+      const bookGrid = document.getElementById('bookGrid');
+      const paginationContainer = document.getElementById('customReviewPagination');
+
+      fetch(apiURL)
+        .then(res => res.json())
+        .then(data => {
+          books = data.items || [];
+          renderBooks();
+          renderPagination();
+        })
+        .catch(err => {
+          console.error('Error fetching books:', err);
+          bookGrid.innerHTML = '<p class="text-danger">Failed to load recommendations.</p>';
+        });
+
+      function renderBooks() {
+        bookGrid.innerHTML = '';
+        const start = (currentPage - 1) * booksPerPage;
+        const pageItems = books.slice(start, start + booksPerPage);
+        pageItems.forEach(book => {
+          const titleText = book.volumeInfo.title || 'No Title';
+          const title = titleText.length > 30 ? titleText.slice(0, 30) + '...' : titleText;
+          const authorsList = book.volumeInfo.authors?.join(', ') || 'Unknown';
+          const authors = authorsList.length > 30 ? authorsList.slice(0, 30) + '...' : authorsList;
+          const rating = book.volumeInfo.averageRating || 0;
+          const image = book.volumeInfo.imageLinks?.thumbnail || 'https://via.placeholder.com/150';
+
+          let starRating = '';
+          for (let i = 1; i <= 5; i++) {
+            starRating += `<span class=\"star ${i <= rating ? 'filled' : ''}\" data-rating=\"${rating.toFixed(1)}\">★</span>`;
+          }
+
+          const col = document.createElement('div');
+          col.className = 'col-md-3 col-sm-6';
+          col.innerHTML = `
+            <a href=\"book-detail.html?bookId=${book.id}\" class=\"card-link text-decoration-none\">
+              <div class=\"card\">
+                <img src=\"${image}\" class=\"card-img-top\" loading=\"lazy\" alt=\"${title}\">
+                <div class=\"card-body\">
+                  <h5 class=\"card-title card-link\">${title}</h5>
+                  <p class=\"card-text card-link author\">${authors}</p>
+                  <div class=\"stars\" data-rating=\"${rating}\">${starRating}</div>
+                </div>
+              </div>
+            </a>`;
+          bookGrid.appendChild(col);
+        });
+      }
+
+      function renderPagination() {
+        const totalPages = Math.ceil(books.length / booksPerPage);
+        if (totalPages <= 1) {
+          paginationContainer.innerHTML = '';
+          return;
+        }
+        let html = `<span class=\"custom-page-link ${currentPage===1?'disabled':''}\" onclick=\"changePage(${currentPage-1})\">&lt;</span>`;
+
+        if (currentPage > 2) {
+          html += `<span class=\"custom-page-link\" onclick=\"changePage(1)\">1</span>`;
+          if (currentPage > 3) html += `<span class=\"custom-page-link disabled\">...</span>`;
+        }
+
+        for (let i = Math.max(1, currentPage-1); i <= Math.min(totalPages, currentPage+1); i++) {
+          html += `<span class=\"custom-page-link${i===currentPage?' active':''}\" onclick=\"changePage(${i})\">${i}</span>`;
+        }
+
+        if (currentPage < totalPages-1) {
+          if (currentPage < totalPages-2) html += `<span class=\"custom-page-link disabled\">...</span>`;
+          html += `<span class=\"custom-page-link\" onclick=\"changePage(${totalPages})\">${totalPages}</span>`;
+        }
+
+        html += `<span class=\"custom-page-link ${currentPage===totalPages?'disabled':''}\" onclick=\"changePage(${currentPage+1})\">&gt;</span>`;
+        paginationContainer.innerHTML = html;
+      }
+
+      window.changePage = function(page) {
+        const totalPages = Math.ceil(books.length / booksPerPage);
+        if (page < 1 || page > totalPages || page === currentPage) return;
+        currentPage = page;
+        renderBooks();
+        renderPagination();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+    });
+  </script>
+</body>
+</html>
