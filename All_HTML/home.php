@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookNest</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Responsive iframe styling */
+    .reviews-iframe-container {
+      margin: 2rem 0;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        overflow: hidden; /* hide any scrollbars */
+
+    }
+    
+    .reviews-iframe {
+      width: 100%;
+      height: 600px; /* Adjust based on your content */
+      border: none;
+      background: transparent;
+        overflow: hidden; /* hide any scrollbars */
+
+    }
+  
+    @media (max-width: 768px) {
+      .reviews-iframe {
+        height: 700px; /* More vertical space on mobile */
+      }
+    }
+    /* ==========================
+   Genre Section via iframe
+   ========================== */
+.genre-iframe-container {
+  margin: 2rem 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+.genre-iframe {
+  width: 100%;
+  height: 820px;    /* or whatever you prefer */
+  border: none;
+  overflow: hidden; /* hide any scrollbars */
+
+
+}
+/* On small screens, give a bit more vertical space */
+@media (max-width: 768px) {
+  .genre-iframe {
+    height: 1200px;
+  }
+}
+
+  </style>
+  
+</head>
+<body>
+  <!-- Navbar -->
+  <div id="navbar-placeholder"></div>
+
+<script>
+  fetch('nav.html')
+    .then(response => response.text())
+    .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
+</script>
+  <!-- Hero Section -->
+  <div class="container-fluid bg-light py-5">
+    <div class="row">
+      <div class="col-12 col-md-6 text-center text-md-start">
+        <h1>Discover Your Next Great Read:</h1>
+        <button class="btn btn-primary">Start Exploring</button>
+      </div>
+      <div class="col-12 col-md-6 text-center">
+        <img src="https://via.placeholder.com/300" alt="hero-image" class="img-fluid">
+      </div>
+    </div>
+  </div>
+  <!-- Popular Picks Section -->
+  
+
+
+  <!-- Explore by Genre Section -->
+  <div class="container-fluid py-5">
+    <div class="row">
+      <div class="col-12">
+        <div class="genre-iframe-container">
+         <iframe
+  src="genraSec.html"
+  class="genre-iframe"
+  loading="lazy"
+  allowfullscreen
+  scrolling="no"
+  style="overflow:hidden;">
+</iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Best Books This Month Section -->
+ <div id="includedContent"></div>
+ <!-- From Our Readers Section -->
+<div class="reviews-iframe-container">
+  <iframe src="randomreviews.html" 
+    loading="lazy"
+    frameborder="0"
+    allow="fullscreen"
+    class="reviews-iframe"
+  ></iframe>
+</div>
+
+<script>
+  // Receive height updates and adjust iframe
+  window.addEventListener('message', (event) => {
+    // Security check - verify message origin if deployed
+    // if (event.origin !== "https://your-domain.com") return;
+    
+    if (event.data.type === 'reviewsHeight') {
+      const iframe = document.querySelector('.reviews-iframe');
+      iframe.style.height = `${event.data.height}px`;
+      
+      // Optional: Add smooth transition
+      iframe.style.transition = 'height 0.3s ease';
+    }
+  });
+  // Fallback: Set initial min-height
+  document.querySelector('.reviews-iframe').style.minHeight = '500px';
+  </script>
+
+
+
+
+
+  
+
+
+
+  <!-- Bootstrap JS -->
+   
+  <script>
+    // Function to load the HTML content into a div
+   function loadHTML() {
+      fetch('./MonthlyRecomnd.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('includedContent').innerHTML = data;
+        })
+        .catch(error => {
+          console.error('Error loading HTML:', error);
+        });
+
+    }
+    // Load HTML content when the page is loaded
+    window.onload = loadHTML;
+      // Add this new fetch call for the reviews section
+  </script>
+    <div id="footer-placeholder"></div>
+  <script>
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(html => {
+        const temp = document.createElement('div');
+        temp.innerHTML = html;
+        const footerEl = temp.querySelector('footer');
+        document.getElementById('footer-placeholder').appendChild(footerEl);
+      })
+      .catch(err => console.error('Error loading footer:', err));
+  </script>
+  <script src="../All_JS/MonthlyRecomnd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  
+</body>
+</html>

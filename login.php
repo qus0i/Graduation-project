@@ -33,8 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $row = mysqli_fetch_assoc($result);
             $_SESSION['user'] = $email;
             $_SESSION['username'] = $row['username']; // ✅ store username
+            $_SESSION['id'] = $row['id']; // or whatever variable holds the user ID from the DB
+
            // $_SESSION['login_message'] = "Successfully logged in!";
-            header("Location: ALL_HTML/home.html");
+            header("Location: ALL_HTML/home.php");
             exit();
         } else {
             echo "<div class='alert alert-danger'>Invalid email or password!</div>";
