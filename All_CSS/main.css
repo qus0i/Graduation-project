@@ -1315,3 +1315,8 @@ background-color: var(--color-secondary-dark);
       color: var(--color-card-text);
 
     }
+    .icons-counter{
+      fill:var(--color-primary-light);
+      height:50px;
+      width:50px;
+    }
