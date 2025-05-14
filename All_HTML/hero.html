@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hero Video Navigation</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box }
+    body,html { height:100% }
+    #hero { position:relative; width:100%; height:100vh; overflow:hidden }
+    #hero video {
+      position:absolute; top:50%; left:50%;
+      min-width:100%; min-height:100%;
+      width:auto; height:auto;
+      transform:translate(-50%,-50%);
+      object-fit:cover;
+    }
+    nav {
+      position:absolute; top:20px; right:20px; z-index:10;
+    }
+    nav a {
+      margin-left:1rem; padding:.5rem 1rem;
+      background:rgba(0,0,0,0.5); color:#fff; text-decoration:none;
+      border-radius:4px; font-family:sans-serif;
+    }
+    nav a.active {
+      background:rgba(255,255,255,0.7); color:#000;
+    }
+  </style>
+</head>
+<body>
+
+  <section id="hero">
+    <video
+      id="hero-video"
+      muted
+      preload="auto"
+      <!-- remove loop so it will stop at end -->
+      autoplay
+    ></video>
+
+    <nav>
+      <a href="home.html"            data-page="home">Home</a>
+      <a href="recommendation.html"  data-page="recommendation">Recommendation</a>
+      <a href="about.html"           data-page="about">About</a>
+    </nav>
+  </section>
+
+  <script>
+    // 1) Define your transition → video URL map:
+    const videoMap = {
+      'home->recommendation': 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      'home->about':          'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+      'recommendation->home': 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+      'recommendation->about':'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+      'about->home':          'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
+      'about->recommendation':'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4'
+    };
+
+    // 2) Map each page key to its real URL (used after video ends)
+    const pageUrl = {
+      home:           'home.html',
+      recommendation: 'recommendation.html',
+      about:          'about.html'
+    };
+
+    let currentPage = 'home';               // track where we are
+    const videoEl   = document.getElementById('hero-video');
+    const links     = document.querySelectorAll('nav a');
+
+    // helper to highlight active link
+    function setActive(page) {
+      links.forEach(a => a.classList.toggle('active', a.dataset.page === page));
+    }
+    setActive(currentPage);
+
+    // handle nav-clicks
+    links.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+
+        const targetPage = link.dataset.page;
+        const key        = `${currentPage}->${targetPage}`;
+        const clip       = videoMap[key];
+        const dest       = pageUrl[targetPage];
+
+        if (!clip) {
+          console.warn(`No video for ${key}`);
+          // fallback: immediate navigation
+          window.location.href = dest;
+          return;
+        }
+
+        // remove any old 'ended' listener
+        videoEl.onended = null;
+
+        // set up new video
+        videoEl.loop = false;      // ensures it stops at last frame
+        videoEl.src  = clip;
+        videoEl.load();
+        videoEl.play().catch(()=>{ /* may require user gesture */ });
+
+        // once it ends, navigate
+        videoEl.onended = () => {
+          window.location.href = dest;
+        };
+
+        currentPage = targetPage;
+        setActive(currentPage);
+      });
+    });
+  </script>
+</body>
+</html>
