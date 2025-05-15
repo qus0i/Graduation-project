@@ -1,79 +1,80 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Genre Explorer</title>
-      <link rel="stylesheet" href="../All_CSS/main.css">
- <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background-color: #0B0804;
-      color: #f9c172;
-      font-family: Arial, sans-serif;
-      min-height: 100vh;
-      padding: 2rem 1rem;
-      display: block!important;
-    }
-
-
-  </style>
-</head>
-<body>
-  <div class="genra-container">
-    <h1>Explore by Genre</h1>
-    <div class="genre-grid"></div>
-    <button onclick="window.location.href='genres.html'" class="show-more-btn">Show More</button>
-  </div>
-
-  <script>
-    const MAX_GENRES = 6;
-
-    function shuffle(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Genre Explorer</title>
+    <link rel="stylesheet" href="../All_CSS/main.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
-    }
 
-    async function fetchCategories() {
-      const res = await fetch('https://www.googleapis.com/books/v1/volumes?q=subject&maxResults=40');
-      const data = await res.json();
-      const cats = data.items
-        .flatMap(item => item.volumeInfo.categories || [])
-        .filter((c, i, self) => self.indexOf(c) === i);
-      return cats;
-    }
+      body {
+        background-color: #0b0804;
+        color: #f9c172;
+        font-family: Arial, sans-serif;
+        min-height: 100vh;
+        padding: 2rem 1rem;
+        display: block !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="genra-container">
+      <h1>Explore by Genre</h1>
+      <div class="genre-grid"></div>
+      <button
+        onclick="window.location.href='genres.html'"
+        class="show-more-btn"
+      >
+        Show More
+      </button>
+    </div>
 
-    function renderGenres(genres) {
-      const grid = document.querySelector('.genre-grid');
-      grid.innerHTML = '';
-      genres.forEach(name => {
-        const card = document.createElement('div');
-        card.className = 'genre-card';
-        const title = document.createElement('div');
-        title.className = 'genre-title';
-        title.textContent = name;
-        card.addEventListener('click', () => {
-          window.location.href = `genres.html?genre=${encodeURIComponent(name)}`;
+    <script>
+      const MAX_GENRES = 6;
+
+      function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+      }
+
+      async function fetchGenresFromDB() {
+        const res = await fetch("get_genres.php");
+        const genres = await res.json();
+        return genres;
+      }
+
+      function renderGenres(genres) {
+        const grid = document.querySelector(".genre-grid");
+        grid.innerHTML = "";
+        genres.forEach((name) => {
+          const card = document.createElement("div");
+          card.className = "genre-card";
+          const title = document.createElement("div");
+          title.className = "genre-title";
+          title.textContent = name;
+          card.addEventListener("click", () => {
+            window.location.href = `genres.html?genre=${encodeURIComponent(
+              name
+            )}`;
+          });
+          card.appendChild(title);
+          grid.appendChild(card);
         });
-        card.appendChild(title);
-        grid.appendChild(card);
-      });
-    }
+      }
 
-    async function init() {
-      const categories = await fetchCategories();
-      shuffle(categories);
-      renderGenres(categories.slice(0, MAX_GENRES));
-    }
+      async function init() {
+        const genres = await fetchGenresFromDB();
+        renderGenres(genres);
+      }
 
-    document.addEventListener('DOMContentLoaded', init);
-  </script>
-</body>
+      document.addEventListener("DOMContentLoaded", init);
+    </script>
+  </body>
 </html>

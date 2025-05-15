@@ -10,22 +10,7 @@ $userTable = "CREATE TABLE IF NOT EXISTS users (
     profile_img LONGBLOB
 )";
 
-// LISTS TABLE
-$listsTable = "CREATE TABLE IF NOT EXISTS lists (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL
-)";
 
-// USER_BOOKS TABLE
-$userBooksTable = "CREATE TABLE IF NOT EXISTS user_books (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT NOT NULL,
-    book_api_id VARCHAR(100) NOT NULL,
-    list_id INT NOT NULL,
-    added_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (list_id) REFERENCES lists(id)
-)";
   $genresTable ="  CREATE TABLE IF NOT EXISTS user_genres (
     user_id INT PRIMARY KEY,
     genre1 VARCHAR(15),
@@ -36,20 +21,12 @@ $userBooksTable = "CREATE TABLE IF NOT EXISTS user_books (
     genre6 VARCHAR(15),
     FOREIGN KEY (user_id) REFERENCES users(id)
     )";
-    $userReviewsTable = "CREATE TABLE IF NOT EXISTS user_reviews (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    book_api_id VARCHAR(100) NOT NULL,
-    review TEXT,
-    rating DECIMAL(2,1),
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-)";
+   
     $forgotpasswordTable = "CREATE TABLE IF NOT EXISTS `forgotpassword` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `user_id` int(11) NOT NULL,
     `rkey` char(32) NOT NULL,
-    `time` int(11) NOT NULL,
+    `time` time(11) DATETIME NOT NULL,
     `status` varchar(7) NOT NULL,
     PRIMARY KEY (`id`)
     )";
@@ -62,9 +39,6 @@ $userBooksTable = "CREATE TABLE IF NOT EXISTS user_books (
 // Run queries
 if (
     $link->query($userTable) === TRUE &&
-    $link->query($listsTable) === TRUE &&
-    $link->query($userBooksTable) === TRUE&&
-    $link->query($userReviewsTable)=== TRUE &&
     $link->query($genresTable) === TRUE &&
     $link->query($forgotpasswordTable) === TRUE
 ) {
@@ -72,6 +46,15 @@ if (
 } else {
     echo "Error: " . $link->error;
 }
+
+/*$sql = "ALTER TABLE forgotpassword MODIFY `time` DATETIME NOT NULL";
+
+if ($link->query($sql) === TRUE) {
+    echo "تم تعديل العمود time إلى DATETIME بنجاح.";
+} else {
+    echo "خطأ في تعديل العمود: " . $link->error;
+}*/
+
 
 $link->close();
 ?>
