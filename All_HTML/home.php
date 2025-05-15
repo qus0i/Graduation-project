@@ -25,10 +25,10 @@ echo '</pre>';*/
     
     .reviews-iframe {
       width: 100%;
-      height: 600px; /* Adjust based on your content */
+      height: 700px; /* Adjust based on your content */
       border: none;
       background: transparent;
-        overflow: hidden; /* hide any scrollbars */
+      overflow: hidden; /* hide any scrollbars */
 
     }
   
@@ -130,7 +130,7 @@ echo '</pre>';*/
     }
   });
   // Fallback: Set initial min-height
-  document.querySelector('.reviews-iframe').style.minHeight = '500px';
+  document.querySelector('.reviews-iframe').style.minHeight = '600px';
   </script>
 
 

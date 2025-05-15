@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Your Favorite Books</title>
+
+<style>
+  body {
+    margin: 0;
+    background-color: #0B0804;
+    color: #d6aa68;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  main {
+    flex: 1 0 auto;
+  }
+  header, .search-section {
+    padding: 4rem 1rem 3rem;
+    text-align: center;
+    background-color: #0B0804;
+    color: #d6aa68;
+  }
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #d6aa68;
+  }
+  .search-container {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+  }
+  input[type="search"] {
+    width: 100%;
+    padding: 0.6rem 1rem 0.6rem 2.8rem;
+    font-size: 1rem;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    background-color: #f1c9a9;
+    color: #7a5a43;
+    font-weight: 500;
+  }
+  input[type="search"]::placeholder {
+    color: #7a5a43;
+  }
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    stroke: #7a5a43;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  .book-list > div {
+    background: #2b241c;
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
+    height: 450px;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    position: relative;
+    gap: 1.5rem;
+    color: #d6aa68;
+    min-height: 150px;
+  }
+  .book-list > div:hover {
+    background-color: #3b3328;
+  }
+  .book-image-container {
+    width: 320px;
+    height: 450px;
+    background-color: white;
+    border-radius: 4px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .book-image {
+   width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+  .book-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 160px; /* increased for spacing */
+    position: relative;
+  }
+  .book-title {
+    font-weight: bold;
+    font-size: 1.7rem;
+    margin: 0 0 0.25rem 0;
+    color: #F9C172;
+  }
+  .book-author {
+    font-size: 1rem;
+    margin: 0 0 0.5rem 0;
+    color: #c2a058;
+  }
+  .book-description {
+    font-size: 0.9rem;
+    color: #c4ad76;
+    line-height: 1.3;
+  }
+  .right-controls {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    width: max-content;
+    min-width: 140px; /* prevent overlap */
+  }
+  .button-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .action-btn, .favorite-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 28px;
+    height: 28px;
+    stroke: #d6aa68;
+    fill: none;
+    transition: fill 0.3s, stroke 0.3s;
+  }
+  .action-btn:hover, .favorite-btn:hover {
+    stroke: #F9C172;
+    fill: #F9C172;
+  }
+  .favorite-icon {
+    fill: transparent;
+  }
+  .favorite-icon.favorited {
+    fill: #d6aa68;
+  }
+  .rating-stars {
+    display: inline-flex;
+    gap: 3px;
+  }
+  .star {
+    width: 18px;
+    height: 18px;
+    fill: #d6aa68;
+    stroke: #d6aa68;
+  }
+  .star.empty {
+    fill: transparent;
+  }
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 3rem;
+  }
+  .pagination button {
+    background: #3b3328;
+    border: none;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    color: #d6aa68;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  .pagination button:hover:not(.active) {
+    background: #4b4538;
+  }
+  .pagination button.active {
+    background: #d6aa68;
+    color: #2b241c;
+    cursor: default;
+  }
+  .pagination .arrow-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .arrow-icon {
+    stroke: #d6aa68;
+    width: 20px;
+    height: 20px;
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Your Favorite Books</h1>
+    <div class="search-container">
+      <input id="searchInput" type="search" placeholder="Find book you like" />
+      <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+    </div>
+  </header>
+  <div class="container">
+    <div id="bookList" class="book-list"></div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  const booksPerPage = 4;
+  let currentPage = 1;
+  let books = [];
+  let searchTerm = 'classic';
+  let favorites = new Set();
+
+  const bookListEl = document.getElementById('bookList');
+  const paginationEl = document.getElementById('pagination');
+  const searchInput = document.getElementById('searchInput');
+
+  async function fetchBooks(query) {
+    const maxResults = 40;
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&maxResults=${maxResults}`;
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      if (data.items) {
+        return data.items.map(item => {
+          const volume = item.volumeInfo;
+          return {
+            id: item.id,
+            title: volume.title || "No title",
+            author: volume.authors ? volume.authors.join(', ') : "Unknown author",
+            favorite: favorites.has(item.id),
+            image: volume.imageLinks ? volume.imageLinks.thumbnail : '',
+            rating: volume.averageRating ? Math.round(volume.averageRating) : 0,
+            description: volume.description ? volume.description.replace(/(<([^>]+)>)/gi, "").substring(0, 300) + (volume.description.length > 300 ? "..." : "") : "No description available."
+          };
+        });
+      } else {
+        return [];
+      }
+    } catch (error) {
+      console.error("Failed to fetch books:", error);
+      return [];
+    }
+  }
+
+  function renderBooks() {
+    const totalPages = Math.ceil(books.length / booksPerPage);
+    if (currentPage > totalPages) currentPage = totalPages || 1;
+
+    const start = (currentPage - 1) * booksPerPage;
+    const currentBooks = books.slice(start, start + booksPerPage);
+
+    bookListEl.innerHTML = '';
+
+    if (currentBooks.length === 0) {
+      bookListEl.textContent = "No books found.";
+      paginationEl.innerHTML = '';
+      return;
+    }
+
+    currentBooks.forEach((book) => {
+      const bookDiv = document.createElement('div');
+      bookDiv.className = 'book-item';
+
+      const imgContainer = document.createElement('div');
+      imgContainer.className = 'book-image-container';
+      const img = document.createElement('img');
+      img.src = book.image || 'https://via.placeholder.com/120x150?text=No+Image';
+      img.alt = book.title;
+      img.className = 'book-image';
+
+      imgContainer.appendChild(img);
+
+      const infoDiv = document.createElement('div');
+      infoDiv.className = 'book-info';
+      infoDiv.style.cursor = 'pointer';
+
+      const title = document.createElement('h2');
+      title.className = 'book-title';
+      title.textContent = book.title;
+
+      const author = document.createElement('p');
+      author.className = 'book-author';
+      author.textContent = book.author;
+
+      const description = document.createElement('p');
+      description.className = 'book-description';
+      description.textContent = book.description;
+
+      infoDiv.appendChild(title);
+      infoDiv.appendChild(author);
+      infoDiv.appendChild(description);
+
+      // Right controls container
+      const rightControls = document.createElement('div');
+      rightControls.className = 'right-controls';
+
+      // Create button row container for heart + toggles
+      const buttonRow = document.createElement('div');
+      buttonRow.className = 'button-row';
+
+      // Heart button
+      const favBtn = document.createElement('button');
+      favBtn.className = 'favorite-btn';
+      favBtn.setAttribute('aria-label', 'Toggle favorite');
+
+      const heartSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      heartSvg.setAttribute('viewBox', '0 0 24 24');
+      heartSvg.setAttribute('fill', book.favorite ? '#d6aa68' : 'none');
+      heartSvg.setAttribute('stroke', '#d6aa68');
+      heartSvg.setAttribute('stroke-width', '2');
+      heartSvg.setAttribute('stroke-linecap', 'round');
+      heartSvg.setAttribute('stroke-linejoin', 'round');
+      heartSvg.classList.add('favorite-icon');
+      if (book.favorite) heartSvg.classList.add('favorited');
+      heartSvg.innerHTML = '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>';
+      favBtn.appendChild(heartSvg);
+
+      favBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        book.favorite = !book.favorite;
+        if (book.favorite) {
+          favorites.add(book.id);
+        } else {
+          favorites.delete(book.id);
+        }
+        renderBooks();
+      });
+
+      buttonRow.appendChild(favBtn);
+
+      // Toggle buttons data (simplified icons for demo)
+      const toggleButtonsData = [
+        {
+          id: 'library-toggle',
+          defaultSVG: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
+          activeSVG: `<svg viewBox="0 0 24 24" fill="#F9C172" stroke="#F9C172" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/></svg>`,
+          tooltipInactive: 'Add to My Library',
+          tooltipActive: 'Remove from My Library'
+        },
+        {
+          id: 'openCover-toggle',
+          defaultSVG: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/></svg>`,
+          activeSVG: `<svg viewBox="0 0 24 24" fill="#F9C172" stroke="#F9C172" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/></svg>`,
+          tooltipInactive: 'Add to My Open Cover List',
+          tooltipActive: 'Remove from My Open Cover List'
+        },
+        {
+          id: 'closedCover-toggle',
+          defaultSVG: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><rect x="3" y="4" width="18" height="16" rx="2" ry="2"/></svg>`,
+          activeSVG: `<svg viewBox="0 0 24 24" fill="#F9C172" stroke="#F9C172" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><rect x="3" y="4" width="18" height="16" rx="2" ry="2"/></svg>`,
+          tooltipInactive: 'Add to My Closed Cover List',
+          tooltipActive: 'Remove from My Closed Cover List'
+        },
+        {
+          id: 'dustyShelves-toggle',
+          defaultSVG: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>`,
+          activeSVG: `<svg viewBox="0 0 24 24" fill="#F9C172" stroke="#F9C172" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>`,
+          tooltipInactive: 'Add to My Dusty Shelves List',
+          tooltipActive: 'Remove from My Dusty Shelves List'
+        },
+      ];
+
+      toggleButtonsData.forEach(toggleData => {
+        const btn = document.createElement('button');
+        btn.className = 'action-btn';
+        btn.id = `${toggleData.id}-${book.id}`;
+        btn.setAttribute('data-tooltip', toggleData.tooltipInactive);
+        btn.setAttribute('aria-label', toggleData.tooltipInactive);
+        btn.innerHTML = toggleData.defaultSVG;
+        btn.dataset.active = 'false';
+
+        btn.addEventListener('click', e => {
+          e.stopPropagation();
+          const isActive = btn.dataset.active === 'true';
+          btn.dataset.active = isActive ? 'false' : 'true';
+
+          btn.setAttribute('data-tooltip', isActive ? toggleData.tooltipInactive : toggleData.tooltipActive);
+          btn.setAttribute('aria-label', isActive ? toggleData.tooltipInactive : toggleData.tooltipActive);
+          btn.innerHTML = isActive ? toggleData.defaultSVG : toggleData.activeSVG;
+        });
+
+        buttonRow.appendChild(btn);
+      });
+
+      rightControls.appendChild(buttonRow);
+
+      // Stars rating below buttons
+      const ratingDiv = document.createElement('div');
+      ratingDiv.className = 'rating-stars';
+
+      for (let i = 1; i <= 5; i++) {
+        const starSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        starSvg.setAttribute('viewBox', '0 0 24 24');
+        starSvg.classList.add('star');
+        if (i <= book.rating) {
+          starSvg.innerHTML = `<path stroke="none" d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />`;
+        } else {
+          starSvg.classList.add('empty');
+          starSvg.innerHTML = `<path fill="none" stroke="currentColor" stroke-width="2" d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>`;
+        }
+        ratingDiv.appendChild(starSvg);
+      }
+
+      rightControls.appendChild(ratingDiv);
+
+      bookDiv.appendChild(imgContainer);
+      bookDiv.appendChild(infoDiv);
+      bookDiv.appendChild(rightControls);
+
+      bookListEl.appendChild(bookDiv);
+    });
+
+    renderPagination(totalPages);
+  }
+
+  function renderPagination(totalPages) {
+    paginationEl.innerHTML = '';
+
+    if (totalPages <= 1) return;
+
+    function createPageBtn(page, label = page) {
+      const btn = document.createElement('button');
+      btn.textContent = label;
+      if (page === currentPage) btn.classList.add('active');
+      btn.addEventListener('click', () => {
+        if (page !== currentPage) {
+          currentPage = page;
+          renderBooks();
+        }
+      });
+      return btn;
+    }
+
+    if (currentPage > 1) {
+      const prevBtn = document.createElement('button');
+      prevBtn.classList.add('arrow-btn');
+      prevBtn.innerHTML = `<svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>`;
+      prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) {
+          currentPage--;
+          renderBooks();
+        }
+      });
+      paginationEl.appendChild(prevBtn);
+    }
+
+    for (let i = 1; i <= totalPages; i++) {
+      paginationEl.appendChild(createPageBtn(i));
+    }
+
+    if (currentPage < totalPages) {
+      const nextBtn = document.createElement('button');
+      nextBtn.classList.add('arrow-btn');
+      nextBtn.innerHTML = `<svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>`;
+      nextBtn.addEventListener('click', () => {
+        if (currentPage < totalPages) {
+          currentPage++;
+          renderBooks();
+        }
+      });
+      paginationEl.appendChild(nextBtn);
+    }
+  }
+
+  searchInput.addEventListener('input', (e) => {
+    searchTerm = e.target.value.trim() || 'classic';
+    currentPage = 1;
+    fetchBooks(searchTerm).then(fetchedBooks => {
+      books = fetchedBooks;
+      renderBooks();
+    });
+  });
+
+  // Initial load
+  fetchBooks(searchTerm).then(fetchedBooks => {
+    books = fetchedBooks;
+    renderBooks();
+  });
+</script>
+
+</body>
+</html>
