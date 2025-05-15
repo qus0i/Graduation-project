@@ -26,14 +26,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $password = mysqli_real_escape_string($link, $password);
         $password = hash('sha256', $password);
 
-        $sql = "SELECT * FROM users WHERE email='$email' AND password='$password' LIMIT 1";
-        $result = mysqli_query($link, $sql);
+        $query = "SELECT * FROM users WHERE email='$email' AND password='$password' LIMIT 1";
+        $result = mysqli_query($link, $query);
 
         if (mysqli_num_rows($result) == 1) {
             $row = mysqli_fetch_assoc($result);
             $_SESSION['user'] = $email;
             $_SESSION['username'] = $row['username']; // ✅ store username
-            $_SESSION['id'] = $row['id']; // or whatever variable holds the user ID from the DB
+            $_SESSION['user_id'] = $row['id']; // or whatever variable holds the user ID from the DB
 
            // $_SESSION['login_message'] = "Successfully logged in!";
             header("Location: ALL_HTML/home.php");

@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (mysqli_num_rows($result) === 1) {
             // Generate token
             $user = mysqli_fetch_assoc($result);
-            $user_id = $user['user_id'];
+            $user_id = $user['id'];
             $rkey = bin2hex(random_bytes(16));
             $time = date("Y-m-d H:i:s");
             $status = 'pending';
@@ -78,16 +78,86 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   <meta charset="UTF-8" />
   <title>Forgot Password</title>
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    body {
+      margin: 0;
+      background-color: #0B0804;
+      font-family: Arial, sans-serif;
+      color: #E7D6C4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    h2 {
+      color: #F9C172;
+      margin-bottom: 16px;
+    }
+
+    p {
+      margin-bottom: 24px;
+    }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #0D1425;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .back-link {
+      margin-top: 16px;
+      display: inline-block;
+      color: #F9C172;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+
 </head>
 <body>
+    <div class="container">
   <h2>Reset Your Password</h2>
+   <p>Enter your email address below and we'll send you<br />instructions to reset your password.</p>
 
   <?php if ($resultMessage) echo $resultMessage; ?>
 
   <form action="forgot-password.php" method="POST">
     <label>Enter your email:</label>
-    <input type="email" name="forgotemail" required>
+    <input type="email" name="forgotemail" placeholder="Your email address" required>
     <button type="submit">Send Reset Link</button>
+    <a class="back-link" href="../ALL_HTML/Signbook.html">Return to Login</a>
   </form>
+  </div>
 </body>
 </html>

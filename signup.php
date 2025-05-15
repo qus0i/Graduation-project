@@ -27,14 +27,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Insert into database
     $query = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$hashedPassword')";
-    if (mysqli_query($link, $query)) {
-        $_SESSION['user'] = $email;
-        $_SESSION['login_message'] = "Account created successfully!";
-        header("Location: ALL_HTML/preferences.html");
-        exit();
-    } else {
-        echo "<div class='alert alert-danger'>Something went wrong. Try again.</div>";
-    }
+    //هبد قصي 
+    $result = mysqli_query($link, $query);
+if ($result) {
+    // Retrieve the inserted user's ID
+    $user_id = mysqli_insert_id($link);
+    
+    $_SESSION['user'] = $email;
+    $_SESSION['username'] = $username;
+    $_SESSION['user_id'] = $user_id;
+
+    // Optional redirect or confirmation
+    header("Location: ALL_HTML/preferences.html");
+    exit();
+   /* echo '<pre>';
+    print_r($_SESSION);
+    echo '</pre>';*/
+} else {
+    echo "<div class='alert alert-danger'>Something went wrong. Try again.</div>";
+}
+
 } else {
     header("Location: ALL_HTML/signbook.html");
     exit();

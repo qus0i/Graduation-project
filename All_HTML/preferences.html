@@ -1,45 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NextChapter - Personalize Your Experience</title>
-    <link rel="stylesheet" href="../All_CSS/main.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NextChapter - Personalize Your Experience</title>
+  <link rel="stylesheet" href="../All_CSS/main.css" />
+
 </head>
 <body>
-    <!-- Header with Logo -->
- <section class="hero-section">
+  <section class="hero-section">
     <div class="background"></div>
     <header class="header">
-        <div class="logo-container">
-            <div class="logo-icon">
-                <div class="book-icon"></div>
-            </div>
-            <div class="logo-text">NextChapter</div>
+      <div class="logo-container">
+        <div class="logo-icon">
+          <div class="book-icon"></div>
         </div>
+        <div class="logo-text">NextChapter</div>
+      </div>
     </header>
+
     <div class="left-side">
-    <!-- Main Content -->
-    <section class="content">
+      <section class="content">
         <h1 class="main-text">Help us personalize your experience better on NextChapter</h1>
         <p class="subtext">Select up to 6 topics that interest you:</p>
-        <div class="interest-list" id="interest-list">
 
-            <!-- Interest buttons will be added here by JavaScript -->
-        </div>
-        <form class="nav-buttons" >
-            <button class="nav-btn back-btn">Back</button>
-            <button class="nav-btn continue-btn" disabled>Continue</button>
+        <form method="POST" action="save_genres.php" id="genres-form">
+          <div class="interest-list" id="interest-list"></div>
+          <button type="submit" class="nav-btn continue-btn" disabled>Continue</button>
         </form>
-        <script src="script.js"></script>
-    </section>
-</div>
+      </section>
+    </div>
 
     <div class="right-side">
-        <img src="../All_IMAGES/rightimg.png" alt="Illustration of reading preferences">
+      <img src="../All_IMAGES/rightimg.png" alt="Illustration of reading preferences" />
     </div>
-</section>
-<script src="../All_JS/intersts.js"></script>
-<div id="status-message" style="text-align: center; margin: 10px; color: #f9c172 ; z-index: 5;"></div>
+  </section>
+
+  <script>
+    const interests = [
+      "Fantasy", "Science Fiction", "Mystery", "Romance", "Thriller",
+      "Hist Fiction", "Biography", "Science", "Business", "Self-Help"
+    ];
+
+    const interestsContainer = document.getElementById('interest-list');
+    const continueBtn = document.querySelector('.continue-btn');
+    let selectedInterests = [];
+
+    interests.forEach(interest => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'interest-btn';
+      button.textContent = interest;
+
+      button.addEventListener('click', () => {
+        if (button.classList.contains('selected')) {
+          button.classList.remove('selected');
+          selectedInterests = selectedInterests.filter(i => i !== interest);
+        } else {
+          if (selectedInterests.length < 6) {
+            button.classList.add('selected');
+            selectedInterests.push(interest);
+          }
+        }
+
+        updateFormFields();
+        continueBtn.disabled = selectedInterests.length === 0;
+      });
+
+      interestsContainer.appendChild(button);
+    });
+
+    function updateFormFields() {
+      const form = document.getElementById('genres-form');
+      // إزالة الحقول القديمة
+      form.querySelectorAll('input[name="genres[]"]').forEach(e => e.remove());
+
+      // إضافة حقول مخفية لكل اختيار
+      selectedInterests.forEach(genre => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'genres[]';
+        input.value = genre;
+        form.appendChild(input);
+      });
+    }
+  </script>
 </body>
 </html>

@@ -45,6 +45,15 @@ $userBooksTable = "CREATE TABLE IF NOT EXISTS user_books (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)
 )";
+    $forgotpasswordTable = "CREATE TABLE IF NOT EXISTS `forgotpassword` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL,
+    `rkey` char(32) NOT NULL,
+    `time` int(11) NOT NULL,
+    `status` varchar(7) NOT NULL,
+    PRIMARY KEY (`id`)
+    )";
+   
 
 
 // CREATE TABLE user_genres
@@ -56,7 +65,8 @@ if (
     $link->query($listsTable) === TRUE &&
     $link->query($userBooksTable) === TRUE&&
     $link->query($userReviewsTable)=== TRUE &&
-    $link->query($genresTable) === TRUE
+    $link->query($genresTable) === TRUE &&
+    $link->query($forgotpasswordTable) === TRUE
 ) {
     echo "All tables created successfully.";
 } else {
