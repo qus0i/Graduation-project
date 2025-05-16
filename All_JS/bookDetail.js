@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <div class="col-12 col-md-5 col-lg-4 mb-4 mb-md-0">
   <div class="text-center text-md-start">
     <div style="position: relative; display: inline-block;">
-      <img src="${image}" class="img-fluid rounded shadow-lg" alt="Book cover" style="max-height: 70vh; max-width: 100%; object-fit: contain;">
+      <img src="${image}" class="img-fluid rounded shadow-lg" alt="Book cover" style=" max-width: 100%; object-fit: contain;">
  <!--this is the favourite button link it with data base-->
 <form method="post" id="favourite">     
   <button type="button" class="heart-button" onclick="this.classList.toggle('active')"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50" >
