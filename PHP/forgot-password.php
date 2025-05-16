@@ -72,92 +72,136 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 
+<!-- Updated forgot-password.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Forgot Password</title>
-  <link rel="stylesheet" href="style.css" />
-
+  <link rel="stylesheet" href="style.css">
   <style>
+
     body {
-      margin: 0;
-      background-color: #0B0804;
-      font-family: Arial, sans-serif;
-      color: #E7D6C4;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+  margin: 0;
+  padding: 0;
+  background-color: #0b0804;
+  font-family: Arial, sans-serif;
+  color: #e7d6c4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
-    .container {
-      text-align: center;
-      width: 90%;
-      max-width: 400px;
-    }
+.container {
+  background-color: #1a1a1a;
+  padding: 24px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
 
-    h2 {
-      color: #F9C172;
-      margin-bottom: 16px;
-    }
+h2 {
+  color: #f9c172;
+  margin-bottom: 16px;
+}
 
-    p {
-      margin-bottom: 24px;
-    }
+p {
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
 
-    input[type="email"] {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 6px;
-      margin-bottom: 16px;
-      font-size: 16px;
-    }
+.message {
+  margin-bottom: 16px;
+  padding: 12px;
+  background-color: #2e2e2e;
+  border-radius: 4px;
+  color: #fff;
+}
 
-    button {
-      width: 100%;
-      padding: 12px;
-      background-color: #0D1425;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
-      font-size: 16px;
-      cursor: pointer;
-    }
+label {
+  display: block;
+  text-align: left;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
 
-    button:hover {
-      opacity: 0.9;
-    }
+input[type="email"] {
+  width: 370px;
+  padding: 12px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-size: 16px;
+  background: #2a2a2a;
+  color: #e7d6c4;
+}
 
-    .back-link {
-      margin-top: 16px;
-      display: inline-block;
-      color: #F9C172;
-      text-decoration: none;
-      font-size: 14px;
-    }
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #f9c172;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
 
-    .back-link:hover {
-      text-decoration: underline;
-    }
+button:hover {
+  background-color: #c17b36;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 16px;
+  color: #f9c172;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: #d2a14f;
+  text-decoration: underline;
+}
+
+
   </style>
-
 </head>
 <body>
-    <div class="container">
-  <h2>Reset Your Password</h2>
-   <p>Enter your email address below and we'll send you<br />instructions to reset your password.</p>
+  <div class="container">
+    <h2>Reset Your Password</h2>
+    <p>
+      Enter your email address below and we'll send you<br>
+      instructions to reset your password.
+    </p>
 
-  <?php if ($resultMessage) echo $resultMessage; ?>
+    <?php if (!empty($resultMessage)): ?>
+      <div class="message"><?php echo htmlspecialchars($resultMessage); ?></div>
+    <?php endif; ?>
 
-  <form action="forgot-password.php" method="POST">
-    <label>Enter your email:</label>
-    <input type="email" name="forgotemail" placeholder="Your email address" required>
-    <button type="submit">Send Reset Link</button>
-    <a class="back-link" href="../ALL_HTML/Signbook.html">Return to Login</a>
-  </form>
+    <form action="forgot-password.php" method="post">
+      <label for="forgotemail">Email Address</label>
+      <input
+        type="email"
+        id="forgotemail"
+        name="forgotemail"
+        placeholder="you@example.com"
+        required
+      />
+      <button type="submit">Send Reset Link</button>
+    </form>
+
+    <a class="back-link" href="../ALL_HTML/Signbook.html">
+      &larr; Back to Login
+    </a>
   </div>
 </body>
 </html>
+
