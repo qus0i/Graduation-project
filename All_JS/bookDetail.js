@@ -501,10 +501,30 @@ document.addEventListener('DOMContentLoaded', function () {
           },
           body: JSON.stringify(payload)
         })
-        .then(res => res.text())
-        .then(data => console.log('Server response:', data))
+        .then(res => res.json())
+        .then(data => {
+        if (data.status === 'added') {
+      this.classList.add('active');
+    } else if (data.status === 'removed') {
+      this.classList.remove('active');
+    }
+    })
+        //.then(data => console.log('Server response:', data))
         .catch(err => console.error('Fetch error:', err));
       });
     });
+});
+
+// Add another fetch call after rendering the heart:
+fetch('/Graduation-project/ALL_JS/is_favorite.php', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ bookId: bookId, title: book.title, authors: book.authors.join(', ') })
+})
+.then(res => res.json())
+.then(data => {
+  if (data.isFavorite) {
+    document.querySelector('#favorite-button')?.classList.add('active');
+  }
 });
 
