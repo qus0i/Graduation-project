@@ -8054,5 +8054,13 @@
         "pfpUrl": "https:\/\/api.dicebear.com\/6.x\/initials\/svg?seed=Guest",
         "timestamp": 1747300536,
         "bookId": "icKmd-tlvPMC"
+    },
+    {
+        "username": "Guest",
+        "rating": 5,
+        "comment": "asd;fknwkoefaf",
+        "pfpUrl": "https:\/\/api.dicebear.com\/6.x\/initials\/svg?seed=Guest",
+        "timestamp": 1747515974,
+        "bookId": "icKmd-tlvPMC"
     }
 ]

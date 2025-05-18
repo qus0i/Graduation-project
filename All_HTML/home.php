@@ -70,17 +70,14 @@ echo '</pre>';*/
     .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
 </script>
   <!-- Hero Section -->
-  <div class="container-fluid bg-light py-5">
-    <div class="row">
-      <div class="col-12 col-md-6 text-center text-md-start">
-        <h1>Discover Your Next Great Read:</h1>
-        <button class="btn btn-primary">Start Exploring</button>
-      </div>
-      <div class="col-12 col-md-6 text-center">
-        <img src="https://via.placeholder.com/300" alt="hero-image" class="img-fluid">
-      </div>
-    </div>
-  </div>
+<div class="reviews-iframe-container">
+  <iframe src="randomreviews.html" 
+    loading="lazy"
+    frameborder="0"
+    allow="fullscreen"
+    class="reviews-iframe"
+  ></iframe>
+</div>
   <!-- Popular Picks Section -->
   
 
@@ -174,6 +171,6 @@ echo '</pre>';*/
   </script>
   <script src="../All_JS/MonthlyRecomnd.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  
+  <script src="../All_JS/transition.js"></script>
 </body>
 </html>
