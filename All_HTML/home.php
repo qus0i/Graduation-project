@@ -40,44 +40,48 @@ echo '</pre>';*/
     /* ==========================
    Genre Section via iframe
    ========================== */
-.genre-iframe-container {
+    .genre-iframe-container {
   margin: 2rem 0;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-}
-.genre-iframe {
+  }
+     .genre-iframe {
   width: 100%;
   height: 820px;    /* or whatever you prefer */
   border: none;
   overflow: hidden; /* hide any scrollbars */
 
 
-}
-@media (max-width: 768px) {
+   }
+    @media (max-width: 768px) {
   .genre-iframe {
     height: 1200px;
+    }
   }
-}
   </style>
 </head>
 <body>
   <!-- Navbar -->
   <div id="navbar-placeholder"></div>
-<script>
+  <script>
   fetch('nav.html')
     .then(response => response.text())
     .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
-</script>
+  </script>
+
   <!-- Hero Section -->
-<div class="reviews-iframe-container">
-  <iframe src="randomreviews.html" 
-    loading="lazy"
-    frameborder="0"
-    allow="fullscreen"
-    class="reviews-iframe"
-  ></iframe>
-</div>
+  <div class="hero-section">
+    <video
+      id="transition-video"
+      width="100%"
+      height="auto"
+      muted
+      preload="auto"
+      playsinline
+      style="object-fit: cover;"
+    ></video>
+  </div>
   <!-- Popular Picks Section -->
   
 
@@ -129,15 +133,6 @@ echo '</pre>';*/
   // Fallback: Set initial min-height
   document.querySelector('.reviews-iframe').style.minHeight = '600px';
   </script>
-
-
-
-
-
-  
-
-
-
   <!-- Bootstrap JS -->
    
   <script>
@@ -171,6 +166,5 @@ echo '</pre>';*/
   </script>
   <script src="../All_JS/MonthlyRecomnd.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../All_JS/transition.js"></script>
-</body>
+  <script src="../All_JS/transition.js"></script></body>
 </html>

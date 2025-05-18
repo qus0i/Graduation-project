@@ -73,80 +73,13 @@
     <video
       id="transition-video"
       width="100%"
-      height="auto"
+      height="700"
       muted
       preload="auto"
       playsinline
       style="object-fit: cover;"
     ></video>
   </div>
-
-<!--<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const video = document.getElementById('transition-video');
-
-  // Freeze video at first frame initially
-  video.src = '';
-  video.pause();
-
-  // Map pages to simple keys
-  const pageMap = {
-    'home.html': 'home',
-    'recommendations.html': 'recommendation',
-    'about.html': 'about'
-  };
-
-  // Helper to get current page key from URL
-  function getCurrentPage() {
-    const path = window.location.pathname;
-    const file = path.substring(path.lastIndexOf('/') + 1);
-    return pageMap[file] || 'home'; // default to home
-  }
-
-  // Helper to get target page key from href
-  function getTargetPage(href) {
-    const file = href.substring(href.lastIndexOf('/') + 1);
-    return pageMap[file];
-  }
-
-  // Flag to prevent multiple clicks during video playback
-  let isPlaying = false;
-
-  // Delegate click event on navbar links with class 'all-nav'
-  document.getElementById('navbar-placeholder').addEventListener('click', e => {
-    if (e.target.classList.contains('all-nav') && e.target.tagName === 'A') {
-      e.preventDefault();
-      if (isPlaying) return; // prevent clicks while playing
-
-      const fromPage = getCurrentPage();
-      const toPage = getTargetPage(e.target.getAttribute('href'));
-      if (!toPage || fromPage === toPage) {
-        // Same page or unknown target, just navigate normally
-        window.location.href = e.target.href;
-        return;
-      }
-
-      // Construct video filename
-      const videoSrc = `/videos/${fromPage}_to_${toPage}.mp4`;
-
-      // Set video src and play
-      video.src = videoSrc;
-      video.load();
-
-      isPlaying = true;
-      video.play();
-
-      // When video ends, freeze on last frame and navigate
-      video.onended = () => {
-        isPlaying = false;
-        video.pause();
-        // Optionally keep video frozen on last frame by not resetting src
-        window.location.href = e.target.href;
-      };
-    }
-  });
-});
-</script>-->
   <!-- Popular Picks Section -->
   
 

@@ -49,14 +49,15 @@ body {
     }
 /* Hero section */
 .hero-section {
-    position: relative;
+    position: absolute;
     top: 0;
     left: 0;
+  
     width: 100%;
     height: 600px;
     background-color: var(--color-secondary-dark);
     margin: 0 auto;
-    z-index: 1;
+    z-index: 0;
 }
 
 .background {
@@ -531,7 +532,7 @@ header {
 
 /* Navigation */
 .nav-bg {
-    background-color: rgba(0, 0, 0, 0.0) !important;
+ z-index: 2;
 }
 
 .mr-custom {
