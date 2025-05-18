@@ -60,9 +60,8 @@
           title.className = "genre-title";
           title.textContent = name;
           card.addEventListener("click", () => {
-            window.location.href = `genres.html?genre=${encodeURIComponent(
-              name
-            )}`;
+          window.open(`genras.html?genre=${encodeURIComponent(name)}`, '_blank');
+
           });
           card.appendChild(title);
           grid.appendChild(card);
