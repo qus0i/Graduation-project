@@ -1,38 +1,48 @@
 <?php
 session_start();
-include("connection.php");
+require_once 'connection.php';
 
-if (!isset($_SESSION['user'])) {
-    header("Location: login.html");
-    exit();
+header("Content-Type: application/json");
+
+// Read raw input
+$raw = file_get_contents("php://input");
+file_put_contents("debug_log.txt", "RAW: $raw\n", FILE_APPEND);
+
+// Try to decode JSON
+$input = json_decode($raw, true);
+file_put_contents("debug_log.txt", "DECODED: " . print_r($input, true) . "\n", FILE_APPEND);
+
+// Fallback to $_POST
+if (!$input) {
+    $input = $_POST;
+    file_put_contents("debug_log.txt", "FALLBACK POST: " . print_r($_POST, true) . "\n", FILE_APPEND);
 }
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $title = mysqli_real_escape_string($link, $_POST['title']);
-    $author = mysqli_real_escape_string($link, $_POST['author']);
-    $thumbnail = mysqli_real_escape_string($link, $_POST['thumbnail']);
-    $type = $_POST['type']; // 'favorite' or 'wishlist'
+$user_id = $_SESSION['user_id'] ?? 1; // Hardcoded for now
+$title = $input['title'] ?? '';
+$authors = $input['authors'] ?? '';
+$thumbnail = $input['thumbnail'] ?? '';
 
-    // Get user_id from session email
-    $email = $_SESSION['user'];
-    $userQuery = mysqli_query($link, "SELECT user_id FROM users WHERE email='$email' LIMIT 1");
-    if ($userRow = mysqli_fetch_assoc($userQuery)) {
-        $user_id = $userRow['user_id'];
+if (!$user_id || !$title || !$authors || !$thumbnail) {
+    http_response_code(400);
+    echo json_encode(["error" => "Missing data"]);
+    exit;
+}
+// Check and toggle
+$stmt = $link->prepare("SELECT id FROM myfavorites WHERE user_id = ? AND title = ? AND author = ?");
+$stmt->bind_param("iss", $user_id, $title, $authors);
+$stmt->execute();
+$res = $stmt->get_result();
 
-        // Choose table
-        $table = $type === 'favorite' ? 'myfavorites' : 'wishlist';
-
-        // Insert
-        $sql = "INSERT IGNORE INTO $table (user_id, title, author, thumbnail)
-                VALUES ('$user_id', '$title', '$author', '$thumbnail')";
-        if (mysqli_query($link, $sql)) {
-            header("Location: home.php");
-            exit();
-        } else {
-            echo "Error saving book: " . mysqli_error($link);
-        }
-    } else {
-        echo "User not found.";
-    }
+if ($res->num_rows > 0) {
+    $del = $link->prepare("DELETE FROM myfavorites WHERE user_id = ? AND title = ? AND author = ?");
+    $del->bind_param("iss", $user_id, $title, $authors);
+    $del->execute();
+    echo json_encode(["status" => "removed"]);
+} else {
+    $ins = $link->prepare("INSERT INTO myfavorites (user_id, title, author, thumbnail) VALUES (?, ?, ?, ?)");
+    $ins->bind_param("isss", $user_id, $title, $authors, $thumbnail);
+    $ins->execute();
+    echo json_encode(["status" => "added"]);
 }
 ?>

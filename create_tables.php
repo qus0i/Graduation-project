@@ -26,9 +26,18 @@ $userTable = "CREATE TABLE IF NOT EXISTS users (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `user_id` int(11) NOT NULL,
     `rkey` char(32) NOT NULL,
-    `time` time(11) DATETIME NOT NULL,
+    `time`  DATETIME NOT NULL,
     `status` varchar(7) NOT NULL,
     PRIMARY KEY (`id`)
+    )";
+    $myfavoritesTable = "CREATE TABLE IF NOT EXISTS `myfavorites` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL,
+    `title` char(32) NOT NULL,
+    `author` char(32) NOT NULL,
+    `thumbnail` char(32) NOT NULL,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (user_id) REFERENCES users(id)
     )";
    
 
@@ -40,8 +49,10 @@ $userTable = "CREATE TABLE IF NOT EXISTS users (
 if (
     $link->query($userTable) === TRUE &&
     $link->query($genresTable) === TRUE &&
+    $link->query($myfavoritesTable) === TRUE &&
     $link->query($forgotpasswordTable) === TRUE
-) {
+)
+ {
     echo "All tables created successfully.";
 } else {
     echo "Error: " . $link->error;

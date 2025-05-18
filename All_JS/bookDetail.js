@@ -1,3 +1,7 @@
+let bookId = '';
+let book = null;
+let image = '';
+
 document.addEventListener('DOMContentLoaded', function () {
    
   function setupToggleButtons() {
@@ -72,15 +76,17 @@ document.addEventListener('DOMContentLoaded', function () {
     <div style="position: relative; display: inline-block;">
       <img src="${image}" class="img-fluid rounded shadow-lg" alt="Book cover" style=" max-width: 100%; object-fit: contain;">
  <!--this is the favourite button link it with data base-->
-<form method="post" id="favourite">     
-  <button type="button" class="heart-button" onclick="this.classList.toggle('active')"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50" >
-      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
-               2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09
-               C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5
-               c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-    </svg>
-  </button>
-</form>
+
+ <!-- qusai try to linke favourite button with data base  -->
+<button id="favorite-button" class="heart-button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
+             2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09
+             C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5
+             c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+  </svg>
+</button>
+
 </div>
   </div>
 </div>
@@ -456,3 +462,49 @@ document.addEventListener('DOMContentLoaded', function () {
     `;
   }
 });
+// Event listener for the favorite button
+document.addEventListener('DOMContentLoaded', function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  bookId = urlParams.get('bookId');
+  const apiURL = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
+
+  fetch(apiURL)
+    .then(response => response.json())
+    
+     .then(data => {
+  book = data.volumeInfo;
+  image = book.imageLinks ?
+    book.imageLinks.thumbnail.replace('http://', 'https://').replace('zoom=1', 'zoom=3') :
+    'https://via.placeholder.com/400x600';
+
+  // ✅ Only attach event after book is fully loaded
+  document.querySelector('#favorite-button')?.addEventListener('click', function () {
+    const payload = {
+      bookId: bookId,
+      title: book?.title || '',
+      authors: book?.authors?.join(', ') || '',
+      thumbnail: image.slice(0, 32)
+    };
+
+    // ✅ Stop if any value is missing
+    if (!payload.title || !payload.authors || !payload.thumbnail) {
+      console.error('Missing fields in payload:', payload);
+      return;
+    }
+
+        console.log('Sending payload:', payload);
+
+        fetch('/Graduation-project/save_book.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        })
+        .then(res => res.text())
+        .then(data => console.log('Server response:', data))
+        .catch(err => console.error('Fetch error:', err));
+      });
+    });
+});
+

@@ -1,0 +1,57 @@
+RAW: 
+DECODED: 
+FALLBACK POST: Array
+(
+)
+
+RAW: {"bookId":"sjzi56FhIeIC","title":"The Renaissance","authors":"Will Durant, Ariel Durant","thumbnail":"https://books.google.com/books/c"}
+DECODED: Array
+(
+    [bookId] => sjzi56FhIeIC
+    [title] => The Renaissance
+    [authors] => Will Durant, Ariel Durant
+    [thumbnail] => https://books.google.com/books/c
+)
+
+RAW: 
+DECODED: 
+FALLBACK POST: Array
+(
+)
+
+RAW: 
+DECODED: 
+FALLBACK POST: Array
+(
+)
+
+RAW: 
+DECODED: 
+FALLBACK POST: Array
+(
+)
+
+RAW: {"bookId":"EvqJCGeqKhsC","title":"Pride and Prejudice","authors":"Jane Austen","thumbnail":"https://books.google.com/books/c"}
+DECODED: Array
+(
+    [bookId] => EvqJCGeqKhsC
+    [title] => Pride and Prejudice
+    [authors] => Jane Austen
+    [thumbnail] => https://books.google.com/books/c
+)
+
+RAW: {"bookId":"sEOFBQAAQBAJ","title":"A Beautiful Wedding","authors":"Jamie McGuire","thumbnail":"https://books.google.com/books/p"}
+DECODED: Array
+(
+    [bookId] => sEOFBQAAQBAJ
+    [title] => A Beautiful Wedding
+    [authors] => Jamie McGuire
+    [thumbnail] => https://books.google.com/books/p
+)
+
+RAW: 
+DECODED: 
+FALLBACK POST: Array
+(
+)
+
