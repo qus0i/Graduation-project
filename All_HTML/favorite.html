@@ -5,6 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Your Favorite Books</title>
 
+<!-- Bootstrap 5 CSS -->
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+<!-- Font Awesome -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  integrity="sha512-dyZ88n1B+1rQzlj7L7UAkuzMmj5V0zswq+QJ/SF5M6IGZf/nQ9efjqep3zrbZWOjD4Byyj0FZoxZVJoE63w1Rg=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
 <style>
   body {
     margin: 0;
@@ -17,6 +33,8 @@
   }
   main {
     flex: 1 0 auto;
+    margin-top: 80px; /* space for fixed navbar */
+    margin-bottom: 80px; /* space for footer */
   }
   header, .search-section {
     padding: 4rem 1rem 3rem;
@@ -80,8 +98,8 @@
     background-color: #3b3328;
   }
   .book-image-container {
-    width: 320px;
-    height: 450px;
+    width: 280px;
+    height: 400px;
     background-color: white;
     border-radius: 4px;
     flex-shrink: 0;
@@ -89,19 +107,22 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    position: relative;
   }
   .book-image {
-   width: 100%;
     height: 100%;
-    object-fit: fill;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
   }
   .book-info {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding-right: 160px; /* increased for spacing */
+    justify-content: center;
+    padding-right: 160px;
     position: relative;
+    gap: 0.8rem;
   }
   .book-title {
     font-weight: bold;
@@ -115,9 +136,10 @@
     color: #c2a058;
   }
   .book-description {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     color: #c4ad76;
-    line-height: 1.3;
+    line-height: 1.6;
+    text-align: justify;
   }
   .right-controls {
     position: absolute;
@@ -128,7 +150,7 @@
     align-items: flex-end;
     gap: 6px;
     width: max-content;
-    min-width: 140px; /* prevent overlap */
+    min-width: 140px;
   }
   .button-row {
     display: flex;
@@ -203,9 +225,126 @@
     width: 20px;
     height: 20px;
   }
+
+  /* Footer styles */
+  footer.custom-footer {
+    background-color: #2b241c;
+    color: #d6aa68;
+    padding: 2rem 0;
+  }
+  footer.custom-footer .footer-title {
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  footer.custom-footer .footer-links a {
+    display: block;
+    color: #d6aa68;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+  }
+  footer.custom-footer .footer-links a:hover {
+    text-decoration: underline;
+  }
+  footer.custom-footer .footer-bottom {
+    margin-top: 2rem;
+    border-top: 1px solid #4b4538;
+    padding-top: 1rem;
+  }
 </style>
 </head>
 <body>
+
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg navbar-light nav-bg fixed-top" style="background-color: none;">
+  <!-- Logo -->
+  <div class="logo-container d-flex align-items-center gap-3 position-relative z-index-1 px-3">
+    <div
+      class="logo-icon rounded-circle d-flex align-items-center justify-content-center"
+      style="
+        width: 37.5px;
+        height: 37.5px;
+        background: linear-gradient(135deg, #c17b36 0%, #f9c172 100%);
+        box-shadow: 0 4px 15px rgba(193, 123, 54, 0.3); ">
+      <div
+        class="book-icon"
+        style="width: 25px; height: 20px; background-color: #0b0804; transform: perspective(100px) rotateY(-15deg);">
+      </div>
+    </div>
+    <div class="logo-text fs-3 fw-bold text-warning">NextChapter</div>
+  </div>
+
+  <!-- Toggler -->
+  <button
+    class="navbar-toggler nav-cr"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="menu-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </button>
+
+  <!-- Collapsible nav links -->
+  <div class="collapse navbar-collapse nav-bg" id="navbarNav">
+    <ul class="navbar-nav ms-auto align-items-center">
+      <li class="nav-item me-4">
+        <a class="nav-link all-nav text-warning" href="./home.php">Home</a>
+      </li>
+      <li class="nav-item me-4">
+        <a class="nav-link all-nav text-warning" href="recommendations.html">Recommendation</a>
+      </li>
+      <li class="nav-item me-custom me-4">
+        <a class="nav-link all-nav text-warning" href="./about.html">About</a>
+      </li>
+      <li class="nav-item me-4">
+        <button
+          class="btn btn-link nav-link p-0 text-warning"
+          onclick="window.location.href='profile.php'"
+          aria-label="Go to profile"
+        >
+          <i class="fas fa-user-circle fa-lg all-nav"></i>
+        </button>
+      </li>
+      <li class="nav-item dropdown me-4">
+        <button
+          class="btn nav-link dropdown-toggle all-nav p-0 text-warning"
+          id="profileDropdown"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          aria-label="User menu"
+        >
+          <i class="bi bi-person fs-5"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+          <li>
+            <a class="dropdown-item" href="profile.html">
+              <img src="./assets/icons/user.png" class="me-2" alt="" />My profile
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">
+              <img src="./assets/icons/edit.png" class="me-2" alt="" />Edit profile
+            </a>
+          </li>
+          <li><hr class="dropdown-divider" /></li>
+          <li>
+            <a class="dropdown-item" href="../logout.php">
+              <img src="./assets/icons/log-out.png" class="me-2" alt="" />Logout
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!-- Navbar End -->
+
 <main>
   <header>
     <h1>Your Favorite Books</h1>
@@ -222,17 +361,44 @@
   </div>
 </main>
 
+<!-- Footer -->
+<footer class="custom-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-4 mb-md-0">
+        <h4 class="footer-title">About Us</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.</p>
+      </div>
+      
+      <div class="col-md-2 mb-4 mb-md-0">
+        <h4 class="footer-title">Quick Links</h4>
+        <div class="footer-links">
+          <a href="#">Home</a>
+          <a href="#">About</a>
+        </div>
+      </div>
+      
+      <div class="col-md-3 mb-4 mb-md-0 d-flex flex-column align-items-start">
+        <h4 class="footer-title">LinkedIn</h4>
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/malek-alhwaide/" target="_blank">Malek Alhwaide</a>
+          <a href="https://www.linkedin.com/in/qusai-kanaan/"  target="_blank">Qusai Kanaan</a>
+          <a href="        "     target="_blank">      </a>
+          <a href="         "   target="_blank">       </a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row footer-bottom">
+      <div class="col-md-12 text-center">
+        <p class="mb-0">&copy; 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
 
-
-
-
-
-
-
-
-
-
-
+<!-- Bootstrap 5 JS Bundle (includes Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
   const booksPerPage = 4;
@@ -317,122 +483,21 @@
       description.className = 'book-description';
       description.textContent = book.description;
 
-      infoDiv.appendChild(title);
-      infoDiv.appendChild(author);
-      infoDiv.appendChild(description);
+      const headerGroup = document.createElement('div');
+      headerGroup.appendChild(title);
+      headerGroup.appendChild(author);
 
-      // Right controls container
+      const descWrapper = document.createElement('div');
+      descWrapper.style.flexGrow = '1';
+      descWrapper.style.display = 'flex';
+      descWrapper.style.alignItems = 'center';
+      descWrapper.appendChild(description);
+
+      infoDiv.appendChild(headerGroup);
+      infoDiv.appendChild(descWrapper);
+
       const rightControls = document.createElement('div');
       rightControls.className = 'right-controls';
-
-      // Create button row container for heart + toggles
-      const buttonRow = document.createElement('div');
-      buttonRow.className = 'button-row';
-
-      // Heart button
-      const favBtn = document.createElement('button');
-      favBtn.className = 'favorite-btn';
-      favBtn.setAttribute('aria-label', 'Toggle favorite');
-
-      const heartSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      heartSvg.setAttribute('viewBox', '0 0 24 24');
-      heartSvg.setAttribute('fill', book.favorite ? '#d6aa68' : 'none');
-      heartSvg.setAttribute('stroke', '#d6aa68');
-      heartSvg.setAttribute('stroke-width', '2');
-      heartSvg.setAttribute('stroke-linecap', 'round');
-      heartSvg.setAttribute('stroke-linejoin', 'round');
-      heartSvg.classList.add('favorite-icon');
-      if (book.favorite) heartSvg.classList.add('favorited');
-      heartSvg.innerHTML = '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>';
-      favBtn.appendChild(heartSvg);
-
-      favBtn.addEventListener('click', e => {
-        e.stopPropagation();
-        book.favorite = !book.favorite;
-        if (book.favorite) {
-          favorites.add(book.id);
-        } else {
-          favorites.delete(book.id);
-        }
-        renderBooks();
-      });
-
-      buttonRow.appendChild(favBtn);
-
-      // Toggle buttons data (simplified icons for demo)
-      const toggleButtonsData = [
-        {
-          id: 'library-toggle',
-          defaultSVG: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
-          activeSVG: `<svg viewBox="0 0 24 24" fill="#F9C172" stroke="#F9C172" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/></svg>`,
-          tooltipInactive: 'Add to My Library',
-          tooltipActive: 'Remove from My Library'
-        },
-        {
-          id: 'openCover-toggle',
-          defaultSVG: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/></svg>`,
-          activeSVG: `<svg viewBox="0 0 24 24" fill="#F9C172" stroke="#F9C172" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/></svg>`,
-          tooltipInactive: 'Add to My Open Cover List',
-          tooltipActive: 'Remove from My Open Cover List'
-        },
-        {
-          id: 'closedCover-toggle',
-          defaultSVG: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><rect x="3" y="4" width="18" height="16" rx="2" ry="2"/></svg>`,
-          activeSVG: `<svg viewBox="0 0 24 24" fill="#F9C172" stroke="#F9C172" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><rect x="3" y="4" width="18" height="16" rx="2" ry="2"/></svg>`,
-          tooltipInactive: 'Add to My Closed Cover List',
-          tooltipActive: 'Remove from My Closed Cover List'
-        },
-        {
-          id: 'dustyShelves-toggle',
-          defaultSVG: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>`,
-          activeSVG: `<svg viewBox="0 0 24 24" fill="#F9C172" stroke="#F9C172" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>`,
-          tooltipInactive: 'Add to My Dusty Shelves List',
-          tooltipActive: 'Remove from My Dusty Shelves List'
-        },
-      ];
-
-      toggleButtonsData.forEach(toggleData => {
-        const btn = document.createElement('button');
-        btn.className = 'action-btn';
-        btn.id = `${toggleData.id}-${book.id}`;
-        btn.setAttribute('data-tooltip', toggleData.tooltipInactive);
-        btn.setAttribute('aria-label', toggleData.tooltipInactive);
-        btn.innerHTML = toggleData.defaultSVG;
-        btn.dataset.active = 'false';
-
-        btn.addEventListener('click', e => {
-          e.stopPropagation();
-          const isActive = btn.dataset.active === 'true';
-          btn.dataset.active = isActive ? 'false' : 'true';
-
-          btn.setAttribute('data-tooltip', isActive ? toggleData.tooltipInactive : toggleData.tooltipActive);
-          btn.setAttribute('aria-label', isActive ? toggleData.tooltipInactive : toggleData.tooltipActive);
-          btn.innerHTML = isActive ? toggleData.defaultSVG : toggleData.activeSVG;
-        });
-
-        buttonRow.appendChild(btn);
-      });
-
-      rightControls.appendChild(buttonRow);
-
-      // Stars rating below buttons
-      const ratingDiv = document.createElement('div');
-      ratingDiv.className = 'rating-stars';
-
-      for (let i = 1; i <= 5; i++) {
-        const starSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        starSvg.setAttribute('viewBox', '0 0 24 24');
-        starSvg.classList.add('star');
-        if (i <= book.rating) {
-          starSvg.innerHTML = `<path stroke="none" d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />`;
-        } else {
-          starSvg.classList.add('empty');
-          starSvg.innerHTML = `<path fill="none" stroke="currentColor" stroke-width="2" d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>`;
-        }
-        ratingDiv.appendChild(starSvg);
-      }
-
-      rightControls.appendChild(ratingDiv);
 
       bookDiv.appendChild(imgContainer);
       bookDiv.appendChild(infoDiv);
@@ -446,7 +511,6 @@
 
   function renderPagination(totalPages) {
     paginationEl.innerHTML = '';
-
     if (totalPages <= 1) return;
 
     function createPageBtn(page, label = page) {
@@ -502,7 +566,6 @@
     });
   });
 
-  // Initial load
   fetchBooks(searchTerm).then(fetchedBooks => {
     books = fetchedBooks;
     renderBooks();
