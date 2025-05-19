@@ -1,165 +1,36 @@
-RAW: 
-DECODED: 
-FALLBACK POST: Array
-(
-)
-
-RAW: {"bookId":"sjzi56FhIeIC","title":"The Renaissance","authors":"Will Durant, Ariel Durant","thumbnail":"https://books.google.com/books/c"}
+RAW: {"bookId":"HLNSDwAAQBAJ","title":"Lives of the Eminent Philosophers","authors":"Diogenes Laertius","thumbnail":"https://books.google.com/books/p"}
 DECODED: Array
 (
-    [bookId] => sjzi56FhIeIC
-    [title] => The Renaissance
-    [authors] => Will Durant, Ariel Durant
-    [thumbnail] => https://books.google.com/books/c
-)
-
-RAW: 
-DECODED: 
-FALLBACK POST: Array
-(
-)
-
-RAW: 
-DECODED: 
-FALLBACK POST: Array
-(
-)
-
-RAW: 
-DECODED: 
-FALLBACK POST: Array
-(
-)
-
-RAW: {"bookId":"EvqJCGeqKhsC","title":"Pride and Prejudice","authors":"Jane Austen","thumbnail":"https://books.google.com/books/c"}
-DECODED: Array
-(
-    [bookId] => EvqJCGeqKhsC
-    [title] => Pride and Prejudice
-    [authors] => Jane Austen
-    [thumbnail] => https://books.google.com/books/c
-)
-
-RAW: {"bookId":"sEOFBQAAQBAJ","title":"A Beautiful Wedding","authors":"Jamie McGuire","thumbnail":"https://books.google.com/books/p"}
-DECODED: Array
-(
-    [bookId] => sEOFBQAAQBAJ
-    [title] => A Beautiful Wedding
-    [authors] => Jamie McGuire
+    [bookId] => HLNSDwAAQBAJ
+    [title] => Lives of the Eminent Philosophers
+    [authors] => Diogenes Laertius
     [thumbnail] => https://books.google.com/books/p
 )
 
-RAW: 
-DECODED: 
-FALLBACK POST: Array
-(
-)
-
-RAW: {"bookId":"sEOFBQAAQBAJ","title":"A Beautiful Wedding","authors":"Jamie McGuire","thumbnail":"https://books.google.com/books/p"}
+RAW: {"bookId":"HLNSDwAAQBAJ","title":"Lives of the Eminent Philosophers","authors":"Diogenes Laertius","thumbnail":"https://books.google.com/books/p"}
 DECODED: Array
 (
-    [bookId] => sEOFBQAAQBAJ
-    [title] => A Beautiful Wedding
-    [authors] => Jamie McGuire
+    [bookId] => HLNSDwAAQBAJ
+    [title] => Lives of the Eminent Philosophers
+    [authors] => Diogenes Laertius
     [thumbnail] => https://books.google.com/books/p
 )
 
-RAW: 
-DECODED: 
-FALLBACK POST: Array
-(
-)
-
-RAW: {"bookId":"x1Jlf9e3EgsC","title":"The Music of the Primes","authors":"Marcus du Sautoy","thumbnail":"https://books.google.com/books/c"}
+RAW: {"bookId":"HLNSDwAAQBAJ","title":"Lives of the Eminent Philosophers","authors":"Diogenes Laertius","thumbnail":"https://books.google.com/books/p"}
 DECODED: Array
 (
-    [bookId] => x1Jlf9e3EgsC
-    [title] => The Music of the Primes
-    [authors] => Marcus du Sautoy
-    [thumbnail] => https://books.google.com/books/c
+    [bookId] => HLNSDwAAQBAJ
+    [title] => Lives of the Eminent Philosophers
+    [authors] => Diogenes Laertius
+    [thumbnail] => https://books.google.com/books/p
 )
 
-RAW: {"bookId":"x1Jlf9e3EgsC","title":"The Music of the Primes","authors":"Marcus du Sautoy","thumbnail":"https://books.google.com/books/c"}
+RAW: {"bookId":"2DT4DwAAQBAJ","title":"Man of Contradictions","authors":"Ben Bland","thumbnail":"https://books.google.com/books/p"}
 DECODED: Array
 (
-    [bookId] => x1Jlf9e3EgsC
-    [title] => The Music of the Primes
-    [authors] => Marcus du Sautoy
-    [thumbnail] => https://books.google.com/books/c
-)
-
-RAW: 
-DECODED: 
-FALLBACK POST: Array
-(
-)
-
-RAW: {"bookId":"sjzi56FhIeIC","title":"The Renaissance","authors":"Will Durant, Ariel Durant","thumbnail":"https://books.google.com/books/c"}
-DECODED: Array
-(
-    [bookId] => sjzi56FhIeIC
-    [title] => The Renaissance
-    [authors] => Will Durant, Ariel Durant
-    [thumbnail] => https://books.google.com/books/c
-)
-
-RAW: 
-DECODED: 
-FALLBACK POST: Array
-(
-)
-
-RAW: {"bookId":"sjzi56FhIeIC","title":"The Renaissance","authors":"Will Durant, Ariel Durant","thumbnail":"https://books.google.com/books/c"}
-DECODED: Array
-(
-    [bookId] => sjzi56FhIeIC
-    [title] => The Renaissance
-    [authors] => Will Durant, Ariel Durant
-    [thumbnail] => https://books.google.com/books/c
-)
-
-RAW: {"bookId":"sjzi56FhIeIC","title":"The Renaissance","authors":"Will Durant, Ariel Durant","thumbnail":"https://books.google.com/books/c"}
-DECODED: Array
-(
-    [bookId] => sjzi56FhIeIC
-    [title] => The Renaissance
-    [authors] => Will Durant, Ariel Durant
-    [thumbnail] => https://books.google.com/books/c
-)
-
-RAW: {"bookId":"sjzi56FhIeIC","title":"The Renaissance","authors":"Will Durant, Ariel Durant","thumbnail":"https://books.google.com/books/c"}
-DECODED: Array
-(
-    [bookId] => sjzi56FhIeIC
-    [title] => The Renaissance
-    [authors] => Will Durant, Ariel Durant
-    [thumbnail] => https://books.google.com/books/c
-)
-
-RAW: {"bookId":"sjzi56FhIeIC","title":"The Renaissance","authors":"Will Durant, Ariel Durant","thumbnail":"https://books.google.com/books/c"}
-DECODED: Array
-(
-    [bookId] => sjzi56FhIeIC
-    [title] => The Renaissance
-    [authors] => Will Durant, Ariel Durant
-    [thumbnail] => https://books.google.com/books/c
-)
-
-RAW: {"bookId":"sjzi56FhIeIC","title":"The Renaissance","authors":"Will Durant, Ariel Durant","thumbnail":"https://books.google.com/books/c"}
-DECODED: Array
-(
-    [bookId] => sjzi56FhIeIC
-    [title] => The Renaissance
-    [authors] => Will Durant, Ariel Durant
-    [thumbnail] => https://books.google.com/books/c
-)
-
-RAW: {"bookId":"sjzi56FhIeIC","title":"The Renaissance","authors":"Will Durant, Ariel Durant","thumbnail":"https://books.google.com/books/c"}
-DECODED: Array
-(
-    [bookId] => sjzi56FhIeIC
-    [title] => The Renaissance
-    [authors] => Will Durant, Ariel Durant
-    [thumbnail] => https://books.google.com/books/c
+    [bookId] => 2DT4DwAAQBAJ
+    [title] => Man of Contradictions
+    [authors] => Ben Bland
+    [thumbnail] => https://books.google.com/books/p
 )
 

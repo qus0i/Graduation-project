@@ -462,69 +462,301 @@ document.addEventListener('DOMContentLoaded', function () {
     `;
   }
 });
-// Event listener for the favorite button
-document.addEventListener('DOMContentLoaded', function () {
+
+
+//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+/*document.addEventListener('DOMContentLoaded', function () {
   const urlParams = new URLSearchParams(window.location.search);
   bookId = urlParams.get('bookId');
   const apiURL = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
 
   fetch(apiURL)
     .then(response => response.json())
-    
-     .then(data => {
-  book = data.volumeInfo;
-  image = book.imageLinks ?
-    book.imageLinks.thumbnail.replace('http://', 'https://').replace('zoom=1', 'zoom=3') :
-    'https://via.placeholder.com/400x600';
+    .then(data => {
+      book = data.volumeInfo;
+      image = book.imageLinks
+        ? book.imageLinks.thumbnail.replace('http://', 'https://').replace('zoom=1', 'zoom=3')
+        : 'https://via.placeholder.com/400x600';
 
-  // ✅ Only attach event after book is fully loaded
-  document.querySelector('#favorite-button')?.addEventListener('click', function () {
-    const payload = {
-      bookId: bookId,
-      title: book?.title || '',
-      authors: book?.authors?.join(', ') || '',
-      thumbnail: image.slice(0, 32)
-    };
+      // ❤️ Favorite Button
+      document.querySelector('#favorite-button')?.addEventListener('click', function () {
+        const payload = {
+          bookId: bookId,
+          title: book?.title || '',
+          authors: book?.authors?.join(', ') || '',
+          thumbnail: image.slice(0, 32)
+        };
 
-    // ✅ Stop if any value is missing
-    if (!payload.title || !payload.authors || !payload.thumbnail) {
-      console.error('Missing fields in payload:', payload);
-      return;
-    }
-
-        console.log('Sending payload:', payload);
+        if (!payload.title || !payload.authors || !payload.thumbnail) {
+          console.error('Missing fields in payload:', payload);
+          return;
+        }
 
         fetch('/Graduation-project/save_book.php', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         })
+          .then(res => res.json())
+          .then(data => {
+            if (data.status === 'added') {
+              this.classList.add('active');
+            } else if (data.status === 'removed') {
+              this.classList.remove('active');
+            }
+          })
+          .catch(err => console.error('Favorite fetch error:', err));
+      });
+
+      // 📚 Library Button
+      document.querySelector('#library-toggle-button')?.addEventListener('click', function () {
+        const payload = {
+          title: book?.title || '',
+          authors: book?.authors?.join(', ') || '',
+          thumbnail: image.slice(0, 32)
+        };
+
+        if (!payload.title || !payload.authors || !payload.thumbnail) {
+          console.error('Missing fields in payload:', payload);
+          return;
+        }
+
+        fetch('/Graduation-project/ALL_JS/save_library.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.status === 'added') {
+              this.classList.add('active');
+              document.getElementById('library-icon-default')?.classList.add('hidden');
+              document.getElementById('library-icon-active')?.classList.remove('hidden');
+            } else if (data.status === 'removed') {
+              this.classList.remove('active');
+              document.getElementById('library-icon-default')?.classList.remove('hidden');
+              document.getElementById('library-icon-active')?.classList.add('hidden');
+            }
+          })
+          .catch(err => console.error('Library fetch error:', err));
+      });
+
+      // Check if book is already in Library
+      fetch('/Graduation-project/ALL_JS/is_in_library.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: book.title,
+          authors: book.authors?.join(', ') || ''
+        })
+      })
         .then(res => res.json())
         .then(data => {
-        if (data.status === 'added') {
-      this.classList.add('active');
-    } else if (data.status === 'removed') {
-      this.classList.remove('active');
-    }
+          if (data.isInLibrary) {
+            const btn = document.getElementById('library-toggle-button');
+            btn?.classList.add('active');
+            document.getElementById('library-icon-default')?.classList.add('hidden');
+            document.getElementById('library-icon-active')?.classList.remove('hidden');
+          }
+        });
+    });
+});
+
+// Check favorite state (move inside DOMContentLoaded if you want guaranteed load order)
+setTimeout(() => {
+  if (book) {
+    fetch('/Graduation-project/ALL_JS/is_favorite.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        bookId: bookId,
+        title: book.title,
+        authors: book.authors.join(', ')
+      })
     })
-        //.then(data => console.log('Server response:', data))
-        .catch(err => console.error('Fetch error:', err));
+      .then(res => res.json())
+      .then(data => {
+        if (data.isFavorite) {
+          document.querySelector('#favorite-button')?.classList.add('active');
+        }
+      });
+  }
+}, 200);*/
+/*document.addEventListener('DOMContentLoaded', function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  bookId = urlParams.get('bookId');
+  const apiURL = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
+
+  fetch(apiURL)
+    .then(response => response.json())
+    .then(data => {
+      book = data.volumeInfo;
+      image = book.imageLinks
+        ? book.imageLinks.thumbnail.replace('http://', 'https://').replace('zoom=1', 'zoom=3')
+        : 'https://via.placeholder.com/400x600';
+
+      // Reusable button toggler
+      function setupButton(buttonId, tableName, iconDefault = null, iconActive = null) {
+        const btn = document.getElementById(buttonId);
+        if (!btn) return;
+
+        // Toggle click
+        btn.addEventListener('click', function () {
+          const payload = {
+            table: tableName,
+            title: book?.title || '',
+            authors: book?.authors?.join(', ') || '',
+            thumbnail: image.slice(0, 32)
+          };
+
+          fetch('/Graduation-project/ALL_JS/toggle_book.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          })
+            .then(res => res.json())
+            .then(data => {
+              if (data.status === 'added') {
+                btn.classList.add('active');
+                if (iconDefault && iconActive) {
+                  document.getElementById(iconDefault)?.classList.add('hidden');
+                  document.getElementById(iconActive)?.classList.remove('hidden');
+                }
+              } else if (data.status === 'removed') {
+                btn.classList.remove('active');
+                if (iconDefault && iconActive) {
+                  document.getElementById(iconDefault)?.classList.remove('hidden');
+                  document.getElementById(iconActive)?.classList.add('hidden');
+                }
+              }
+            })
+            .catch(err => console.error(`${tableName} fetch error:`, err));
+        });
+
+        // Check initial state
+        fetch('/Graduation-project/ALL_JS/check_book.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            table: tableName,
+            title: book.title,
+            authors: book.authors?.join(', ') || ''
+          })
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.exists) {
+              btn.classList.add('active');
+              if (iconDefault && iconActive) {
+                document.getElementById(iconDefault)?.classList.add('hidden');
+                document.getElementById(iconActive)?.classList.remove('hidden');
+              }
+            }
+          });
+      }
+
+      // Setup all buttons
+      setupButton('favorite-button', 'myfavorites');
+      setupButton('library-toggle-button', 'mylibrary', 'library-icon-default', 'library-icon-active');
+      setupButton('open-cover-button', 'myopencover');
+      setupButton('closed-cover-button', 'myclosedcover');
+      setupButton('dusty-shelves-button', 'mydustyshelves');
+    });
+});*/
+document.addEventListener('DOMContentLoaded', function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const bookId = urlParams.get('bookId');
+  const apiURL = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
+  let book = null;
+  let image = '';
+
+  fetch(apiURL)
+    .then(response => response.json())
+    .then(data => {
+      book = data.volumeInfo;
+      image = book.imageLinks
+        ? book.imageLinks.thumbnail.replace('http://', 'https://').replace('zoom=1', 'zoom=3')
+        : 'https://via.placeholder.com/400x600';
+
+      // Generic toggle logic
+      function handleToggleButton(buttonId, tableName, iconDefaultId = null, iconActiveId = null) {
+        const btn = document.getElementById(buttonId);
+        if (!btn || !book) return;
+
+        const payload = {
+          table: tableName,
+          title: book?.title || '',
+          authors: book?.authors?.join(', ') || '',
+          thumbnail: image?.slice(0, 32)
+        };
+
+        fetch('/Graduation-project/ALL_JS/toggle_book.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.status === 'added') {
+              btn.classList.add('active');
+              if (iconDefaultId && iconActiveId) {
+                document.getElementById(iconDefaultId)?.classList.add('hidden');
+                document.getElementById(iconActiveId)?.classList.remove('hidden');
+              }
+            } else if (data.status === 'removed') {
+              btn.classList.remove('active');
+              if (iconDefaultId && iconActiveId) {
+                document.getElementById(iconDefaultId)?.classList.remove('hidden');
+                document.getElementById(iconActiveId)?.classList.add('hidden');
+              }
+            }
+          });
+      }
+
+      function checkToggleButtonState(buttonId, tableName, iconDefaultId = null, iconActiveId = null) {
+        const btn = document.getElementById(buttonId);
+        if (!btn || !book) return;
+
+        const payload = {
+          table: tableName,
+          title: book?.title || '',
+          authors: book?.authors?.join(', ') || ''
+        };
+
+        fetch('/Graduation-project/ALL_JS/check_book.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.exists) {
+              btn.classList.add('active');
+              if (iconDefaultId && iconActiveId) {
+                document.getElementById(iconDefaultId)?.classList.add('hidden');
+                document.getElementById(iconActiveId)?.classList.remove('hidden');
+              }
+            }
+          });
+      }
+
+      // Bind all buttons
+      const buttonConfigs = [
+        { id: 'favorite-button', table: 'myfavorites' },
+        { id: 'library-toggle-button', table: 'mylibrary', iconDefault: 'library-icon-default', iconActive: 'library-icon-active' },
+        { id: 'openCover-toggle-button', table: 'myopencover' },
+        { id: 'closedCover-toggle-button', table: 'myclosedcover' },
+        { id: 'dustyShelves-toggle-button', table: 'mydustyshelves' }
+      ];
+
+      buttonConfigs.forEach(cfg => {
+        const btn = document.getElementById(cfg.id);
+        if (btn) {
+          btn.addEventListener('click', () => handleToggleButton(cfg.id, cfg.table, cfg.iconDefault, cfg.iconActive));
+          checkToggleButtonState(cfg.id, cfg.table, cfg.iconDefault, cfg.iconActive);
+        }
       });
     });
 });
 
-// Add another fetch call after rendering the heart:
-fetch('/Graduation-project/ALL_JS/is_favorite.php', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ bookId: bookId, title: book.title, authors: book.authors.join(', ') })
-})
-.then(res => res.json())
-.then(data => {
-  if (data.isFavorite) {
-    document.querySelector('#favorite-button')?.classList.add('active');
-  }
-});
 

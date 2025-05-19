@@ -39,7 +39,42 @@ $userTable = "CREATE TABLE IF NOT EXISTS users (
     PRIMARY KEY (`id`),
     FOREIGN KEY (user_id) REFERENCES users(id)
     )";
-   
+    $mylibraryTable = "CREATE TABLE IF NOT EXISTS `mylibrary` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL,
+    `title` char(32) NOT NULL,
+    `author` char(32) NOT NULL,
+    `thumbnail` char(32) NOT NULL,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+    )";
+   $myopencoverTable = "CREATE TABLE IF NOT EXISTS myopencover (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    user_id INT(11) NOT NULL,
+    title CHAR(32) NOT NULL,
+    author CHAR(32) NOT NULL,
+    thumbnail CHAR(32) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+)";
+    $myclosedcoverTable = "CREATE TABLE IF NOT EXISTS myclosedcover (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    user_id INT(11) NOT NULL,
+    title CHAR(32) NOT NULL,
+    author CHAR(32) NOT NULL,
+    thumbnail CHAR(32) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+)";
+    $mymydustyshelves = "CREATE TABLE IF NOT EXISTS mydustyshelves (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    user_id INT(11) NOT NULL,
+    title CHAR(32) NOT NULL,
+    author CHAR(32) NOT NULL,
+    thumbnail CHAR(32) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+)";
 
 
 // CREATE TABLE user_genres
@@ -50,6 +85,10 @@ if (
     $link->query($userTable) === TRUE &&
     $link->query($genresTable) === TRUE &&
     $link->query($myfavoritesTable) === TRUE &&
+    $link->query($myopencoverTable) === TRUE &&
+    $link->query($myclosedcoverTable) === TRUE &&
+    $link->query($mymydustyshelves) === TRUE &&
+    $link->query($mylibraryTable) === TRUE &&
     $link->query($forgotpasswordTable) === TRUE
 )
  {
