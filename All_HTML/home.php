@@ -72,7 +72,7 @@ echo '</pre>';*/
 
   <!-- Hero Section -->
   <div class="hero-section">
-    <video
+<video
       id="transition-video"
       width="100%"
       height="auto"
@@ -82,6 +82,7 @@ echo '</pre>';*/
       style="object-fit: cover;"
     ></video>
   </div>
+  
   <!-- Popular Picks Section -->
   
 
