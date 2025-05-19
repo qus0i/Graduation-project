@@ -8,7 +8,7 @@ header("Content-Type: application/json");
 $input = json_decode(file_get_contents("php://input"), true);
 
 $table = $input['table'] ?? '';
-$user_id = $_SESSION['user_id'] ?? 1;
+$user_id = $_SESSION['user_id'] ;
 $title = $input['title'] ?? '';
 $authors = $input['authors'] ?? '';
 $thumbnail = substr($input['thumbnail'] ?? '', 0, 32);
