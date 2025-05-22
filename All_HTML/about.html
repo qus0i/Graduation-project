@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../All_CSS/main.css">
+</head>
+<body>
+      <div id="navbar-placeholder"></div>
+  <script>
+  fetch('nav.html')
+    .then(response => response.text())
+    .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
+  </script>
+
+ <!-- Hero Section -->
+  <div class="hero-section">
+    <video
+      id="transition-video"
+      width="100%"
+      muted
+      preload="auto"
+      playsinline
+      style="object-fit: cover;"
+    ></video>
+
+<div class="hero-text-overlay">
+  <h1 class="hero-title">
+    <span class="typewriter-text">Welcome to NextChapter</span>
+  </h1>  
+  <p class="hero-subtitle">Discover your next literary adventure</p>
+</div>
+  </div>
+</div>
+
+
+
+
+ <div id="footer-placeholder"></div>
+  <script>
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(html => {
+        const temp = document.createElement('div');
+        temp.innerHTML = html;
+        const footerEl = temp.querySelector('footer');
+        document.getElementById('footer-placeholder').appendChild(footerEl);
+      })
+      .catch(err => console.error('Error loading footer:', err));
+  </script>
+  <script src="../All_JS/transition.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

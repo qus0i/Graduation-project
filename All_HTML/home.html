@@ -61,8 +61,8 @@
 </head>
 <body>
   <!-- Navbar -->
+  <div class="layout-grid">
   <div id="navbar-placeholder"></div>
-
 <script>
   fetch('nav.html')
     .then(response => response.text())
@@ -73,13 +73,20 @@
     <video
       id="transition-video"
       width="100%"
-      height="700"
       muted
       preload="auto"
       playsinline
       style="object-fit: cover;"
     ></video>
+
+<div class="hero-text-overlay">
+  <h1 class="hero-title">
+    <span class="typewriter-text">Welcome to NextChapter</span>
+  </h1>  
+  <p class="hero-subtitle">Discover your next literary adventure</p>
+</div>
   </div>
+</div>
   <!-- Popular Picks Section -->
   
 
