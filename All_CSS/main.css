@@ -72,7 +72,7 @@ body {
 }
 .hero-section video {
   width: 100%;
-  height: 100%;
+  height:  100vh;
   object-fit: cover; /* Ensures video covers the entire section */
   object-position: center; /* Focus on the center of the video */
 }
@@ -109,6 +109,7 @@ body {
   margin-bottom: 2rem;
  
 }
+/*
 .hero-section::before {
   content: "";
   position: absolute;
@@ -116,12 +117,13 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(11, 8, 4, 0.3); /* Dark overlay */
-  z-index: 1; /* Between video (0) and text (2) */
+  background: rgba(11, 8, 4, 0.3); 
+  z-index: 1; 
 }
+
 .typewriter-multiline {
-  white-space: normal; /* Allow wrapping */
-  height: 3em; /* Fixed height for 2 lines */
+  white-space: normal; 
+    height: 3em; 
   animation: 
     typing 4s steps(50, end),
     blink-caret 0.75s step-end infinite,
@@ -138,7 +140,7 @@ body {
 }
 .typewriter-cursor {
   opacity: 0;
-}
+}*/
 /* Animations */
 @keyframes fadeIn {
   from { opacity: 0; }
@@ -162,12 +164,12 @@ body {
     padding-top: 60px; /* Account for navbar */
   }
 }
-
+/*
 .typewriter-effect {
-  overflow: hidden; /* Hide text until typed */
-  border-right: 3px solid var(--color-primary-light); /* Blinking cursor */
-  white-space: nowrap; /* Keep text on one line */
-  margin: 0 auto; /* Center the text */
+  overflow: hidden;
+  border-right: 3px solid var(--color-primary-light); 
+  white-space: nowrap; 
+  margin: 0 auto; 
   animation: 
     typing 3.5s steps(30, end),
     blink-caret 0.75s step-end infinite;
@@ -175,12 +177,22 @@ body {
 
 .delayed-typewriter {
   animation: 
-    typing 2s steps(30, end) 1.5s, /* Starts after main title finishes */
+    typing 2s steps(30, end) 1.5s, 
     blink-caret 0.75s step-end infinite 3s;
   opacity: 0;
   animation-fill-mode: forwards;
+}*/
+/* Disabled nav links */
+a.all-nav[disabled] {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
+/* Ensure video freezes on last frame */
+video.paused {
+  display: block !important;
+}
 /* Typing effect */
 @keyframes typing {
   from { 
@@ -1450,6 +1462,7 @@ textarea {
 
     .profile{
 background-color: var(--color-secondary-dark);
+margin-top: 50px;
     }
     .profiletxt{
       color: var(--color-primary-light);

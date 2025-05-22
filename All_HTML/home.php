@@ -70,19 +70,26 @@ echo '</pre>';*/
     .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
   </script>
 
-  <!-- Hero Section -->
-  <div class="hero-section">
-<video
-      id="transition-video"
-      width="100%"
-      height="auto"
-      muted
-      preload="auto"
-      playsinline
-      style="object-fit: cover;"
-    ></video>
+<!-- Hero Section -->
+<div class="hero-section">
+  <video
+    id="transition-video"
+    width="100%"
+    muted
+    preload="auto"
+    playsinline
+    style="object-fit: cover;"
+  ></video>
+
+  <div class="hero-text-overlay">
+    <h1 class="hero-title">
+      <span class="typewriter-text">Welcome to NextChapter</span>
+    </h1>  
+    <p class="hero-subtitle">Discover your next literary adventure</p>
   </div>
-  
+</div>
+<!-- Navbar Placeholder (if using separate nav.html) -->
+<div id="navbar-placeholder"></div>
   <!-- Popular Picks Section -->
   
 
