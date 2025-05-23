@@ -13,6 +13,7 @@
 <body>
 <?php
 session_start();
+include_once '../connection.php'; // Include your database connection file
 
 // Get user info
 $userId     = $_SESSION['user_id'] ?? null;
