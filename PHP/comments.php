@@ -2,7 +2,7 @@
 session_start();
 include_once("ratingdb.php"); // Include the database connection file
 $commentsFile = 'comments.json';
-function censorText($text, $badWords) {
+/*function censorText($text, $badWords) {
     // build a word-boundary regex, case-insensitive
     $pattern = '/\b(' . implode('|', array_map('preg_quote', $badWords)) . ')\b/i';
     return preg_replace_callback($pattern, function($m) {
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $bookId    = $_POST['bookId'];
     // censor it:
     $comment   = censorText($raw, $badWords);
-}
+}*/
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'GUST';
