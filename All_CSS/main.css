@@ -95,7 +95,7 @@ a{
 
 .hero-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.5rem, 5vw, 4.5rem); /* Responsive font scaling */
+  font-size: clamp(2.5rem, 5vw, 4.5rem) !important ; /* Responsive font scaling */
   color: var(--color-primary-light);
   text-shadow: 0 2px 5px rgba(11, 8, 4, 0.8);
   margin-bottom: 1rem;

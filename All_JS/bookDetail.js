@@ -240,8 +240,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <!--closed cover -->
 <button type="button" class="closedCover-icon-wrapper mr-2" id="closedCover-toggle-button" data-tooltip-inactive="Add to MY Closed Cover List"
-  data-tooltip-active="Remove from My Open Cover List"
-  data-tooltip="Add to My Open Cover List">
+  data-tooltip-active="Remove from My Closed Cover List"
+  data-tooltip="Add to My Closed Cover List">
   <!-- Default Icon (visible by default) -->
   <svg id="closedCover-icon-default" class="closedCover-icon" fill="currentColor" viewBox="0 0 24 24" width="50" height="50">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100">
