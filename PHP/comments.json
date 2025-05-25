@@ -33,7 +33,6 @@
     {
         "username": "Guest",
         "rating": 5,
-<<<<<<< HEAD
         "comment": "AEWgfWEFAW",
         "pfpUrl": "https:\/\/api.dicebear.com\/6.x\/initials\/svg?seed=Guest",
         "timestamp": 1748097667,
@@ -85,7 +84,7 @@
         "comment": "esgresrgse",
         "pfpUrl": "https:\/\/api.dicebear.com\/6.x\/initials\/svg?seed=Guest",
         "timestamp": 1748100259,
-=======
+
         "comment": "vklsdhgdshn",
         "pfpUrl": "https:\/\/api.dicebear.com\/6.x\/initials\/svg?seed=Guest",
         "timestamp": 1748161393,
@@ -97,7 +96,6 @@
         "comment": "hjffuf",
         "pfpUrl": "https:\/\/res.cloudinary.com\/dn8gqkmpu\/image\/upload\/v1748158315\/user_uploads\/emvykkmeb2twvdeidxku.jpg",
         "timestamp": 1748172898,
->>>>>>> f9127c9044f2e02970b2186924a4de354869d12b
         "bookId": "MRoMUV2kLZEC"
     },
     {
