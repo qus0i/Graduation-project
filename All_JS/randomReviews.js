@@ -8,7 +8,7 @@ let nextCommentPreloaded = null;
 // Function to fetch random comments from the server (PHP)
 async function fetchComments() {
   try {
-    const response = await fetch('../PHP/test.php');
+    const response = await fetch('../PHP/fetchRandomReviews.php');
     const comments = await response.json();
     
     if (comments.length === 0) {

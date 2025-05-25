@@ -66,13 +66,13 @@ body {
 .hero-section {
   position: relative;
   width: 100%;
-  height: 100vh; /* Use viewport height */
+  height: 720px; /* Use viewport height */
   margin-top: 0; /* Remove negative margin */
   z-index: 1; /* Lower than navbar */
 }
 .hero-section video {
   width: 100%;
-  height:  100vh;
+  height:  720px;
   object-fit: cover; /* Ensures video covers the entire section */
   object-position: center; /* Focus on the center of the video */
 }

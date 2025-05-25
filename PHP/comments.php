@@ -1,5 +1,20 @@
 <?php
 $commentsFile = 'comments.json';
+function censorText($text, $badWords) {
+    // build a word-boundary regex, case-insensitive
+    $pattern = '/\b(' . implode('|', array_map('preg_quote', $badWords)) . ')\b/i';
+    return preg_replace_callback($pattern, function($m) {
+        return str_repeat('*', mb_strlen($m[0]));
+    }, $text);
+}
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username  = $_POST['username'];
+    $rating    = intval($_POST['rating']);
+    $raw       = $_POST['comment'];
+    $bookId    = $_POST['bookId'];
+    // censor it:
+    $comment   = censorText($raw, $badWords);
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];

@@ -19,5 +19,4 @@ $randomComments = array_slice($commentsData, 0, 10); // Always 10 or less
 
 header('Content-Type: application/json');
 echo json_encode($randomComments);
-
 ?>
