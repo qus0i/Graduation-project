@@ -1,13 +1,16 @@
 <?php
+session_start();
 $commentsFile = 'comments.json';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
+   $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'GUST';
+    $pfpUrl = isset($_SESSION['profile_img']) ? $_SESSION['profile_img'] : 'https://api.dicebear.com/6.x/initials/svg?seed=زائر';
+
     $rating = intval($_POST['rating']);
     $comment = $_POST['comment'];
     $bookId = $_POST['bookId'];
 
-    $pfpUrl = 'https://api.dicebear.com/6.x/initials/svg?seed=' . urlencode($username);
+    //$pfpUrl = 'https://api.dicebear.com/6.x/initials/svg?seed=' . urlencode($username);
     $timestamp = time();
 
     $newComment = [
