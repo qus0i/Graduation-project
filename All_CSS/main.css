@@ -1499,10 +1499,10 @@ margin-top: 50px;
       padding: 2rem 1rem;
     }
     h1 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      color: #f9c172;
+      text-align: center !important;
+      font-size: 2.5rem !important;
+      margin-bottom: 3rem !important;
+      color: #f9c172 !important;
     }
 
     .genre-grid {

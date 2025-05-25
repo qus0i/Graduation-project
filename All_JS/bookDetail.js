@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
              <span class="fs-1">${Number(rating).toFixed(1)}/5.0</span>
                   </div>
                   </div>                  
-<div class="mt-auto d-flex flex-column align-items-end">
+<div class="mt-auto d-flex flex-column align-items-end ">
                <!--testing-->
     <form  class="mt-auto p-2"  action="/your-action-url" method="POST">
   <button type="button" class="library-icon-wrapper mr-2" id="library-toggle-button" name="libraryButton" value="submit"  data-tooltip-inactive="Add to My Library"
