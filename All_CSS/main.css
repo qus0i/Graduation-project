@@ -17,13 +17,16 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--color-primary-dark); 
-    color: var(--color-primary-light);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    font-family: 'Poppins', sans-serif !important;
+    background-color: var(--color-primary-dark) !important; 
+    color: var(--color-primary-light) !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
 
+}
+a{
+    text-decoration: none;
 }
 /*Nav bar*/
 .layout-grid {
@@ -66,13 +69,13 @@ body {
 .hero-section {
   position: relative;
   width: 100%;
-  height: 100vh; /* Use viewport height */
+  height: 720px; /* Use viewport height */
   margin-top: 0; /* Remove negative margin */
   z-index: 1; /* Lower than navbar */
 }
 .hero-section video {
   width: 100%;
-  height:  100vh;
+  height:  720px;
   object-fit: cover; /* Ensures video covers the entire section */
   object-position: center; /* Focus on the center of the video */
 }
@@ -92,22 +95,24 @@ body {
 
 .hero-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.5rem, 5vw, 4.5rem); /* Responsive font scaling */
+  font-size: clamp(2.5rem, 5vw, 4.5rem) !important ; /* Responsive font scaling */
   color: var(--color-primary-light);
-  text-shadow: 0 2px 10px rgba(11, 8, 4, 0.8);
+  text-shadow: 0 2px 5px rgba(11, 8, 4, 0.8);
   margin-bottom: 1rem;
   animation: fadeIn 1.5s ease-out;
-   text-shadow: 0 10px 20px rgba(193, 123, 54, 0.6);
+  font-weight: bold;
+ 
 
 }
 
 .hero-subtitle {
   font-family: 'Poppins', sans-serif;
-  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(1.25rem, 2.25vw, 1.75rem);
   color: var(--color-card-text);
   text-shadow: 0 2px 5px rgba(11, 8, 4, 0.6);
   margin-bottom: 2rem;
- 
+  -webkit-text-stroke: 1px var(--color-3rd-dark);  /* width and border color */
+
 }
 /*
 .hero-section::before {
@@ -277,7 +282,10 @@ header {
     position: relative;
     box-shadow: 0 4px 15px rgba(193, 123, 54, 0.3);
 }
-
+.logo-icon-first::before{
+   width: 60px !important;
+    height: 60px !important;
+}
 .logo-icon::before {
     content: "";
     position: absolute;
@@ -289,9 +297,11 @@ header {
 }
 
 .book-icon {
-    width: 25px;
-    height: 20px;
-    background-color: var(--color-primary-dark);
+    width: 27.5px;
+    height: 27.5px;
+    fill: var(--color-primary-dark);
+    stroke-width: 1px;
+    stroke: var(--color-primary-dark);
     position: relative;
     transform: perspective(100px) rotateY(-15deg);
 }
@@ -303,10 +313,12 @@ header {
     left: 5px;
     width: 15px;
     height: 20px;
-    background-color: var(--color-secondary-dark);
+    fill: var(--color-primary-dark);
     transform: perspective(100px) rotateY(15deg);
 }
-
+.logo-text-first{
+  font-size: 2.5rem !important;
+}
 .logo-text {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.8rem;
@@ -1487,10 +1499,10 @@ margin-top: 50px;
       padding: 2rem 1rem;
     }
     h1 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      color: #f9c172;
+      text-align: center !important;
+      font-size: 2.5rem !important;
+      margin-bottom: 3rem !important;
+      color: #f9c172 !important;
     }
 
     .genre-grid {

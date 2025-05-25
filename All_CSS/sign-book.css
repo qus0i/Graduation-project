@@ -113,8 +113,8 @@ body {
 }
 
 .logo-icon {
-  width: 25px;
-  height: 25px;
+  width: 40px;
+  height: 40px;
   background: linear-gradient(135deg, #c17b36 0%, #f9c172 100%);
   border-radius: 50%;
   display: flex;
@@ -127,17 +127,17 @@ body {
 .logo-icon::before {
   content: "";
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 48px;
+  height: 45px;
   border: 2px dashed #c17b36;
   border-radius: 50%;
   animation: rotate 20s linear infinite;
 }
 
 .book-icon {
-  width: 12.5px;
-  height: 12.5px;
-  background-color: #0b0804;
+  width: 30px;
+  height: 25px;
+ fill: #0b0804;
   position: relative;
   transform: perspective(100px) rotateY(-15deg);
 }
@@ -149,7 +149,7 @@ body {
   left: 1px;
   width: 12.5px;
   height: 12.5px;
-  background-color: #0c0804;
+  fill: #0c0804;
   transform: perspective(100px) rotateY(15deg);
 }
 

@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
              <span class="fs-1">${Number(rating).toFixed(1)}/5.0</span>
                   </div>
                   </div>                  
-<div class="mt-auto d-flex flex-column align-items-end">
+<div class="mt-auto d-flex flex-column align-items-end ">
                <!--testing-->
     <form  class="mt-auto p-2"  action="/your-action-url" method="POST">
   <button type="button" class="library-icon-wrapper mr-2" id="library-toggle-button" name="libraryButton" value="submit"  data-tooltip-inactive="Add to My Library"
@@ -240,8 +240,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <!--closed cover -->
 <button type="button" class="closedCover-icon-wrapper mr-2" id="closedCover-toggle-button" data-tooltip-inactive="Add to MY Closed Cover List"
-  data-tooltip-active="Remove from My Open Cover List"
-  data-tooltip="Add to My Open Cover List">
+  data-tooltip-active="Remove from My Closed Cover List"
+  data-tooltip="Add to My Closed Cover List">
   <!-- Default Icon (visible by default) -->
   <svg id="closedCover-icon-default" class="closedCover-icon" fill="currentColor" viewBox="0 0 24 24" width="50" height="50">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100">

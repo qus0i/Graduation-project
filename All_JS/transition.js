@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     isAnimating = true;
     element.textContent = '';
-    let i = 0;
+       let i = 0;
     
     const typeInterval = setInterval(() => {
       if (i < text.length) {
@@ -105,9 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // Type title first, then subtitle
-    typeText(titleElement, titleText, 80, () => {
+    typeText(titleElement, titleText, 40, () => {
       setTimeout(() => {
-        typeText(subtitleElement, subtitleText, 60);
+        typeText(subtitleElement, subtitleText, 30);
       }, 200);
     });
   }
@@ -124,9 +124,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // Delete subtitle first, then title
-    deleteText(subtitleElement, 40, () => {
+    deleteText(subtitleElement, 20, () => {
       setTimeout(() => {
-        deleteText(titleElement, 40, () => {
+        deleteText(titleElement, 20, () => {
           if (callback) callback();
         });
       }, 100);
@@ -377,3 +377,5 @@ document.addEventListener('DOMContentLoaded', () => {
   // Start the application
   loadNavbar();
 });
+
+
