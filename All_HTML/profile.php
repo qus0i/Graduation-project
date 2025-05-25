@@ -1,6 +1,10 @@
 <?php 
 session_start();
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
+$imgUrl = isset($_SESSION['profile_img']) && !empty($_SESSION['profile_img'])
+    ? $_SESSION['profile_img']
+    : 'https://i.pravatar.cc/200';
+
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +37,7 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
         <div class="col-md-4 text-center mb-4 mb-md-0">
           <img
             id="profileImg"
-            src="https://i.pravatar.cc/200"
+            src="<?php echo htmlspecialchars($imgUrl); ?>"
             alt="Profile"
             class="rounded-circle"
             style="width:200px;height:200px;object-fit:cover;"
