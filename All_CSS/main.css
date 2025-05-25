@@ -17,12 +17,12 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--color-primary-dark); 
-    color: var(--color-primary-light);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    font-family: 'Poppins', sans-serif !important;
+    background-color: var(--color-primary-dark) !important; 
+    color: var(--color-primary-light) !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
 
 }
 a{
