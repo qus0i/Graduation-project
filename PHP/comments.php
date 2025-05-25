@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once("ratingdb.php"); // Include the database connection file
 $commentsFile = 'comments.json';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -9,6 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $rating = intval($_POST['rating']);
     $comment = $_POST['comment'];
     $bookId = $_POST['bookId'];
+   getrating ($rating, $bookId); // Call the function to save the rating
+
+
 
     //$pfpUrl = 'https://api.dicebear.com/6.x/initials/svg?seed=' . urlencode($username);
     $timestamp = time();

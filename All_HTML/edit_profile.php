@@ -132,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['photo'])) {
   <div class="container">
     <h1>Upload Profile Image</h1>
 
-    <form action="test.php" method="POST" enctype="multipart/form-data">
+    <form action="edit_profile.php" method="POST" enctype="multipart/form-data">
       <input type="file" name="photo" accept="image/*" required><br>
       <button type="submit">Upload</button>
     </form>

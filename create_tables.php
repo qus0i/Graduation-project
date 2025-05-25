@@ -75,6 +75,12 @@ $userTable = "CREATE TABLE IF NOT EXISTS users (
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 )";
+ $myratings = "CREATE TABLE IF NOT EXISTS myratings (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    book_id VARCHAR(32) NOT NULL,
+    book_rating INT(11) NOT NULL,
+     PRIMARY KEY (id)
+)";
 
 
 // CREATE TABLE user_genres
@@ -88,6 +94,7 @@ if (
     $link->query($myopencoverTable) === TRUE &&
     $link->query($myclosedcoverTable) === TRUE &&
     $link->query($mymydustyshelves) === TRUE &&
+    $link->query($myratings) === TRUE &&
     $link->query($mylibraryTable) === TRUE &&
     $link->query($forgotpasswordTable) === TRUE
 )
