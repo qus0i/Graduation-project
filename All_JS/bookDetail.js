@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Toggle SVG icons
         document.getElementById(buttonConfig.defaultIcon).classList.toggle('hidden', isActive);
         document.getElementById(buttonConfig.activeIcon).classList.toggle('hidden', !isActive);
+
       });
     }
   });
@@ -56,6 +57,91 @@ document.addEventListener('DOMContentLoaded', function () {
   const reviewsPerPage = 4;
   let totalComments = 0;
   let commentsData = [];
+  /*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+   //استخراج bookId من رابط الصفحة
+  //تجهيز رابط API لجلب بيانات الكتاب
+      // Generic toggle logic دالة التبديل (إضافة/إزالة) للكتاب في جدول معين
+      function handleToggleButton(buttonId, tableName, iconDefaultId = null, iconActiveId = null) {
+        const btn = document.getElementById(buttonId);
+        if (!btn || !book) return;
+
+        const payload = {
+          table: tableName,
+          bookId: bookId, // هنا الإضافة المهمة
+          title: book?.title || '',
+          authors: book?.authors?.join(', ') || '',
+          thumbnail: image?.slice(0, 64)
+        };
+
+        fetch('/Graduation-project/ALL_JS/toggle_book.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.status === 'added') {
+              btn.classList.add('active');
+              if (iconDefaultId && iconActiveId) {
+                document.getElementById(iconDefaultId)?.classList.add('hidden');
+                document.getElementById(iconActiveId)?.classList.remove('hidden');
+              }
+            } else if (data.status === 'removed') {
+              btn.classList.remove('active');
+              if (iconDefaultId && iconActiveId) {
+                document.getElementById(iconDefaultId)?.classList.remove('hidden');
+                document.getElementById(iconActiveId)?.classList.add('hidden');
+              }
+            }
+          });
+      }
+      //دالة فحص حالة الزر عند تحميل الصفحة
+      function checkToggleButtonState(buttonId, tableName, iconDefaultId = null, iconActiveId = null) {
+        const btn = document.getElementById(buttonId);
+        if (!btn || !book) return;
+
+        const payload = {
+          table: tableName,
+          bookId: bookId ,// هنا الإضافة المهمة
+          title: book?.title || '',
+          authors: book?.authors?.join(', ') || ''
+        };
+
+        fetch('/Graduation-project/ALL_JS/check_book.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.exists) {
+              btn.classList.add('active');
+              if (iconDefaultId && iconActiveId) {
+                document.getElementById(iconDefaultId)?.classList.add('hidden');
+                document.getElementById(iconActiveId)?.classList.remove('hidden');
+              }
+            }
+          });
+      }
+
+      // Bind all buttons
+      const buttonConfigs = [
+        { id: 'favorite-button', table: 'myfavorites' },
+        { id: 'library-toggle-button', table: 'mylibrary' },
+        { id: 'openCover-toggle-button', table: 'myopencover' },
+        { id: 'closedCover-toggle-button', table: 'myclosedcover' },
+        { id: 'dustyShelves-toggle-button', table: 'mydustyshelves' }
+      ];
+
+      buttonConfigs.forEach(cfg => {
+        const btn = document.getElementById(cfg.id);
+        if (btn) {
+          btn.addEventListener('click', () => handleToggleButton(cfg.id, cfg.table, cfg.iconDefault, cfg.iconActive));
+          checkToggleButtonState(cfg.id, cfg.table, cfg.iconDefault, cfg.iconActive);
+        }
+      });
+
+    /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
   fetch(apiURL)
     .then(response => response.json())
     .then(data => {
@@ -472,111 +558,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <p style="color: var(--color-primary-light);">${comment}</p>
       </div>
     `;
+
   }
-});
-
-
-//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-//تشغيل الكود بعد تحميل الصفحة
-document.addEventListener('DOMContentLoaded', function () {
-  //استخراج bookId من رابط الصفحة
-  const urlParams = new URLSearchParams(window.location.search);
-  const bookId = urlParams.get('bookId');
-  //تجهيز رابط API لجلب بيانات الكتاب
-  const apiURL = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
-  let book = null;
-  let image = '';
-  //تجهيز رابط API لجلب بيانات الكتاب
-  fetch(apiURL)
-    .then(response => response.json())
-    .then(data => {
-      book = data.volumeInfo;
-      //تجهيز رابط API لجلب بيانات الكتاب
-      image = book.imageLinks
-        ? book.imageLinks.thumbnail.replace('http://', 'https://').replace('zoom=1', 'zoom=3')
-        : 'https://via.placeholder.com/400x600';
-
-      // Generic toggle logic دالة التبديل (إضافة/إزالة) للكتاب في جدول معين
-      function handleToggleButton(buttonId, tableName, iconDefaultId = null, iconActiveId = null) {
-        const btn = document.getElementById(buttonId);
-        if (!btn || !book) return;
-
-        const payload = {
-          table: tableName,
-          bookId: bookId, // هنا الإضافة المهمة
-          title: book?.title || '',
-          authors: book?.authors?.join(', ') || '',
-          thumbnail: image?.slice(0, 64)
-        };
-
-        fetch('/Graduation-project/ALL_JS/toggle_book.php', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        })
-          .then(res => res.json())
-          .then(data => {
-            if (data.status === 'added') {
-              btn.classList.add('active');
-              if (iconDefaultId && iconActiveId) {
-                document.getElementById(iconDefaultId)?.classList.add('hidden');
-                document.getElementById(iconActiveId)?.classList.remove('hidden');
-              }
-            } else if (data.status === 'removed') {
-              btn.classList.remove('active');
-              if (iconDefaultId && iconActiveId) {
-                document.getElementById(iconDefaultId)?.classList.remove('hidden');
-                document.getElementById(iconActiveId)?.classList.add('hidden');
-              }
-            }
-          });
-      }
-      //دالة فحص حالة الزر عند تحميل الصفحة
-      function checkToggleButtonState(buttonId, tableName, iconDefaultId = null, iconActiveId = null) {
-        const btn = document.getElementById(buttonId);
-        if (!btn || !book) return;
-
-        const payload = {
-          table: tableName,
-          bookId: bookId ,// هنا الإضافة المهمة
-          title: book?.title || '',
-          authors: book?.authors?.join(', ') || ''
-        };
-
-        fetch('/Graduation-project/ALL_JS/check_book.php', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        })
-          .then(res => res.json())
-          .then(data => {
-            if (data.exists) {
-              btn.classList.add('active');
-              if (iconDefaultId && iconActiveId) {
-                document.getElementById(iconDefaultId)?.classList.add('hidden');
-                document.getElementById(iconActiveId)?.classList.remove('hidden');
-              }
-            }
-          });
-      }
-
-      // Bind all buttons
-      const buttonConfigs = [
-        { id: 'favorite-button', table: 'myfavorites' },
-        { id: 'library-toggle-button', table: 'mylibrary' },
-        { id: 'openCover-toggle-button', table: 'myopencover' },
-        { id: 'closedCover-toggle-button', table: 'myclosedcover' },
-        { id: 'dustyShelves-toggle-button', table: 'mydustyshelves' }
-      ];
-
-      buttonConfigs.forEach(cfg => {
-        const btn = document.getElementById(cfg.id);
-        if (btn) {
-          btn.addEventListener('click', () => handleToggleButton(cfg.id, cfg.table, cfg.iconDefault, cfg.iconActive));
-          checkToggleButtonState(cfg.id, cfg.table, cfg.iconDefault, cfg.iconActive);
-        }
-      });
     });
-});
-
 
