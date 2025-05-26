@@ -4,19 +4,39 @@
 <head>
   <meta charset="UTF-8">
   <title>Your Favorite Books</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../All_CSS/main.css">
+
   <style>
     body {
       margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background: url('your-background.jpg') no-repeat center center fixed;
-      background-size: cover;
+      background-color: #0B0804;
+      color: #d6aa68;
+      font-family: 'Playfair Display', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-
-    .book-search-container {
+    main {
+      flex: 1 0 auto;
+      margin-top:10px;
+      margin-bottom: 80px;
+    }
+   .h{
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem) !important ; /* Responsive font scaling */
+  color: var(--color-primary-light);
+  text-shadow: 0 2px 5px rgba(11, 8, 4, 0.8);
+  font-weight: bold;
+ 
+    }
+        .book-search-container {
+      position: relative;
       text-align: center;
       padding: 100px 20px 40px;
       color: #f4c28e;
+      margin-top: 6.5rem;
+      z-index: 1000;
     }
 
     .book-search-container h1 {
@@ -55,56 +75,7 @@
 
     .search-box input::placeholder {
       color: #8d6e53;
-    }
-  </style>
-</head>
-<body>
- <section class="hero-section position-relative w-100" style="height: 600px;">
-        <div class="background w-100 h-100" style="background-image: url('../All_IMAGES/Banner.png'); filter: blur(8px) brightness(0.6); z-index: 0;"></div>
-  <div class="book-search-container">
-
-    <h1>Your Favorite Books</h1>
-    <div class="search-box">
-      <span class="search-icon">&#128269;</span>
-      <input type="text" placeholder="Find book you like" />
-    </div>
-  </div>
-</section>
-</body>
-</html>
-<head>
-  
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Book Collection</title>
-  <!-- Bootstrap 5 CSS -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
-  <!-- Font Awesome -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    integrity="sha512-dyZ88n1B+1rQzlj7L7UAkuzMmj5V0zswq+QJ/SF5M6IGZf/nQ9efjqep3zrbZWOjD4Byyj0FZoxZVJoE63w1Rg=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
-  <style>
-    body {
-      margin: 0;
-      background-color: #0B0804;
-      color: #d6aa68;
-      font-family: 'Arial', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    main {
-      flex: 1 0 auto;
-      margin-top: 80px;
-      margin-bottom: 80px;
+      
     }
     .container {
       max-width: 1200px;
@@ -320,9 +291,47 @@
     .menu-icon svg {
       color: #d6aa68;
     }
+    .background1{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center center;
+    align-items: center;
+    justify-content:center;
+    width: 100%;
+    height: 100%;
+    background-image: url('../All_IMAGES/Banner.png');
+    filter: blur(8px) brightness(0.6);
+    z-index: 0;
+    }
+
   </style>
 </head>
 <body>
+ <section class="hero-section position-relative w-100" style="height: 600px;">
+        <div class="background1 w-100 h-100" style="background-image: url('../All_IMAGES/Banner.png'); filter: blur(8px) brightness(0.6); z-index: 0;"></div>
+  <div class="book-search-container">
+
+    <h1 class="h">Your Favorite Books</h1>
+    <div class="search-box">
+      <span class="search-icon"><svg
+            class="book-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 60 60"
+            width="24"
+            height="24"
+            aria-hidden="true"
+            focusable="false"
+          >
+          <path d="M57,6H56V3a3,3,0,0,0-3-3H35a6,6,0,0,0-5,2.687A6,6,0,0,0,25,0H7A3,3,0,0,0,4,3V6H3A3,3,0,0,0,0,9V48a3,3,0,0,0,3,3H18.721a20.873,20.873,0,0,0,23.814.529l7.216,7.216a4.285,4.285,0,0,0,6.006.012,4.351,4.351,0,0,0,0-6L54,51h3a3,3,0,0,0,3-3V9A3,3,0,0,0,57,6ZM50.408,42H53a2.966,2.966,0,0,0,1-.184V44a1,1,0,0,1-1,1H48.854A20.867,20.867,0,0,0,50.408,42ZM35,2H53a1,1,0,0,1,1,1V39a1,1,0,0,1-1,1H51.116A20.975,20.975,0,0,0,31,13V6A4,4,0,0,1,35,2ZM6,3A1,1,0,0,1,7,2H25a4,4,0,0,1,4,4v7.1A20.967,20.967,0,0,0,10.884,40H7a1,1,0,0,1-1-1ZM6,41.816A2.966,2.966,0,0,0,7,42h4.592a20.867,20.867,0,0,0,1.554,3H7a1,1,0,0,1-1-1ZM3,49a1,1,0,0,1-1-1V9A1,1,0,0,1,3,8H4V44a3,3,0,0,0,3,3h7.539a21.256,21.256,0,0,0,1.792,2Zm9-15A19,19,0,1,1,31,53,19.021,19.021,0,0,1,12,34ZM54.976,55.755a2.257,2.257,0,0,1-.639,1.594,2.283,2.283,0,0,1-3.16-.006l-7.009-7.009a21.173,21.173,0,0,0,3.171-3.171l7,7A2.234,2.234,0,0,1,54.976,55.755ZM58,48a1,1,0,0,1-1,1H52l-2-2h3a3,3,0,0,0,3-3V8h1a1,1,0,0,1,1,1Z"/><path d="M36.312,17.847a1,1,0,0,0-.625,1.9A15.011,15.011,0,1,1,31,19a1,1,0,0,0,0-2,16.985,16.985,0,1,0,5.312.847Z"/>
+
+            <!-- SVG paths omitted for brevity -->
+          </svg></span>
+      <input type="text" placeholder="Find book you like" />
+    </div>
+  </div>
+</section>
   <!-- Navbar -->
  <div id="navbar-placeholder"></div>
   <script>
@@ -330,12 +339,6 @@
     .then(response => response.text())
     .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
   </script>
-  <!-- Hero Section -->
-  <section id="hero">
-    <video id="hero-video" muted preload="auto" autoplay></video>
-      <a href="hero.html" data-page="hero-video"></a>
-  </section>
-  
   <main>
     <div class="container">
       <div id="bookList" class="book-list"></div>
@@ -360,15 +363,13 @@
       })
       .catch(err => console.error('Error loading footer:', err));
   </script>
-  <script src="../All_JS/MonthlyRecomnd.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../All_JS/transition.js"></script>
 
   <!-- Bootstrap 5 JS Bundle (includes Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    const booksPerPage = 4;
+    const booksPerPage = 5 ;
     let currentPage = 1;
     let totalPages = 1;
     let books = [];
@@ -525,10 +526,11 @@
 
         // Action Buttons
         const buttonRow = document.createElement('div');
-        buttonRow.className = 'button-row';
+        buttonRow.className = 'd-flex row align-items-center justify-content-start';
         buttonRow.innerHTML = `
-          <form class="mt-auto p-2" action="/your-action-url" method="POST">
-            <button id="favorite-button" class="heart-button">
+             
+          <form class="mt-auto p-2" action=" " method="POST">
+       <button type="button" class="heart-button-card mr-2" id="favorite-button" >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09 C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5 c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
@@ -662,6 +664,7 @@
               </svg>
             </button>
           </form>
+          </div>
         `;
 
         controlWrapper.appendChild(starRating);
@@ -754,5 +757,7 @@
       setupToggleButtons();
     });
   </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

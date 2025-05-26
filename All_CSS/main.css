@@ -1171,6 +1171,38 @@ textarea {
     transition-delay: 0.05s;
   }
   /*lists icons*/
+    .heart-button-card {
+    background-color:rgba(0, 0, 0, 0);
+      display: inline-block;
+        width: 65px;
+    height: 65px;
+   padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+
+  .heart-button-card svg {
+    fill: none;
+    stroke: var(--color-primary-light);
+    stroke-width: 2;
+    transition: fill 0.3s ease, stroke 0.3s ease;
+  }
+
+  .heart-button-card:hover svg {
+    fill:var(--color-accent);
+    stroke:var(--color-accent);
+  }
+
+  .heart-button-card.active svg {
+    fill: var(--color-primary-light);
+    stroke: var(--color-primary-light);
+  }
+  .heart-button-card.active:hover svg {
+    fill: var(--color-accent);
+    stroke: var(--color-accent);
+    transition-delay: 0.05s;
+  }
   .library-icon-wrapper {
     width: 60px;
     height: 60px;
