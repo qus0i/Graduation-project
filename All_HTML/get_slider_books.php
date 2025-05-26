@@ -1,11 +1,7 @@
 <?php
-// Enable error reporting for debugging (remove in production)
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-header('Content-Type: application/json');
 session_start();
+header('Content-Type: application/json');
+
 
 // Database linkection parameters - replace with your own
 include_once '../connection.php'; // Include your database configuration file
@@ -14,33 +10,26 @@ include_once '../connection.php'; // Include your database configuration file
 $allowed_tables = ['myfavorites', 'mylibrary', 'myopencover', 'myclosedcover', 'mydustyshelves'];
 
 // Get slider parameter and validate
-$slider = $_GET['slider'] ?? '';
+$slider = $_GET['slider'] ?? 'myfavorites';
 if (!in_array($slider, $allowed_tables)) {
     http_response_code(400);
     echo json_encode(['error' => 'Invalid slider parameter']);
     exit;
 }
 
-// Assuming user_id is passed or session is started, replace with your auth logic
-// Replace your fixed user_id assignment with:
-$user_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : 23; // 23 is default
 
-// Now you can test in Postman with:
-// http://localhost/Graduation-project/ALL_HTML/get_slider_books.php?slider=myfavorites&user_id=23
- // TODO: replace with actual user session or request parameter
+$user_id = $_SESSION['user_id']; 
+
+
 
 // Prepare and execute query
-$sql = "SELECT id, user_id, title, author, thumbnail FROM `$slider` WHERE user_id = ?";
-$stmt = $link->prepare($sql);
-if (!$stmt) {
+$query = "SELECT id, user_id, title, author, thumbnail FROM `$slider` WHERE user_id = '$user_id'";
+$result = mysqli_query($link, $query);
+if (!$result) {
     http_response_code(500);
-    echo json_encode(['error' => 'Failed to prepare SQL statement']);
+    echo json_encode(['error' => 'Database query failed']);
     exit;
 }
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-
 $books = [];
 while ($row = $result->fetch_assoc()) {
     // Extract thumbnail image URL from Google Books link if needed
@@ -48,12 +37,13 @@ while ($row = $result->fetch_assoc()) {
     $books[] = $row;
 }
 
-$stmt->close();
-$link->close();
+//$stmt->close();
+//$link->close();
 
 // Output JSON
 echo json_encode($books);
-exit;
+
+
 
 /**
  * Extract the thumbnail image URL from a Google Books API link or direct thumbnail URL

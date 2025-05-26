@@ -4,6 +4,9 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
 $imgUrl = isset($_SESSION['profile_img']) && !empty($_SESSION['profile_img'])
     ? $_SESSION['profile_img']
     : 'https://i.pravatar.cc/200';
+    $user_id = $_SESSION['user_id'] ;
+    
+    
 
 ?> 
 <!DOCTYPE html>

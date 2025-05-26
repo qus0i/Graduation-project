@@ -35,7 +35,7 @@ $userTable = "CREATE TABLE IF NOT EXISTS users (
     `user_id` int(11) NOT NULL,
     `title` char(32) NOT NULL,
     `author` char(32) NOT NULL,
-    `thumbnail` char(32) NOT NULL,
+    `thumbnail` char(255) NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (user_id) REFERENCES users(id)
     )";
@@ -44,7 +44,7 @@ $userTable = "CREATE TABLE IF NOT EXISTS users (
     `user_id` int(11) NOT NULL,
     `title` char(32) NOT NULL,
     `author` char(32) NOT NULL,
-    `thumbnail` char(32) NOT NULL,
+    `thumbnail` char(255) NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (user_id) REFERENCES users(id)
     )";
@@ -53,7 +53,7 @@ $userTable = "CREATE TABLE IF NOT EXISTS users (
     user_id INT(11) NOT NULL,
     title CHAR(32) NOT NULL,
     author CHAR(32) NOT NULL,
-    thumbnail CHAR(32) NOT NULL,
+    thumbnail CHAR(255) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 )";
@@ -62,7 +62,7 @@ $userTable = "CREATE TABLE IF NOT EXISTS users (
     user_id INT(11) NOT NULL,
     title CHAR(32) NOT NULL,
     author CHAR(32) NOT NULL,
-    thumbnail CHAR(32) NOT NULL,
+    thumbnail CHAR(255) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 )";
@@ -71,7 +71,7 @@ $userTable = "CREATE TABLE IF NOT EXISTS users (
     user_id INT(11) NOT NULL,
     title CHAR(32) NOT NULL,
     author CHAR(32) NOT NULL,
-    thumbnail CHAR(32) NOT NULL,
+    thumbnail CHAR(255) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 )";
@@ -105,12 +105,19 @@ if (
 }
 
 /*$sql = "ALTER TABLE forgotpassword MODIFY `time` DATETIME NOT NULL";
+ALTER TABLE myfavorites ADD COLUMN bookId VARCHAR(255);
+ALTER TABLE mylibrary ADD COLUMN bookId VARCHAR(255);
+-- وهاكذا لباقي الجداول*/
+
+//$sql = "ALTER TABLE mydustyshelves ADD COLUMN book_Id VARCHAR(255)";
+$sql= "ALTER TABLE mydustyshelves MODIFY thumbnail VARCHAR(255) ";
 
 if ($link->query($sql) === TRUE) {
-    echo "تم تعديل العمود time إلى DATETIME بنجاح.";
+    echo "تم تعديل العمود time إلى DATETIME بنجا1ح.";
 } else {
     echo "خطأ في تعديل العمود: " . $link->error;
-}*/
+}
+
 
 
 $link->close();

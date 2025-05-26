@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <div class="d-flex align-items-center justify-content-start" style="height: 100px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#f9c172" viewBox="0 0 50 50">
 <path d="m46.758 15.738 -2.952 -0.87 -1.74 -2.54a2.344 2.344 0 0 0 -3.868 0l-1.74 2.54c-0.592 0.222 -3.25 0.818 -3.688 1.258l-0.006 -0.246 3.086 -4.012a2.34 2.34 0 0 0 -1.194 -3.676L29.8 6.76l-2.862 -4.176a2.346 2.346 0 0 0 -3.866 0L20.21 6.76l-4.856 1.432a2.34 2.34 0 0 0 -1.196 3.676L17.244 15.88l-0.006 0.246c-0.422 -0.434 -3.114 -1.04 -3.688 -1.258l-1.74 -2.54a2.34 2.34 0 0 0 -3.868 0l-1.74 2.54 -2.954 0.87a2.34 2.34 0 0 0 -1.196 3.678l1.878 2.442 -0.084 3.078a2.34 2.34 0 0 0 0.966 1.962 2.36 2.36 0 0 0 2.162 0.312l2.902 -1.03 2.38 0.846c-3.02 2.214 -2.674 7.15 0.62 8.952 -4.788 2.772 -2.766 10.122 2.752 10.118 1.028 -0.022 1.024 -1.542 0 -1.562 -5.266 -0.236 -5.138 -7.664 0.196 -7.812h6.836a0.782 0.782 0 1 0 0 -1.562H15.83c-5.394 -0.006 -5.464 -7.64 0 -7.812h19.336v0.782H16.548c-4.234 0.126 -4.338 6.07 -0.132 6.25h6.25c1.024 -0.018 1.028 -1.544 0 -1.562H16.416c-2.13 -0.094 -2.036 -3.096 0.132 -3.126h17.836v3.126h-0.782c-1.028 0.018 -1.028 1.544 0 1.562h1.562v0.782h-1.562a0.782 0.782 0 1 0 0 1.562h1.562v0.782h-1.562c-1.028 0.018 -1.028 1.544 0 1.562h0.782v3.126h-7.812c-1.024 0.018 -1.026 1.544 0 1.562h8.594v0.782h-8.594c-1.022 0.016 -1.028 1.544 0 1.562h8.594a1.56 1.56 0 0 0 1.562 -1.562v-0.782a1.56 1.56 0 0 0 -0.782 -1.346v-3.56a1.56 1.56 0 0 0 0.782 -1.35c-0.006 -0.466 0.062 -1.168 -0.216 -1.562 0.282 -0.396 0.212 -1.098 0.216 -1.562a1.56 1.56 0 0 0 -0.782 -1.346v-3.56a1.56 1.56 0 0 0 0.782 -1.346v-0.782l-0.002 -0.026c0.306 0.022 3.062 -1.042 3.412 -1.146l2.902 1.032a2.34 2.34 0 0 0 2.162 -0.312 2.36 2.36 0 0 0 0.966 -1.962l-0.084 -3.078 1.878 -2.442c1.008 -1.236 0.348 -3.27 -1.196 -3.678zM15.394 10.912c-0.338 -0.412 -0.118 -1.092 0.398 -1.226l5.124 -1.51a0.8 0.8 0 0 0 0.424 -0.306l3.02 -4.404c0.294 -0.432 0.994 -0.432 1.286 0l3.02 4.404a0.8 0.8 0 0 0 0.424 0.306l5.124 1.51c0.514 0.136 0.738 0.814 0.398 1.226l-3.256 4.232a0.8 0.8 0 0 0 -0.162 0.498l0.146 5.338c0.03 0.532 -0.548 0.952 -1.042 0.758l-5.032 -1.788a0.8 0.8 0 0 0 -0.524 0l-5.03 1.788c-0.494 0.196 -1.074 -0.226 -1.042 -0.758l0.146 -5.338a0.8 0.8 0 0 0 -0.162 -0.498zm-1.052 14.064c0.03 0.532 -0.548 0.952 -1.042 0.758l-3.164 -1.126a0.8 0.8 0 0 0 -0.524 0l-3.164 1.126c-0.494 0.194 -1.076 -0.226 -1.042 -0.758l0.092 -3.356a0.8 0.8 0 0 0 -0.162 -0.498l-2.048 -2.66c-0.338 -0.412 -0.118 -1.092 0.398 -1.228l3.22 -0.948a0.8 0.8 0 0 0 0.424 -0.306l1.896 -2.77c0.286 -0.448 1.002 -0.45 1.288 0l1.898 2.77a0.8 0.8 0 0 0 0.424 0.306l3.22 0.948c0.514 0.136 0.736 0.814 0.398 1.226l-2.048 2.66a0.8 0.8 0 0 0 -0.162 0.498l0.092 3.358zm1.48 0.806 -0.07 0.004c0.302 -0.558 0.036 -3.29 0.068 -3.93l1.306 -1.698 -0.022 0.78c-0.09 1.594 1.638 2.852 3.13 2.274l4.77 -1.696 4.77 1.696c1.484 0.578 3.218 -0.68 3.13 -2.274l-0.022 -0.782 1.306 1.698c0.03 0.652 -0.234 3.354 0.066 3.926H15.824zm30.89 -7.32 -2.046 2.66a0.8 0.8 0 0 0 -0.162 0.498l0.092 3.356c0.03 0.532 -0.548 0.954 -1.042 0.758l-3.164 -1.126a0.8 0.8 0 0 0 -0.524 0l-3.164 1.126c-0.496 0.194 -1.074 -0.226 -1.042 -0.758l0.092 -3.354a0.8 0.8 0 0 0 -0.162 -0.498l-2.046 -2.66c-0.338 -0.412 -0.118 -1.092 0.398 -1.226l3.218 -0.948a0.8 0.8 0 0 0 0.424 -0.306l1.898 -2.77a0.8 0.8 0 0 1 1.288 0l1.896 2.77a0.8 0.8 0 0 0 0.424 0.306l3.222 0.948c0.516 0.136 0.736 0.814 0.398 1.226z"/><path d="M16.542 39.062h6.116a0.782 0.782 0 1 0 0 -1.562H16.542c-3.728 0.036 -4.52 5.2 -0.914 6.116 0.854 0.014 1.082 -1.238 0.26 -1.518 -1.704 -0.632 -1.172 -3.048 0.654 -3.036"/><path d="M17.97 40.626a0.78 0.78 0 0 0 -0.782 0.782v6.25c-0.018 0.562 0.634 0.964 1.13 0.698l2.776 -1.388 2.774 1.388c0.496 0.266 1.15 -0.138 1.132 -0.7v-6.25a0.78 0.78 0 0 0 -0.782 -0.782zm5.47 5.766c-0.244 -0.088 -2.11 -1.146 -2.344 -1.08 -0.228 -0.068 -2.11 0.996 -2.344 1.08v-4.206h4.688z"/><path d="m25.352 38.978 2.774 -1.388 2.776 1.388c0.494 0.266 1.148 -0.136 1.13 -0.698v-6.25a0.78 0.78 0 0 0 -0.782 -0.782H25a0.78 0.78 0 0 0 -0.782 0.782v6.25c-0.014 0.562 0.634 0.964 1.132 0.698m0.432 -6.166h4.688v4.206c-0.244 -0.088 -2.11 -1.144 -2.344 -1.08 -0.226 -0.068 -2.11 0.996 -2.344 1.08z"/></svg>               
-             <span class="fs-1">${Number(rating).toFixed(1)}/5.0</span>
+             <span class="fs-1"><? /5.0</span>
                   </div>
                   </div>                  
 <div class="mt-auto d-flex flex-column align-items-end ">
@@ -465,229 +465,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 //|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-/*document.addEventListener('DOMContentLoaded', function () {
-  const urlParams = new URLSearchParams(window.location.search);
-  bookId = urlParams.get('bookId');
-  const apiURL = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
-
-  fetch(apiURL)
-    .then(response => response.json())
-    .then(data => {
-      book = data.volumeInfo;
-      image = book.imageLinks
-        ? book.imageLinks.thumbnail.replace('http://', 'https://').replace('zoom=1', 'zoom=3')
-        : 'https://via.placeholder.com/400x600';
-
-      // ❤️ Favorite Button
-      document.querySelector('#favorite-button')?.addEventListener('click', function () {
-        const payload = {
-          bookId: bookId,
-          title: book?.title || '',
-          authors: book?.authors?.join(', ') || '',
-          thumbnail: image.slice(0, 32)
-        };
-
-        if (!payload.title || !payload.authors || !payload.thumbnail) {
-          console.error('Missing fields in payload:', payload);
-          return;
-        }
-
-        fetch('/Graduation-project/save_book.php', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        })
-          .then(res => res.json())
-          .then(data => {
-            if (data.status === 'added') {
-              this.classList.add('active');
-            } else if (data.status === 'removed') {
-              this.classList.remove('active');
-            }
-          })
-          .catch(err => console.error('Favorite fetch error:', err));
-      });
-
-      // 📚 Library Button
-      document.querySelector('#library-toggle-button')?.addEventListener('click', function () {
-        const payload = {
-          title: book?.title || '',
-          authors: book?.authors?.join(', ') || '',
-          thumbnail: image.slice(0, 32)
-        };
-
-        if (!payload.title || !payload.authors || !payload.thumbnail) {
-          console.error('Missing fields in payload:', payload);
-          return;
-        }
-
-        fetch('/Graduation-project/ALL_JS/save_library.php', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        })
-          .then(res => res.json())
-          .then(data => {
-            if (data.status === 'added') {
-              this.classList.add('active');
-              document.getElementById('library-icon-default')?.classList.add('hidden');
-              document.getElementById('library-icon-active')?.classList.remove('hidden');
-            } else if (data.status === 'removed') {
-              this.classList.remove('active');
-              document.getElementById('library-icon-default')?.classList.remove('hidden');
-              document.getElementById('library-icon-active')?.classList.add('hidden');
-            }
-          })
-          .catch(err => console.error('Library fetch error:', err));
-      });
-
-      // Check if book is already in Library
-      fetch('/Graduation-project/ALL_JS/is_in_library.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          title: book.title,
-          authors: book.authors?.join(', ') || ''
-        })
-      })
-        .then(res => res.json())
-        .then(data => {
-          if (data.isInLibrary) {
-            const btn = document.getElementById('library-toggle-button');
-            btn?.classList.add('active');
-            document.getElementById('library-icon-default')?.classList.add('hidden');
-            document.getElementById('library-icon-active')?.classList.remove('hidden');
-          }
-        });
-    });
-});
-
-// Check favorite state (move inside DOMContentLoaded if you want guaranteed load order)
-setTimeout(() => {
-  if (book) {
-    fetch('/Graduation-project/ALL_JS/is_favorite.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        bookId: bookId,
-        title: book.title,
-        authors: book.authors.join(', ')
-      })
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.isFavorite) {
-          document.querySelector('#favorite-button')?.classList.add('active');
-        }
-      });
-  }
-}, 200);*/
-/*document.addEventListener('DOMContentLoaded', function () {
-  const urlParams = new URLSearchParams(window.location.search);
-  bookId = urlParams.get('bookId');
-  const apiURL = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
-
-  fetch(apiURL)
-    .then(response => response.json())
-    .then(data => {
-      book = data.volumeInfo;
-      image = book.imageLinks
-        ? book.imageLinks.thumbnail.replace('http://', 'https://').replace('zoom=1', 'zoom=3')
-        : 'https://via.placeholder.com/400x600';
-
-      // Reusable button toggler
-      function setupButton(buttonId, tableName, iconDefault = null, iconActive = null) {
-        const btn = document.getElementById(buttonId);
-        if (!btn) return;
-
-        // Toggle click
-        btn.addEventListener('click', function () {
-          const payload = {
-            table: tableName,
-            title: book?.title || '',
-            authors: book?.authors?.join(', ') || '',
-            thumbnail: image.slice(0, 32)
-          };
-
-          fetch('/Graduation-project/ALL_JS/toggle_book.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          })
-            .then(res => res.json())
-            .then(data => {
-              if (data.status === 'added') {
-                btn.classList.add('active');
-                if (iconDefault && iconActive) {
-                  document.getElementById(iconDefault)?.classList.add('hidden');
-                  document.getElementById(iconActive)?.classList.remove('hidden');
-                }
-              } else if (data.status === 'removed') {
-                btn.classList.remove('active');
-                if (iconDefault && iconActive) {
-                  document.getElementById(iconDefault)?.classList.remove('hidden');
-                  document.getElementById(iconActive)?.classList.add('hidden');
-                }
-              }
-            })
-            .catch(err => console.error(`${tableName} fetch error:`, err));
-        });
-
-        // Check initial state
-        fetch('/Graduation-project/ALL_JS/check_book.php', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            table: tableName,
-            title: book.title,
-            authors: book.authors?.join(', ') || ''
-          })
-        })
-          .then(res => res.json())
-          .then(data => {
-            if (data.exists) {
-              btn.classList.add('active');
-              if (iconDefault && iconActive) {
-                document.getElementById(iconDefault)?.classList.add('hidden');
-                document.getElementById(iconActive)?.classList.remove('hidden');
-              }
-            }
-          });
-      }
-
-      // Setup all buttons
-      setupButton('favorite-button', 'myfavorites');
-      setupButton('library-toggle-button', 'mylibrary', 'library-icon-default', 'library-icon-active');
-      setupButton('open-cover-button', 'myopencover');
-      setupButton('closed-cover-button', 'myclosedcover');
-      setupButton('dusty-shelves-button', 'mydustyshelves');
-    });
-});*/
+//تشغيل الكود بعد تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function () {
+  //استخراج bookId من رابط الصفحة
   const urlParams = new URLSearchParams(window.location.search);
   const bookId = urlParams.get('bookId');
+  //تجهيز رابط API لجلب بيانات الكتاب
   const apiURL = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
   let book = null;
   let image = '';
-
+  //تجهيز رابط API لجلب بيانات الكتاب
   fetch(apiURL)
     .then(response => response.json())
     .then(data => {
       book = data.volumeInfo;
+      //تجهيز رابط API لجلب بيانات الكتاب
       image = book.imageLinks
         ? book.imageLinks.thumbnail.replace('http://', 'https://').replace('zoom=1', 'zoom=3')
         : 'https://via.placeholder.com/400x600';
 
-      // Generic toggle logic
+      // Generic toggle logic دالة التبديل (إضافة/إزالة) للكتاب في جدول معين
       function handleToggleButton(buttonId, tableName, iconDefaultId = null, iconActiveId = null) {
         const btn = document.getElementById(buttonId);
         if (!btn || !book) return;
 
         const payload = {
           table: tableName,
+          bookId: bookId, // هنا الإضافة المهمة
           title: book?.title || '',
           authors: book?.authors?.join(', ') || '',
-          thumbnail: image?.slice(0, 32)
+          thumbnail: image?.slice(0, 64)
         };
 
         fetch('/Graduation-project/ALL_JS/toggle_book.php', {
@@ -712,13 +519,14 @@ document.addEventListener('DOMContentLoaded', function () {
             }
           });
       }
-
+      //دالة فحص حالة الزر عند تحميل الصفحة
       function checkToggleButtonState(buttonId, tableName, iconDefaultId = null, iconActiveId = null) {
         const btn = document.getElementById(buttonId);
         if (!btn || !book) return;
 
         const payload = {
           table: tableName,
+          bookId: bookId ,// هنا الإضافة المهمة
           title: book?.title || '',
           authors: book?.authors?.join(', ') || ''
         };
@@ -743,7 +551,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // Bind all buttons
       const buttonConfigs = [
         { id: 'favorite-button', table: 'myfavorites' },
-        { id: 'library-toggle-button', table: 'mylibrary', iconDefault: 'library-icon-default', iconActive: 'library-icon-active' },
+        { id: 'library-toggle-button', table: 'mylibrary' },
         { id: 'openCover-toggle-button', table: 'myopencover' },
         { id: 'closedCover-toggle-button', table: 'myclosedcover' },
         { id: 'dustyShelves-toggle-button', table: 'mydustyshelves' }
