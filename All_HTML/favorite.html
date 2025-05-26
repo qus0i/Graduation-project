@@ -1,6 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-  
+  <html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Favorite Books</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url('your-background.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .book-search-container {
+      text-align: center;
+      padding: 100px 20px 40px;
+      color: #f4c28e;
+    }
+
+    .book-search-container h1 {
+      font-size: 48px;
+      font-weight: 400;
+      margin-bottom: 30px;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      background-color: #e8c7aa;
+      padding: 12px 18px;
+      width: 90%;
+      max-width: 600px;
+      margin: 0 auto;
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .search-icon {
+      font-size: 18px;
+      margin-right: 12px;
+      color: #3c2b1f;
+    }
+
+    .search-box input[type="text"] {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 16px;
+      flex: 1;
+      color: #3c2b1f;
+    }
+
+    .search-box input::placeholder {
+      color: #8d6e53;
+    }
+  </style>
+</head>
+<body>
+ <section class="hero-section position-relative w-100" style="height: 600px;">
+        <div class="background w-100 h-100" style="background-image: url('../All_IMAGES/Banner.png'); filter: blur(8px) brightness(0.6); z-index: 0;"></div>
+  <div class="book-search-container">
+
+    <h1>Your Favorite Books</h1>
+    <div class="search-box">
+      <span class="search-icon">&#128269;</span>
+      <input type="text" placeholder="Find book you like" />
+    </div>
+  </div>
+</section>
+</body>
+</html>
 <head>
   
   <meta charset="UTF-8" />
