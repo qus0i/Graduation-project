@@ -40,8 +40,58 @@
       <img src="../All_IMAGES/rightimg.png" alt="Illustration of reading preferences" />
     </div>
   </section>
+  <!--
+  <script>
+    const interests = [
+      "Fantasy", "Science Fiction", "Mystery", "Romance", "Thriller",
+      "Hist Fiction", "Biography", "Science", "Business", "Self-Help"
+    ];
 
-<script>
+    const interestsContainer = document.getElementById('interest-list');
+    const continueBtn = document.querySelector('.continue-btn');
+    let selectedInterests = [];
+
+    interests.forEach(interest => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'interest-btn';
+      button.textContent = interest;
+
+      button.addEventListener('click', () => {
+        if (button.classList.contains('selected')) {
+          button.classList.remove('selected');
+          selectedInterests = selectedInterests.filter(i => i !== interest);
+        } else {
+          if (selectedInterests.length < 6) {
+            button.classList.add('selected');
+            selectedInterests.push(interest);
+          }
+        }
+
+        updateFormFields();
+        continueBtn.disabled = selectedInterests.length === 0;
+      });
+
+      interestsContainer.appendChild(button);
+    });
+
+    function updateFormFields() {
+      const form = document.getElementById('genres-form');
+      // إزالة الحقول القديمة
+      form.querySelectorAll('input[name="genres[]"]').forEach(e => e.remove());
+
+      // إضافة حقول مخفية لكل اختيار
+      selectedInterests.forEach(genre => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'genres[]';
+        input.value = genre;
+        form.appendChild(input);
+      });
+    }
+</script>
+-->
+  <script>
   const interestsContainer = document.getElementById('interest-list');
 const continueBtn = document.querySelector('.continue-btn');
 let selectedInterests = [];
