@@ -13,12 +13,12 @@ $userTable = "CREATE TABLE IF NOT EXISTS users (
 
   $genresTable ="  CREATE TABLE IF NOT EXISTS user_genres (
     user_id INT PRIMARY KEY,
-    genre1 VARCHAR(15),
-    genre2 VARCHAR(15),
-    genre3 VARCHAR(15),
-    genre4 VARCHAR(15),
-    genre5 VARCHAR(15),
-    genre6 VARCHAR(15),
+    genre1 VARCHAR(64),
+    genre2 VARCHAR(64),
+    genre3 VARCHAR(64),
+    genre4 VARCHAR(64),
+    genre5 VARCHAR(64),
+    genre6 VARCHAR(64),
     FOREIGN KEY (user_id) REFERENCES users(id)
     )";
    
@@ -110,7 +110,15 @@ ALTER TABLE mylibrary ADD COLUMN bookId VARCHAR(255);
 -- وهاكذا لباقي الجداول*/
 
 //$sql = "ALTER TABLE mydustyshelves ADD COLUMN book_Id VARCHAR(255)";
-$sql= "ALTER TABLE mydustyshelves MODIFY thumbnail VARCHAR(255) ";
+//$sql= "ALTER TABLE mydustyshelves MODIFY thumbnail VARCHAR(255) ";
+/*$sql= "ALTER TABLE user_genres
+MODIFY genre1 VARCHAR(64),
+MODIFY genre2 VARCHAR(64),
+MODIFY genre3 VARCHAR(64),
+MODIFY genre4 VARCHAR(64),
+MODIFY genre5 VARCHAR(64),
+MODIFY genre6 VARCHAR(64);
+ ";*/
 
 if ($link->query($sql) === TRUE) {
     echo "تم تعديل العمود time إلى DATETIME بنجا1ح.";
