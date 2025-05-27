@@ -106,7 +106,7 @@ $imgUrl = isset($_SESSION['profile_img']) && !empty($_SESSION['profile_img'])
       lists.forEach(key => {
         document.write(`
           <section class="mb-5">
-            <div class="row">
+            <div class="row" style="min-height: 460px;">
               <div class="col-md-2 d-flex flex-column justify-content-center align-items-center">
                 <h3 class="fw-bold text-center lh-base mb-5 align-items-center">${key.charAt(0).toUpperCase() + key.slice(1)}</h3>
                 <a href="#" class="btn btn-outline-primary mt-5 homePage-button slider-butt align-items-end ">See All</a>
@@ -114,6 +114,7 @@ $imgUrl = isset($_SESSION['profile_img']) && !empty($_SESSION['profile_img'])
               <div class="col-md-10">
                 <div id="carousel-${key}" class="carousel slide" data-bs-ride="carousel">
                   <div class="carousel-inner" id="inner-${key}"></div>
+                  
                   <button class="carousel-control-prev" type="button" data-bs-target="#carousel-${key}" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
@@ -131,54 +132,83 @@ $imgUrl = isset($_SESSION['profile_img']) && !empty($_SESSION['profile_img'])
     </script>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-    // Example slider names — you must define this array somewhere
-    // e.g. const lists = ['myfavorites', 'mylibrary', 'myopencover', 'myclosedcover', 'mydustyshelves'];
-    lists.forEach(slider => {
+  // Example slider names — you must define this array somewhere
+  // e.g. const lists = ['myfavorites', 'mylibrary', 'myopencover', 'myclosedcover', 'mydustyshelves'];
+  lists.forEach(slider => {
     fetch(`get_slider_books.php?slider=${slider}`)
       .then(res => res.json())
       .then(books => {
         document.getElementById(`count-${slider}`).textContent = books.length;
-
         const inner = document.getElementById(`inner-${slider}`);
-
         const perSlide = window.innerWidth < 576 ? 1 : window.innerWidth < 768 ? 2 : 4;
         let html = '';
+        let cardIndex = 0;
 
+        // Process each book
         books.forEach((book, i) => {
-          const title = book.title ? (book.title.length > 30 ? book.title.slice(0, 30) + '…' : book.title) : 'No Title';
-          const author = book.author || 'Unknown Author';
+          const bookId = book.book_Id || book.book_id; // تأكد من الحقل الصحيح حسب PHP
+          if (!bookId) return;
 
-          // For rating stars, if your backend does not provide, you can omit or set default
-          // Removed avg_rating usage as it's not in backend response
+          fetch(`https://www.googleapis.com/books/v1/volumes/${bookId}`)
+            .then(res => res.json())
+            .then(data => {
+              const volumeInfo = data.volumeInfo || {};
+              const title = volumeInfo.title
+                ? (volumeInfo.title.length > 30 ? volumeInfo.title.slice(0, 30) + '…' : volumeInfo.title)
+                : (book.title || 'No Title');
+              const author = volumeInfo.authors
+                ? volumeInfo.authors.join(', ')
+                : (book.author || 'Unknown Author');
+              const thumbnail = volumeInfo.imageLinks?.thumbnail
+                ? volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')
+                : 'default-book.png';
+              const rating = book.averageRating || 0;
+              let starRating = '';
+for (let i = 1; i <= 5; i++) {
+  starRating += `<span
+    class="star ${i <= rating ? 'filled' : ''}"
+    data-rating="${rating.toFixed(1)}"
+  >★</span>`;
+}
 
-          if (i % perSlide === 0) {
-            html += `<div class="carousel-item ${i === 0 ? 'active' : ''}"><div class="row gx-2">`;
-          }
-
-          html += `
-            <div class="col-md-3 col-sm-6 px-1" style="min-height: 400px;">
-              <a href="book-detail.html?bookId=${book.id}" class="card-link">
-                <div class="card">
-                  <img src="${book.thumbnail}" class="card-img-top" alt="${title}" loading="lazy" onerror="this.onerror=null;this.src='default-book.png';">
-                  <div class="card-body">
-                    <h5 class="card-title">${title}</h5>
-                    <p class="card-text author">${author}</p>
-                  </div>
+              // بناء HTML بعد استلام كل كتاب
+              if (cardIndex % perSlide === 0) {
+                html += `<div class="carousel-item ${cardIndex === 0 ? 'active' : ''}"><div class="row gx-2">`;
+              }
+              html += `
+                <div class="col-md-3 col-sm-6 px-1" style="min-height: 400px;">
+                  <a href="book-detail.html?bookId=${bookId}" class="card-link">
+                    <div class="card">
+                      <img src="${thumbnail}" class="card-img-top" alt="${title}" loading="lazy" onerror="this.onerror=null;this.src='default-book.png';">
+                      <div class="card-body">
+                        <h5 class="card-title card-link">${title}</h5>
+                        <p class="card-text card-link author">${author}</p>
+                        <div class="stars" data-rating="${rating}">${starRating}</div>               
+                      </div>
+                    </div>
+                  </a>
                 </div>
-              </a>
-            </div>
-          `;
+              `;
 
-          if ((i + 1) % perSlide === 0 || i === books.length - 1) {
-            html += `</div></div>`;
-          }
+              cardIndex++;
+
+              if (cardIndex % perSlide === 0 || cardIndex === books.length) {
+                html += `</div></div>`;
+              }
+
+              // فقط بعد آخر عنصر يتم رسم المخرجات
+              if (cardIndex === books.length) {
+                inner.innerHTML = html;
+              }
+            })
+            .catch(err => {
+              console.error(`Failed to fetch book info for bookId: ${bookId}`, err);
+            });
         });
-
-        inner.innerHTML = html;
       })
-      .catch(err => console.error(`Failed to load ${slider}:`, err));
+      .catch(err => console.error(`Failed to load slider: ${slider}`, err));
   });
-  });
+});
 
     </script>
   <div id="footer-placeholder"></div>

@@ -14,7 +14,7 @@ function getrating($rating, $bookId) {
         $row = mysqli_fetch_assoc($checkResult);
         $_SESSION['rating'] = $row['book_rating'];
         $updateRating = $_SESSION['rating'];
-        $updateRating = ($updateRating + $rating)/2.0;
+        $updateRating = ($updateRating + $rating)/2.00;
         // Update existing rating
         $updateQuery = "UPDATE myratings SET book_rating='$updateRating' WHERE book_id='$bookId'";
         mysqli_query($link, $updateQuery);

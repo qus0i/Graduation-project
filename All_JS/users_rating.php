@@ -1,28 +1,37 @@
 <?php
 require_once '../connection.php';
 
-// Assuming you get bookId from POST or JSON input
+// الحصول على بيانات JSON من الطلب
 $input = json_decode(file_get_contents("php://input"), true);
 $bookId = $input['bookId'];
 
+// إعداد الاستعلام
 $checkQuery = "SELECT book_rating FROM myratings WHERE book_id = ?";
-$stmt->bind_param("s", $bookId);
-$stmt = $link->prepare($checkQuery);
+$stmt = $link->prepare($checkQuery); // تحضير الاستعلام أولاً
 
-$stmt->execute();
-$result = $stmt->get_result();
+if ($stmt) {
+    $stmt->bind_param("s", $bookId); // ثم ربط المتغيرات
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-$response = [];
+    $response = [];
 
-if ($row = $result->fetch_assoc()) {
-    $response['book_rating'] = $row['book_rating'];
+    if ($row = $result->fetch_assoc()) {
+        $response['book_rating'] = $row['book_rating'];
+    } else {
+        $response['book_rating'] = 0.0; // أو "not_found"
+    }
+
+    // إغلاق الموارد
+    $stmt->close();
 } else {
-    $response['book_rating'] = 0.0 ; // or "not_found"
+    // في حال فشل التحضير
+    $response = ['error' => 'Query preparation failed.'];
 }
 
+// إرجاع النتيجة بصيغة JSON
 header('Content-Type: application/json');
 echo json_encode($response);
 
-$stmt->close();
 $link->close();
 ?>
