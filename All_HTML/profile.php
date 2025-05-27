@@ -131,55 +131,77 @@ $imgUrl = isset($_SESSION['profile_img']) && !empty($_SESSION['profile_img'])
       });
     </script>
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-  // Example slider names — you must define this array somewhere
-  // e.g. const lists = ['myfavorites', 'mylibrary', 'myopencover', 'myclosedcover', 'mydustyshelves'];
+     document.addEventListener('DOMContentLoaded', () => {
+  const lists = ['myfavorites', 'mylibrary', 'myopencover', 'myclosedcover', 'mydustyshelves'];
+
   lists.forEach(slider => {
     fetch(`get_slider_books.php?slider=${slider}`)
       .then(res => res.json())
       .then(books => {
         document.getElementById(`count-${slider}`).textContent = books.length;
-
         const inner = document.getElementById(`inner-${slider}`);
-
         const perSlide = window.innerWidth < 576 ? 1 : window.innerWidth < 768 ? 2 : 4;
         let html = '';
+        let cardIndex = 0;
 
+        // Process each book
         books.forEach((book, i) => {
-          const title = book.title ? (book.title.length > 30 ? book.title.slice(0, 30) + '…' : book.title) : 'No Title';
-          const author = book.author || 'Unknown Author';
+          const bookId = book.book_Id || book.book_id; // تأكد من الحقل الصحيح حسب PHP
+          if (!bookId) return;
 
-          // For rating stars, if your backend does not provide, you can omit or set default
-          // Removed avg_rating usage as it's not in backend response
+          fetch(`https://www.googleapis.com/books/v1/volumes/${bookId}`)
+            .then(res => res.json())
+            .then(data => {
+              const volumeInfo = data.volumeInfo || {};
+              const title = volumeInfo.title
+                ? (volumeInfo.title.length > 30 ? volumeInfo.title.slice(0, 30) + '…' : volumeInfo.title)
+                : (book.title || 'No Title');
+              const author = volumeInfo.authors
+                ? volumeInfo.authors.join(', ')
+                : (book.author || 'Unknown Author');
+              const thumbnail = volumeInfo.imageLinks?.thumbnail
+                ? volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')
+                : 'default-book.png';
 
-          if (i % perSlide === 0) {
-            html += `<div class="carousel-item ${i === 0 ? 'active' : ''}"><div class="row gx-2">`;
-          }
+              // بناء HTML بعد استلام كل كتاب
+              if (cardIndex % perSlide === 0) {
+                html += `<div class="carousel-item ${cardIndex === 0 ? 'active' : ''}"><div class="row gx-2">`;
+              }
 
-          html += `
-            <div class="col-md-3 col-sm-6 px-1" style="min-height: 400px;">
-              <a href="book-detail.html?bookId=${book.id}" class="card-link">
-                <div class="card">
-                  <img src="${book.thumbnail}" class="card-img-top" alt="${title}" loading="lazy" onerror="this.onerror=null;this.src='default-book.png';">
-                  <div class="card-body">
-                    <h5 class="card-title">${title}</h5>
-                    <p class="card-text author">${author}</p>
-                  </div>
+              html += `
+                <div class="col-md-3 col-sm-6 px-1" style="min-height: 400px;">
+                  <a href="book-detail.html?bookId=${bookId}" class="card-link">
+                    <div class="card">
+                      <img src="${thumbnail}" class="card-img-top" alt="${title}" loading="lazy" onerror="this.onerror=null;this.src='default-book.png';">
+                      <div class="card-body">
+                        <h5 class="card-title">${title}</h5>
+                        <p class="card-text author">${author}</p>
+                      </div>
+                    </div>
+                  </a>
                 </div>
-              </a>
-            </div>
-          `;
+              `;
 
-          if ((i + 1) % perSlide === 0 || i === books.length - 1) {
-            html += `</div></div>`;
-          }
+              cardIndex++;
+
+              if (cardIndex % perSlide === 0 || cardIndex === books.length) {
+                html += `</div></div>`;
+              }
+
+              // فقط بعد آخر عنصر يتم رسم المخرجات
+              if (cardIndex === books.length) {
+                inner.innerHTML = html;
+              }
+            })
+            .catch(err => {
+              console.error(`Failed to fetch book info for bookId: ${bookId}`, err);
+            });
         });
-
-        inner.innerHTML = html;
       })
-      .catch(err => console.error(`Failed to load ${slider}:`, err));
+      .catch(err => console.error(`Failed to load slider: ${slider}`, err));
   });
 });
+
 
     </script>
   <div id="footer-placeholder"></div>
