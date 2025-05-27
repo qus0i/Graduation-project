@@ -78,7 +78,7 @@ $userTable = "CREATE TABLE IF NOT EXISTS users (
  $myratings = "CREATE TABLE IF NOT EXISTS myratings (
     id INT(11) NOT NULL AUTO_INCREMENT,
     book_id VARCHAR(32) NOT NULL,
-    book_rating INT(11) NOT NULL,
+    book_rating DECIMAL(3,1) NOT NULL DEFAULT 0.0,
      PRIMARY KEY (id)
 )";
 
@@ -119,6 +119,8 @@ MODIFY genre4 VARCHAR(64),
 MODIFY genre5 VARCHAR(64),
 MODIFY genre6 VARCHAR(64);
  ";*/
+ $sql = "ALTER TABLE myratings
+MODIFY COLUMN book_rating DECIMAL(3,1) NOT NULL DEFAULT 0.0;";
 
 if ($link->query($sql) === TRUE) {
     echo "تم تعديل العمود time إلى DATETIME بنجا1ح.";
