@@ -16,6 +16,6 @@ $link = new mysqli($host, $user, $pass, $dbname, $port);
 if ($link->connect_error) {
     die("❌ Connection failed: " . $link->connect_error);
 }
-
+ 
 //echo "✅ Connected to Railway MySQL!";
 ?>

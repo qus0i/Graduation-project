@@ -26,13 +26,12 @@ $imgUrl = isset($_SESSION['profile_img']) && !empty($_SESSION['profile_img'])
 </head>
 <body>
   <!-- Navbar Include (if you have one) -->
-<div id="navbar-placeholder"></div>
-
-<script>
+  <div id="navbar-placeholder"></div>
+  <script>
   fetch('nav.html')
     .then(response => response.text())
     .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
-</script>
+  </script>
   <!-- Profile & Counters Section -->
   <section class="profile py-5">
     <div class=" container">
@@ -132,9 +131,9 @@ $imgUrl = isset($_SESSION['profile_img']) && !empty($_SESSION['profile_img'])
     </script>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-  // Example slider names — you must define this array somewhere
-  // e.g. const lists = ['myfavorites', 'mylibrary', 'myopencover', 'myclosedcover', 'mydustyshelves'];
-  lists.forEach(slider => {
+    // Example slider names — you must define this array somewhere
+    // e.g. const lists = ['myfavorites', 'mylibrary', 'myopencover', 'myclosedcover', 'mydustyshelves'];
+    lists.forEach(slider => {
     fetch(`get_slider_books.php?slider=${slider}`)
       .then(res => res.json())
       .then(books => {
@@ -179,7 +178,7 @@ $imgUrl = isset($_SESSION['profile_img']) && !empty($_SESSION['profile_img'])
       })
       .catch(err => console.error(`Failed to load ${slider}:`, err));
   });
-});
+  });
 
     </script>
   <div id="footer-placeholder"></div>
