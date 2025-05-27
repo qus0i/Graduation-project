@@ -6,8 +6,8 @@
   <title>NextChapter - Personalize Your Experience</title>
   <link rel="stylesheet" href="../All_CSS/main.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-</head>
-<body>
+  </head>
+<body style="overflow: hidden;">
   <section class="hero-section">
     <div class="background"></div>
     <header class="header">
@@ -40,59 +40,18 @@
       <img src="../All_IMAGES/rightimg.png" alt="Illustration of reading preferences" />
     </div>
   </section>
+  <!--
+  <script>
+    const interests = [
+      "Fantasy", "Science Fiction", "Mystery", "Romance", "Thriller",
+      "Hist Fiction", "Biography", "Science", "Business", "Self-Help"
+    ];
 
-<script>
-  const interestsContainer = document.getElementById('interest-list');
-  const continueBtn = document.querySelector('.continue-btn');
-  let selectedInterests = [];
+    const interestsContainer = document.getElementById('interest-list');
+    const continueBtn = document.querySelector('.continue-btn');
+    let selectedInterests = [];
 
-  function normalizeGenre(genre) {
-    genre = genre.toLowerCase().trim();
-    // Remove trailing 's' only if length > 3 (to avoid chopping words like "as")
-    if (genre.length > 3 && genre.endsWith('s')) {
-      genre = genre.slice(0, -1);
-    }
-    return genre;
-  }
-
-  async function fetchGenresFromMultiplePages() {
-    const categoriesSet = new Set();
-    const originalGenresMap = new Map(); // normalized -> original
-
-    for (let start = 0; start < 120; start += 40) {
-      const url = `https://www.googleapis.com/books/v1/volumes?q=fiction&maxResults=40&startIndex=${start}`;
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-
-        if (data.items) {
-          data.items.forEach(item => {
-            if (item.volumeInfo.categories) {
-              item.volumeInfo.categories.forEach(cat => {
-                const normalized = normalizeGenre(cat);
-                if (!categoriesSet.has(normalized)) {
-                  categoriesSet.add(normalized);
-                  originalGenresMap.set(normalized, cat);
-                }
-              });
-            }
-          });
-        }
-      } catch (error) {
-        console.error('Error fetching page', start / 40, error);
-      }
-    }
-
-    return Array.from(categoriesSet).map(norm => originalGenresMap.get(norm));
-  }
-
-  function createGenreButtons(categories) {
-    if (categories.length === 0) {
-      interestsContainer.textContent = 'No genres found.';
-      return;
-    }
-
-    categories.forEach(interest => {
+    interests.forEach(interest => {
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'interest-btn';
@@ -115,6 +74,156 @@
 
       interestsContainer.appendChild(button);
     });
+
+    function updateFormFields() {
+      const form = document.getElementById('genres-form');
+      // إزالة الحقول القديمة
+      form.querySelectorAll('input[name="genres[]"]').forEach(e => e.remove());
+
+      // إضافة حقول مخفية لكل اختيار
+      selectedInterests.forEach(genre => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'genres[]';
+        input.value = genre;
+        form.appendChild(input);
+      });
+    }
+</script>
+-->
+
+<script>
+  const interestsContainer = document.getElementById('interest-list');
+  const continueBtn = document.querySelector('.continue-btn');
+  let selectedInterests = [];
+  let currentPage = 0;
+  const genresPerPage = 20;
+  let pagedGenres = [];
+
+  function normalizeGenre(genre) {
+    genre = genre.toLowerCase().trim();
+    if (genre.length > 3 && genre.endsWith('s')) {
+      genre = genre.slice(0, -1);
+    }
+    return genre;
+  }
+
+  async function fetchGenresFromMultiplePages() {
+    const categoriesSet = new Set();
+    const originalGenresMap = new Map();
+
+    for (let start = 0; start < 120; start += 40) {
+      const url = `https://www.googleapis.com/books/v1/volumes?q=fiction&maxResults=40&startIndex=${start}`;
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.items) {
+          data.items.forEach(item => {
+            if (item.volumeInfo.categories) {
+              item.volumeInfo.categories.forEach(cat => {
+                // تجاهل الأنواع التي طولها أكثر من 32 حرف
+                if (cat.length <= 32) {
+                  const normalized = normalizeGenre(cat);
+                  if (!categoriesSet.has(normalized)) {
+                    categoriesSet.add(normalized);
+                    originalGenresMap.set(normalized, cat);
+                  }
+                }
+              });
+            }
+          });
+        }
+      } catch (error) {
+        console.error('Error fetching page', start / 40, error);
+      }
+    }
+
+    return Array.from(categoriesSet).map(norm => originalGenresMap.get(norm));
+  }
+
+  function animateGenresUpdate(newButtons) {
+    interestsContainer.style.transition = 'opacity 0.5s';
+    interestsContainer.style.opacity = 0;
+    setTimeout(() => {
+      interestsContainer.innerHTML = '';
+      newButtons.forEach(btn => interestsContainer.appendChild(btn));
+      interestsContainer.style.opacity = 1;
+    }, 500);
+  }
+
+  function createButtonsForPage(page) {
+    const start = page * genresPerPage;
+    const end = start + genresPerPage;
+    const genresToShow = pagedGenres.slice(start, end);
+
+    const buttons = genresToShow.map(interest => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'interest-btn';
+      button.textContent = interest;
+
+      if (selectedInterests.includes(interest)) {
+        button.classList.add('selected');
+      }
+
+      button.addEventListener('click', () => {
+        if (button.classList.contains('selected')) {
+          button.classList.remove('selected');
+          selectedInterests = selectedInterests.filter(i => i !== interest);
+        } else {
+          if (selectedInterests.length < 6) {
+            button.classList.add('selected');
+            selectedInterests.push(interest);
+          }
+        }
+        updateFormFields();
+        continueBtn.disabled = selectedInterests.length === 0;
+      });
+
+      return button;
+    });
+
+    // إضافة أزرار التنقل إذا كان هناك أكثر من صفحة
+    if (pagedGenres.length > genresPerPage) {
+      // زر الرجوع (Back) فقط إذا لم نكن في الصفحة الأولى
+      if (page > 0) {
+        const backBtn = document.createElement('button');
+        backBtn.type = 'button';
+        backBtn.className = 'interest-btn nav-btn back-btn';
+        backBtn.textContent = '‹ Back';
+
+        backBtn.addEventListener('click', () => {
+          currentPage--;
+          if (currentPage < 0) currentPage = Math.floor((pagedGenres.length - 1) / genresPerPage);
+          const prevButtons = createButtonsForPage(currentPage);
+          animateGenresUpdate(prevButtons);
+        });
+
+        buttons.unshift(backBtn); // أضفه في البداية
+      }
+
+      // زر التالي (More genres/categories ›) فقط إذا لم نكن في الصفحة الأخيرة
+      if ((page + 1) * genresPerPage < pagedGenres.length) {
+        const moreBtn = document.createElement('button');
+        moreBtn.type = 'button';
+        moreBtn.className = 'interest-btn nav-btn more-btn';
+        moreBtn.textContent = 'More genres/categories ›';
+
+        moreBtn.addEventListener('click', () => {
+          currentPage++;
+          if (currentPage * genresPerPage >= pagedGenres.length) {
+            currentPage = 0; // العودة للبداية إذا تخطينا آخر صفحة
+          }
+          const nextButtons = createButtonsForPage(currentPage);
+          animateGenresUpdate(nextButtons);
+        });
+
+        buttons.push(moreBtn);
+      }
+    }
+
+    return buttons;
   }
 
   function updateFormFields() {
@@ -130,8 +239,13 @@
     });
   }
 
-  // Fetch genres and build buttons when page loads
-  fetchGenresFromMultiplePages().then(createGenreButtons);
+  // جلب الأنواع وبناء الأزرار عند تحميل الصفحة
+  fetchGenresFromMultiplePages().then(categories => {
+    pagedGenres = categories;
+    const buttons = createButtonsForPage(currentPage);
+    animateGenresUpdate(buttons);
+    continueBtn.disabled = true;
+  });
 </script>
 
 
