@@ -3,7 +3,55 @@ session_start();
 include_once("ratingdb.php"); // Include the database connection file
 $commentsFile = 'comments.json';
 function censorText($text) {
-    $badWords = ['bad', 'ugly', 'fuck']; // Add your list of bad words here
+   $badWords = [
+    'fuck',
+    'shit',
+    'bitch',
+    'asshole',
+    'bastard',
+    'dick',
+    'pussy',
+    'damn',
+    'crap',
+    'slut',
+    'cunt',      
+    'faggot',    
+    'whore',
+    'motherfucker',
+    'cock',
+    'dildo',
+    'bollocks',
+    'bugger',
+    'twat',
+    'wanker',
+    'tit',
+    'hoe',
+    'retard',     
+    'fag',
+    'rape',
+    'rapist',
+    'suck my',
+    'blowjob',
+    'handjob',
+    'jerk off',
+    'screw you',
+    'dickhead',
+    'shithead',
+    'asswipe',
+    'buttfuck',
+    'rimjob',
+    'fucker',
+    'fucking',
+    'sex',
+    'porn',
+    'boobs',
+    'tits',
+    'cum',
+    'testicles',
+    'vagina',
+    'penis'
+]; 
+// Add your list of bad words here
     // build a word-boundary regex, case-insensitive
     $pattern = '/\b(' . implode('|', array_map('preg_quote', $badWords)) . ')\b/i';
     return preg_replace_callback($pattern, function($m) {
