@@ -41,17 +41,58 @@
     </div>
   </section>
 
-  <script>
-    const interests = [
-      "Fantasy", "Science Fiction", "Mystery", "Romance", "Thriller",
-      "Hist Fiction", "Biography", "Science", "Business", "Self-Help"
-    ];
+<script>
+  const interestsContainer = document.getElementById('interest-list');
+  const continueBtn = document.querySelector('.continue-btn');
+  let selectedInterests = [];
 
-    const interestsContainer = document.getElementById('interest-list');
-    const continueBtn = document.querySelector('.continue-btn');
-    let selectedInterests = [];
+  function normalizeGenre(genre) {
+    genre = genre.toLowerCase().trim();
+    // Remove trailing 's' only if length > 3 (to avoid chopping words like "as")
+    if (genre.length > 3 && genre.endsWith('s')) {
+      genre = genre.slice(0, -1);
+    }
+    return genre;
+  }
 
-    interests.forEach(interest => {
+  async function fetchGenresFromMultiplePages() {
+    const categoriesSet = new Set();
+    const originalGenresMap = new Map(); // normalized -> original
+
+    for (let start = 0; start < 120; start += 40) {
+      const url = `https://www.googleapis.com/books/v1/volumes?q=fiction&maxResults=40&startIndex=${start}`;
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.items) {
+          data.items.forEach(item => {
+            if (item.volumeInfo.categories) {
+              item.volumeInfo.categories.forEach(cat => {
+                const normalized = normalizeGenre(cat);
+                if (!categoriesSet.has(normalized)) {
+                  categoriesSet.add(normalized);
+                  originalGenresMap.set(normalized, cat);
+                }
+              });
+            }
+          });
+        }
+      } catch (error) {
+        console.error('Error fetching page', start / 40, error);
+      }
+    }
+
+    return Array.from(categoriesSet).map(norm => originalGenresMap.get(norm));
+  }
+
+  function createGenreButtons(categories) {
+    if (categories.length === 0) {
+      interestsContainer.textContent = 'No genres found.';
+      return;
+    }
+
+    categories.forEach(interest => {
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'interest-btn';
@@ -74,22 +115,27 @@
 
       interestsContainer.appendChild(button);
     });
+  }
 
-    function updateFormFields() {
-      const form = document.getElementById('genres-form');
-      // إزالة الحقول القديمة
-      form.querySelectorAll('input[name="genres[]"]').forEach(e => e.remove());
+  function updateFormFields() {
+    const form = document.getElementById('genres-form');
+    form.querySelectorAll('input[name="genres[]"]').forEach(e => e.remove());
 
-      // إضافة حقول مخفية لكل اختيار
-      selectedInterests.forEach(genre => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = 'genres[]';
-        input.value = genre;
-        form.appendChild(input);
-      });
-    }
-  </script>
+    selectedInterests.forEach(genre => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'genres[]';
+      input.value = genre;
+      form.appendChild(input);
+    });
+  }
+
+  // Fetch genres and build buttons when page loads
+  fetchGenresFromMultiplePages().then(createGenreButtons);
+</script>
+
+
+
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 
 </body>
