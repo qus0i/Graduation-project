@@ -148,6 +148,11 @@ async function displayComment(comment) {
     // Preload the next comment
     preloadNextComment();
   }
+ const bookLink = document.querySelector('.card-front-link');
+  if (bookLink) {
+    bookLink.href = `book-detail.html?bookId=${comment.bookId}`;
+  }
+  
 }
 
 // Initialize the reviews section

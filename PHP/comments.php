@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'GUST';
-    $pfpUrl = isset($_SESSION['profile_img']) ? $_SESSION['profile_img'] : 'https://api.dicebear.com/6.x/initials/svg?seed=زائر';
+    $pfpUrl = isset($_SESSION['profile_img']) ? $_SESSION['profile_img'] : 'https://api.dicebear.com/6.x/initials/svg?seed=GUST';
     $rating = intval($_POST['rating']);
     $filtercomment = $_POST['comment'];
     $bookId = $_POST['bookId'];
