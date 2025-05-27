@@ -109,12 +109,11 @@ $imgUrl = isset($_SESSION['profile_img']) && !empty($_SESSION['profile_img'])
             <div class="row" style="min-height: 460px;">
               <div class="col-md-2 d-flex flex-column justify-content-center align-items-center">
                 <h3 class="fw-bold text-center lh-base mb-5 align-items-center">${key.charAt(0).toUpperCase() + key.slice(1)}</h3>
-                <a href="#" class="btn btn-outline-primary mt-5 homePage-button slider-butt align-items-end ">See All</a>
               </div>
               <div class="col-md-10">
                 <div id="carousel-${key}" class="carousel slide" data-bs-ride="carousel">
                   <div class="carousel-inner" id="inner-${key}"></div>
-                  
+
                   <button class="carousel-control-prev" type="button" data-bs-target="#carousel-${key}" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
