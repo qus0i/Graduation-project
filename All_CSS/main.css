@@ -6,7 +6,7 @@
     --color-accent: #c17b36;
     --color-card-text: #E7D6C4;
     --color-card-dark: #bb8d5c;
-    --color-white: #fefae0;
+    --color-white: #fff;
     --prev-img: url(../All_IMAGES/prev.svg);
     --next-img: url(../All_IMAGES/next.svg);
 }
@@ -114,10 +114,10 @@ a{
 .hero-subtitle {
   font-family: 'Poppins', sans-serif;
   font-size: clamp(1.25rem, 2.25vw, 1.75rem);
-  color: var(--color-card-text);
-  text-shadow: 0 2px 5px rgba(11, 8, 4, 0.6);
+  color: var(--color-white);
+  text-shadow: 0 2px 5px var(--color-primary-dark) ;/*rgba(11, 8, 4, 0.6)*/
   margin-bottom: 2rem;
-  -webkit-text-stroke: 1px var(--color-3rd-dark);  /* width and border color */
+  -webkit-text-stroke: 1px #fff;  /* width and border color *//*var(--color-3rd-dark)*/
 
 }
 

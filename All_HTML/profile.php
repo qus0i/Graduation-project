@@ -3,7 +3,7 @@ session_start();
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
 $imgUrl = isset($_SESSION['profile_img']) && !empty($_SESSION['profile_img'])
     ? $_SESSION['profile_img']
-    : 'https://i.pravatar.cc/200';
+    : '/Graduation-project/All_IMAGES/Profil.png';
     $user_id = $_SESSION['user_id'] ;
     
     
@@ -19,8 +19,7 @@ $imgUrl = isset($_SESSION['profile_img']) && !empty($_SESSION['profile_img'])
   <!-- Bootstrap CSS -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
+    rel="stylesheet"/>
      <link rel="stylesheet" href="../All_CSS/main.css">
 
 </head>
