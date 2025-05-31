@@ -3,9 +3,9 @@ session_start();
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
 $imgUrl = isset($_SESSION['profile_img']) && !empty($_SESSION['profile_img'])
     ? $_SESSION['profile_img']
-    : '/Graduation-project/All_IMAGES/Profil.png';
+    : 'https://www.w3schools.com/w3images/avatar2.png';
     $user_id = $_SESSION['user_id'] ;
-    
+///Graduation-project/All_IMAGES/Profil.png    
     
 
 ?> 
@@ -16,10 +16,15 @@ $imgUrl = isset($_SESSION['profile_img']) && !empty($_SESSION['profile_img'])
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Profile</title>
-  <!-- Bootstrap CSS -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    rel="stylesheet"/>
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+  rel="stylesheet"
+/>
+
      <link rel="stylesheet" href="../All_CSS/main.css">
 
 </head>
@@ -41,7 +46,7 @@ $imgUrl = isset($_SESSION['profile_img']) && !empty($_SESSION['profile_img'])
             src="<?php echo htmlspecialchars($imgUrl); ?>"
             alt="Profile"
             class="rounded-circle"
-            style="width:200px;height:200px;object-fit:cover;"
+            style="width:200px;height:200px;object-fit:cover;background-color:#2d241f;"
           />
           <h2 class="mt-3 profiletxt" id="username"><?php echo $username; ?></h2>
         </div>
@@ -221,6 +226,9 @@ for (let i = 1; i <= 5; i++) {
       })
       .catch(err => console.error('Error loading footer:', err));
   </script>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+></script>
 
 </body>
 </html>
