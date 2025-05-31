@@ -66,6 +66,8 @@ $userTable = "CREATE TABLE IF NOT EXISTS users (
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 )";
+
+
     $mymydustyshelves = "CREATE TABLE IF NOT EXISTS mydustyshelves (
     id INT(11) NOT NULL AUTO_INCREMENT,
     user_id INT(11) NOT NULL,
