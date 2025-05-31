@@ -1612,3 +1612,18 @@ margin-top: 50px;
         grid-template-columns: repeat(2, 1fr); /* 2 cards per row on phones */
       }
     }
+
+
+
+    #bio.length-near-limit {
+    border-color: #dc3545; /* لون الخطر في Bootstrap */
+}
+
+#charCount.text-near-limit {
+    color: #dc3545;
+}
+
+/* تنسيقات شريط قوة كلمة المرور */
+.progress {
+    height: 6px;
+}
