@@ -2,7 +2,7 @@
 session_start();
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
 $imgUrl = isset($_SESSION['profile_img']) && !empty($_SESSION['profile_img'])
-    ? $_SESSION['profile_img']
+    ?  'https://www.w3schools.com/w3images/avatar2.png'
     : 'https://www.w3schools.com/w3images/avatar2.png';
     $user_id = $_SESSION['user_id'] ;
 ///Graduation-project/All_IMAGES/Profil.png    
@@ -81,7 +81,7 @@ $imgUrl = isset($_SESSION['profile_img']) && !empty($_SESSION['profile_img'])
       `
   };
 
-  const lists = ['myfavorites','mylibrary','myopencover','myclosedcover','mydustyshelves'];
+  const lists = ['myfavorites','mylibrary'];
   lists.forEach(key => {
     const iconSvg = icons[key] || icons.library; // fallback icon
     document.write(`
