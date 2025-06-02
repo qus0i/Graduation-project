@@ -83,7 +83,7 @@ echo '</pre>';*/
 
   <div class="hero-text-overlay">
     <h1 class="hero-title">
-      <span class="typewriter-text">Welcome to NextChapter</span>
+      <span class="typewriter-text">Welcome to BookMark</span>
     </h1>  
     <p class="hero-subtitle">Discover your next literary adventure</p>
   </div>
