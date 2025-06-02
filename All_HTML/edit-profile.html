@@ -112,10 +112,6 @@ input{
             -webkit-appearance: none;
             margin: 0;
         }
-
-        input[type=number] {
-            -moz-appearance: textfield;
-        }
     .continue-btn:hover{
     background-color: var(--color-primary-light) !important;
         color: var(--color-primary-dark) !important;
@@ -162,7 +158,7 @@ input{
 
         <div class="row" style="min-height: 345px">
             <!-- عمود القوائم الجانبية -->
-            <div class="col-md-4"  style="border-right:1px solid var(--color-primary-light);" >
+            <div class="col-md-4"  style="border-right:1px solid var(--color-primary-light);max-height: 345px;" >
                 <ul class="nav flex-column ">
                     <li class="nav-item"><a class="nav-link active" data-target="general">General</a></li>
                     <li class="nav-item"><a class="nav-link" data-target="edit-profile">Edit Profile</a></li>
@@ -171,8 +167,7 @@ input{
             </div>
 
             <!-- عمود الأقسام المحتوى -->
-            <div class="col-md-8" >
-                <!-- 1. قسم General -->
+            <div class="col-md-8" style="max-height: 345px; padding-left: 45px;">
                 <form id="general" class="content-section">
                     <h5>General Settings</h5>
 
@@ -184,7 +179,7 @@ input{
 
                     <div class="mb-3">
                         <label class="form-label">Email</label>
-                        <input type="email" class="form-control" value="ahmad.codepro@gmail.com">
+                        <input type="email" class="form-control" placeholder="anything@gmail.com">
                     </div>
 
                     <div class="mt-4">
