@@ -1,0 +1,213 @@
+* [33m24f38bf[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m nextchapter words are  replaced wth BookMark
+* [33m58962d1[m Initial commit
+* [33m1610125[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m fixing profile page
+* [33m7797fa9[m added edit profile page
+* [33m93d34c8[m fixing ui
+* [33m4d6069e[m footer
+* [33m7433e8c[m add more bad words
+* [33m9e23b0c[m fixing errors
+*   [33m3dca459[m adding stars to profile
+[32m|[m[33m\[m  
+[32m|[m * [33me57ebc7[m fix profile page
+[32m|[m * [33m499addb[m user rating done
+[32m|[m * [33md06d3a2[m fix genre
+* [33m|[m [33m4294c93[m 123
+[33m|[m[33m/[m  
+* [33m7c20103[m test
+*   [33mf6e78d8[m fuuuuuuuuuuuuuuuuuck
+[34m|[m[35m\[m  
+[34m|[m * [33m9f0c937[m making if 33+ genre dont fitch
+[34m|[m * [33ma0888a5[m add comints
+[34m|[m * [33m6d4e05d[m fixing errors
+* [35m|[m [33mf0af564[m book details 1/2 work
+* [35m|[m [33mc2714fd[m f
+[36m|[m[35m\[m[35m|[m 
+[36m|[m * [33mb6a74d3[m fixing the genre
+[36m|[m * [33m8bbe5b7[m fuck omar
+[36m|[m * [33mdeb0277[m fixing omar miss
+[36m|[m * [33m6623762[m hh
+[36m|[m * [33md46e9a8[m nigga we back
+* [1;31m|[m [33mf96c1e7[m fuck git
+[1;32m|[m[1;31m\[m[1;31m|[m 
+[1;32m|[m * [33m00da074[m bookdetails test
+[1;32m|[m * [33mfbb0e32[m book details done i think just the previwe book
+* [1;33m|[m [33m32facd3[m f
+[1;33m|[m[1;33m/[m  
+* [33m66061b4[m store in 5 table
+*   [33m7ad4297[m Merge remote-tracking branch 'origin/main' into main
+[1;34m|[m[1;35m\[m  
+[1;34m|[m * [33m73e49d9[m done page ( hero section not playing and buttons should be readjusted)
+[1;34m|[m * [33md3f28fa[m almost working buttons
+[1;34m|[m * [33m5886931[m do some edits
+[1;34m|[m *   [33m2ac7f28[m Merge branch 'main' of https://github.com/qus0i/Graduation-project
+[1;34m|[m [1;36m|[m[31m\[m  
+[1;34m|[m * [31m|[m [33m9d1dbd8[m git commint
+* [31m|[m [31m|[m [33m3a2fd76[m comments filterd
+[31m|[m [31m|[m[31m/[m  
+[31m|[m[31m/[m[31m|[m   
+* [31m|[m [33m0bb50e3[m 111
+[31m|[m[31m/[m  
+*   [33mcde953c[m 123
+[32m|[m[33m\[m  
+[32m|[m * [33m297de72[m fixing errors
+[32m|[m * [33m1b5b8e3[m fixing errors
+[32m|[m * [33m292b38c[m remove button from genraSec
+[32m|[m * [33mc023d2a[m fixing prefrancis page
+[32m|[m * [33m3a5fd6e[m our logo is every where
+[32m|[m * [33m35f4b2f[m add logo to all files
+[32m|[m *   [33m1e34561[m fuck
+[32m|[m [34m|[m[35m\[m  
+[32m|[m * [35m|[m [33md199eea[m eee
+[32m|[m * [35m|[m [33mcc75d01[m videos endddddddd
+* [35m|[m [35m|[m [33m4a28256[m comments done
+[35m|[m [35m|[m[35m/[m  
+[35m|[m[35m/[m[35m|[m   
+* [35m|[m [33mf9127c9[m edit in comments
+* [35m|[m [33mc78dfc4[m linke nave with edit profile
+* [35m|[m [33m0cb00f2[m aaaa
+* [35m|[m [33m7f50b18[m uploud profile photo and saved in data base
+* [35m|[m [33mcc9e4e3[m Final update for favorate page FINALLLYYYYYYYYYYYYYYYY <3
+[35m|[m[35m/[m  
+* [33m1793969[m remove button
+* [33mc9e2c72[m cahnge geust to the user name
+* [33m7a32e39[m linked bookes from data base to sliders
+*   [33m25f3091[m mesh 3aref sho el termenal bedo
+[36m|[m[1;31m\[m  
+[36m|[m * [33m38f8d1d[m Ana 3mkm ya teze anta wiah hero section tmmm
+[36m|[m * [33m92d2d78[m semi final favorite page (needs api and buttons adjustments)
+[36m|[m * [33me7fbfc9[m adding title to home.html
+[36m|[m * [33mede621a[m Deleted the videos
+[36m|[m * [33m84a5368[m i think i fucked up
+* [1;31m|[m [33mf810e55[m malik 3mi
+[1;31m|[m[1;31m/[m  
+* [33m3879c50[m edit user_id =1
+* [33ma8d0a9c[m fiiiiiiiiiiiiiiiiiiiiiiiinaly
+* [33m846a47a[m add and remove fav
+* [33m28d894a[m add to fav
+* [33m8ed0ebf[m fixing nav bar
+*   [33m661a29d[m test
+[1;32m|[m[1;33m\[m  
+[1;32m|[m * [33mf05558d[m add all genres
+[1;32m|[m * [33m21cfd87[m api done
+* [1;33m|[m [33m5e03f56[m add the hero section now just need the videos
+[1;33m|[m[1;33m/[m  
+* [33m4f681b3[m test.php
+* [33m6431227[m fixing errors and styling the forget passowrd
+* [33mad6d684[m fixing bok size add qusai to the fotter
+* [33mea77930[m qusai update genre and like it with data base
+*   [33ma91cf0d[m finish
+[1;34m|[m[1;35m\[m  
+[1;34m|[m * [33m4a577ec[m nothing
+[1;34m|[m * [33m145f0eb[m new genras page ( from recommendations page )
+[1;34m|[m *   [33m8251813[m new adds on favorite
+[1;34m|[m [1;36m|[m[31m\[m  
+[1;34m|[m [1;36m|[m * [33m6515dc3[m aaaa
+[1;34m|[m * [31m|[m [33m491cf3f[m new adds on favorite
+[1;34m|[m [32m|[m[31m\[m[31m|[m 
+[1;34m|[m [32m|[m * [33ma15bc8a[m helping teze omar
+[1;34m|[m [32m|[m * [33md085cae[m fixing genrasec
+[1;34m|[m [32m|[m * [33m3c319b7[m fixing nav bar
+[1;34m|[m * [33m|[m [33mcd36dce[m new adds on favorite
+[1;34m|[m [33m|[m[33m/[m  
+[1;34m|[m * [33m3245b94[m first temp version of favorite page
+* [33m|[m [33m75c0bd6[m link forgot_password
+[33m|[m[33m/[m  
+* [33m5e67b74[m qusi
+* [33mb3f6eb6[m om
+* [33m85fbb74[m replacing the icones on the profile and making the adjustment in the sign book
+* [33m229f607[m fixing errors in signbook and add forget pass
+*   [33m15c4c54[m fixing
+[34m|[m[35m\[m  
+[34m|[m * [33mba18ecb[m qusai update
+[34m|[m * [33mc58c075[m qusai edit on signbook.html
+* [35m|[m [33m6af0fed[m i added profil.html and make it linked with the api its need a fix with a back end
+[35m|[m[35m/[m  
+* [33m8242b52[m test
+* [33me0df4d1[m fixing previw page
+* [33m7b2d01a[m finshing recomndation page and link it with the nav bar
+* [33m4259390[m genra phone mode is fixed
+* [33m88237d7[m me omar did the cards
+* [33m61d8ebc[m link the signs buttons with sign page
+* [33m73407ee[m profile page
+* [33m4585948[m change some names and added a new slider for now its perfectly working with pc but its shity on phone version
+*   [33m635268b[m test
+[36m|[m[1;31m\[m  
+[36m|[m * [33maa9397c[m small chamges added to titles and cards added
+* [1;31m|[m [33mdf3f76c[m ifram the genra sec with home page
+* [1;31m|[m [33mdb0bf3c[m add footer to home page fixing the buttons on book details and added toolTip to it
+[1;31m|[m[1;31m/[m  
+*   [33m7649bf4[m temp favorite page for testing including header and footer
+[1;32m|[m[1;33m\[m  
+[1;32m|[m * [33m8006c8b[m wallah sweet
+[1;32m|[m * [33m1dd66aa[m malek git heart attack from the shit u did omar
+[1;32m|[m *   [33mf7e2b25[m i have finshed the randome commet reviwes
+[1;32m|[m [1;34m|[m[1;35m\[m  
+[1;32m|[m * [1;35m|[m [33md4c40ba[m i finshed random reviews and its good with all devises
+* [1;35m|[m [1;35m|[m [33m2f99456[m temp favorite page for testing including header and footer
+[1;35m|[m [1;35m|[m[1;35m/[m  
+[1;35m|[m[1;35m/[m[1;35m|[m   
+* [1;35m|[m [33m325d651[m .
+* [1;35m|[m [33ma0a797f[m .
+[1;35m|[m[1;35m/[m  
+* [33m3abcbc2[m fixing errors
+* [33m9712dff[m added a library button in book details
+* [33mee87162[m adding genrated comment to test find comment algorithem
+* [33m09ace7e[m semi final version of recommendations page everything edited as required
+*   [33m1b370b3[m semi final version of genra
+[1;36m|[m[31m\[m  
+[1;36m|[m * [33m1b986c3[m i forget what i did
+* [31m|[m [33m34e9f97[m semi final version or genra
+[31m|[m[31m/[m  
+* [33m90f4a62[m edit someshit
+* [33mdff1556[m added favourit button to the book detail img it need to lenk with the back end
+* [33m76a111b[m fixing reviwes now every book have a reviwe for andfixing the bug with stars the bug is when the rivew=0 it send 1
+* [33ma8960d5[m i dont remember what i did
+* [33mf64d9e9[m nothing changed
+* [33mb242c7c[m edit the star rating thing on the bage
+* [33m7b2c95c[m i added a comment section it need to fix Qusai do it pls need the back end
+* [33mec499e5[m edit the book details to look better
+* [33mbd9863e[m edit book details page
+* [33m4970163[m edit book details page
+* [33m5e75841[m temp
+* [33m2675d3c[m omar created recommendataion page that mimixs the one we have done in figma
+*   [33mc1e229d[m edit the slider
+[32m|[m[33m\[m  
+[32m|[m * [33m2c6b2fe[m omar uploaded a code that has a flexbox css for genre cards
+* [33m|[m [33mb872f83[m edit sliders
+[33m|[m[33m/[m  
+* [33mdcded9a[m edit the oninigga omar code
+* [33mf6bc5b9[m omar uploaded a code that has a flexbox css for genre cards
+* [33m48cfc62[m Update README.md
+* [33m18d1085[m add genra sec files for omar to work at
+* [33m3836354[m edit the slider to make the cards like buttons and make lead the user to book-detail.html
+* [33m0ec2115[m edit test2.html 2 be Monthly recomnd.html and splet the file 2 js and cs in main.css
+* [33me13af7b[m edit names
+* [33m86b671c[m added slider
+* [33m6c54c41[m i added sign in book
+* [33mccd954c[m i added navbar file
+* [33maf72ca5[m i adjust the code to be linked with bootstrab
+* [33m77e17ae[m nigga that is a test
+* [33m794f256[m edit pathes
+* [33m0ea45e9[m qusai
+* [33mfd09535[m create favorite/wishlist and updated the php code
+* [33m485f8bb[m wishlist/favorites
+* [33mf463a78[m update in php by qusai
+* [33me12f3b2[m updat in login.php ...
+* [33mb58f005[m forget password work successfully
+* [33m6c621d4[m fuck it
+* [33maeba100[m update forget-password.php
+* [33m5c97b2c[m edit php
+* [33m5fb1472[m qusai add logut/forgot password
+* [33m93726c8[m qusai add new php file for activate email and reset/update passward
+* [33ma3ff99b[m edit the path for css and images
+* [33me13c0ab[m Mange foldaers name and add some files
+* [33mee10559[m Add files via upload
+* [33mb399fb9[m Add files via upload
+* [33m4b1db42[m ana b3bst
+* [33mb802f48[m Nigga?
+* [33mf3237e1[m add index.html
+* [33mb899453[m data base connection
+* [33m2b73e7a[m qw
+* [33m3b701d8[m qsy0215022
+* [33mac189b5[m Add files via upload
+* [33mb3065b8[m Initial commit
